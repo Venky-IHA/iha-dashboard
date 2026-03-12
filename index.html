@@ -171,15 +171,15 @@ tbody tr:hover td{background:#eff6ff;}
   </div>
   <div style="display:flex;gap:8px;flex-wrap:wrap;">
     <button class="btn btn-purple" id="btnAddServer">➕ Add Server</button>
-    <button class="btn btn-github" id="btnGitHubSave" disabled="" style="background: rgb(71, 85, 105);">⏳ Saving...</button>
+    <button class="btn btn-github" id="btnGitHubSave" style="background: rgb(71, 85, 105);" disabled="">⏳ Saving...</button>
     <button class="btn btn-gray" id="btnGitHubCfg" style="font-size:12px;padding:8px 12px;">⚙️ GitHub Setup</button>
     <button class="btn btn-orange" id="btnDownload">⬇️ Download Excel</button>
   </div>
 </div>
 
-<div class="save-banner" id="saveBanner" style="display: flex;">
+<div class="save-banner" id="saveBanner" style="display: none;">
   <span class="pulse"></span>
-  <p>⚠️ You have <strong id="changeCount">1</strong> unsaved change(s). Click <strong>"☁️ Save to GitHub"</strong> to update SharePoint automatically.</p>
+  <p>⚠️ You have <strong id="changeCount">0</strong> unsaved change(s). Click <strong>"☁️ Save to GitHub"</strong> to update SharePoint automatically.</p>
   <button class="btn btn-github" onclick="saveToGitHub()" style="padding:8px 14px;font-size:12px;">☁️ Save Now</button>
 </div>
 
