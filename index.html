@@ -18,7 +18,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#f1f5f9;min-height:1
 .btn-gray{background:#f1f5f9;border:1px solid #e2e8f0;color:#475569;}.btn-gray:hover{background:#e2e8f0;}
 .btn-indigo{background:#4f46e5;color:#fff;}.btn-indigo:hover{background:#4338ca;}
 .btn-teal{background:#0891b2;color:#fff;}.btn-teal:hover{background:#0e7490;}
-.btn-github{background:#22c55e;color:#fff;font-size:13px;}.btn-github:hover{background:#16a34a;}
+.btn-github{background:#22c55e;color:#fff;}.btn-github:hover{background:#16a34a;}
 .btn.loading{background:#475569;cursor:not-allowed;}.btn.done{background:#16a34a;}
 .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:16px;}
 .kpi{background:#fff;border-radius:10px;padding:12px 14px;box-shadow:0 1px 4px rgba(0,0,0,.07);}
@@ -43,7 +43,6 @@ tbody td{padding:7px 10px;border-bottom:1px solid #e2e8f0;white-space:nowrap;col
 tbody tr:nth-child(even) td{background:#f8fafc;}
 tbody tr:hover td{background:#eff6ff;}
 .edit-row td{background:#fffbeb!important;}
-.deleted-row td{background:#fff1f2!important;color:#9f1239;}
 .edit-input{padding:3px 6px;border:1px solid #cbd5e1;border-radius:4px;font-size:11px;width:100%;font-family:inherit;}
 .chip{border-radius:4px;padding:2px 6px;font-size:11px;font-weight:600;display:inline-block;}
 .footer-note{text-align:center;font-size:11px;color:#94a3b8;margin-top:12px;}
@@ -65,8 +64,6 @@ tbody tr:hover td{background:#eff6ff;}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
 .trend-up{color:#dc2626;font-size:11px;font-weight:700;}
 .trend-down{color:#16a34a;font-size:11px;font-weight:700;}
-.acct-bill-section{margin-bottom:24px;}
-.acct-bill-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;padding:10px 14px;border-radius:10px;color:#fff;font-weight:800;font-size:14px;}
 .bill-month-card{background:#fff;border-radius:10px;border:1px solid #e2e8f0;margin-bottom:10px;overflow:hidden;}
 .bill-month-header{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;background:#f8fafc;cursor:pointer;user-select:none;}
 .bill-month-header:hover{background:#eff6ff;}
@@ -78,8 +75,6 @@ tbody tr:hover td{background:#eff6ff;}
 .bill-input:focus{border-color:#4f46e5;}
 .acct-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
 .acct-tab{padding:7px 18px;border-radius:20px;border:2px solid #e2e8f0;background:#fff;font-size:12px;font-weight:700;cursor:pointer;color:#64748b;transition:all .15s;}
-.acct-tab.active{color:#fff;}
-/* GitHub Config Modal */
 .cfg-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:2000;}
 .cfg-box{background:#fff;border-radius:14px;padding:28px;width:400px;max-width:95vw;box-shadow:0 20px 60px rgba(0,0,0,.3);}
 .cfg-box h2{font-size:16px;font-weight:800;color:#1a1a2e;margin-bottom:6px;}
@@ -98,21 +93,12 @@ tbody tr:hover td{background:#eff6ff;}
   <div class="cfg-box">
     <h2>⚙️ GitHub Auto-Save Setup</h2>
     <p>One-time setup. Stored only on your browser.</p>
-    <div class="cfg-row">
-      <label>GitHub Username</label>
-      <input id="cfg-user" placeholder="e.g. Venky-IHA" />
-    </div>
-    <div class="cfg-row">
-      <label>Repository Name</label>
-      <input id="cfg-repo" placeholder="e.g. iha-dashboard" />
-    </div>
-    <div class="cfg-row">
-      <label>File Name in Repo</label>
-      <input id="cfg-file" placeholder="index.html" value="index.html" />
-    </div>
+    <div class="cfg-row"><label>GitHub Username</label><input id="cfg-user" placeholder="e.g. Venky-IHA"/></div>
+    <div class="cfg-row"><label>Repository Name</label><input id="cfg-repo" placeholder="e.g. iha-dashboard"/></div>
+    <div class="cfg-row"><label>File Name in Repo</label><input id="cfg-file" placeholder="index.html" value="index.html"/></div>
     <div class="cfg-row">
       <label>Personal Access Token &nbsp;<a href="https://github.com/settings/tokens/new?scopes=repo&description=iha-dashboard" target="_blank" style="color:#22c55e;font-size:11px;">Generate ↗</a></label>
-      <input id="cfg-token" type="password" placeholder="ghp_xxxxxxxxxxxx" />
+      <input id="cfg-token" type="password" placeholder="ghp_xxxxxxxxxxxx"/>
     </div>
     <button class="btn btn-github" id="cfgSaveBtn" style="width:100%;padding:10px;">✅ Save & Start</button>
     <p class="cfg-hint">Token never sent anywhere except GitHub API</p>
@@ -123,10 +109,11 @@ tbody tr:hover td{background:#eff6ff;}
 <div class="modal-overlay" id="deleteModal">
   <div class="modal-box" style="width:400px;">
     <h3>🗑️ Delete Server?</h3>
-    <p id="deleteModalMsg" style="font-size:13px;color:#475569;margin-bottom:16px;"></p>
+    <p id="deleteModalMsg" style="font-size:13px;color:#475569;margin-bottom:6px;"></p>
+    <p style="font-size:12px;color:#dc2626;margin-bottom:16px;">⚠️ This is permanent — cannot be undone!</p>
     <div class="modal-actions">
       <button class="btn btn-gray" id="modalCancel">Cancel</button>
-      <button class="btn btn-red" id="modalConfirm">Yes, Delete</button>
+      <button class="btn btn-red" id="modalConfirm">Yes, Delete Permanently</button>
     </div>
   </div>
 </div>
@@ -142,9 +129,7 @@ tbody tr:hover td{background:#eff6ff;}
       <div class="form-group"><label>Month</label>
         <select id="bm-month"><option>January</option><option>February</option><option>March</option><option>April</option><option>May</option><option>June</option><option>July</option><option>August</option><option>September</option><option>October</option><option>November</option><option>December</option></select>
       </div>
-      <div class="form-group"><label>Year</label>
-        <input type="number" id="bm-year" value="2026" min="2020" max="2099">
-      </div>
+      <div class="form-group"><label>Year</label><input type="number" id="bm-year" value="2026" min="2020" max="2099"></div>
     </div>
     <div style="display:grid;grid-template-columns:26px 1fr 100px 100px 28px;gap:6px;padding:4px 0;margin-bottom:4px;">
       <span></span>
@@ -171,7 +156,7 @@ tbody tr:hover td{background:#eff6ff;}
     <p id="server-count-p" style="color:#93c5fd;font-size:12px;margin-top:4px;"></p>
     <p style="margin-top:4px;font-size:11px;color:#93c5fd;">🗓️ Last Updated: <strong style="color:#fbbf24" id="today-date"></strong></p>
   </div>
-  <div style="display:flex;gap:8px;flex-wrap:wrap;">
+  <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
     <button class="btn btn-gray" id="btnAdminLogin" style="font-size:12px;padding:8px 14px;">🔐 Admin Login</button>
     <button class="btn btn-purple" id="btnAddServer" style="display:none;">➕ Add Server</button>
     <button class="btn btn-github" id="btnGitHubSave" style="display:none;">☁️ Save to GitHub</button>
@@ -220,9 +205,12 @@ tbody tr:hover td{background:#eff6ff;}
   <div class="tabs" id="tabs"></div>
   <div class="tab-content" id="tab-content"></div>
 </div>
-<p class="footer-note">☁️ Click "Save to GitHub" after changes → SharePoint auto-updates for your team</p>
+<p class="footer-note">☁️ Admin: edit data → "Save to GitHub" → everyone sees latest instantly</p>
 
 <script>
+// ═══════════════════════════════════════════════════════
+//  DATA
+// ═══════════════════════════════════════════════════════
 var DB = {
 "iha":[
   {"account":"IHA","name":"Avyukta Dialer - telephony","ip":"3.139.114.250","spec":"c6a.4xlarge","ebs":"1000 GB - gp3","os":"Linux (CentOS)","region":"US - Ohio","type":"EC2","category":"Dialer","cost":526.76,"domain":""},
@@ -330,67 +318,43 @@ var DB = {
   {"account":"USA","name":"Webapp/microservice2","ip":"52.14.29.7","spec":"c5a.xlarge","ebs":"70 GB - gp3","os":"Debian","region":"US - Ohio","type":"EC2","category":"Callatlas App","cost":121.62,"domain":""},
   {"account":"USA","name":"Voipmonitor","ip":"3.147.14.7","spec":"c5.xlarge","ebs":"150 GB - gp3","os":"Debian","region":"US - Ohio","type":"EC2","category":"Callatlas Monitor","cost":139.70,"domain":""}
 ],
-"deleted":[],
 "bills":[
-  {"key":"IHA-February-2026","account":"IHA","month":"February","year":2026,"services":[
-    {"name":"Elastic Compute Cloud","cost":850.00,"compare":-50.00},
-    {"name":"Lightsail","cost":66.00,"compare":0},
-    {"name":"Data Transfer","cost":12.00,"compare":1.00}
-  ],"total":928.00,"totalCompare":-49.00},
-  {"key":"India-February-2026","account":"India","month":"February","year":2026,"services":[
-    {"name":"Elastic Compute Cloud","cost":620.00,"compare":-30.00},
-    {"name":"Lightsail","cost":209.00,"compare":-10.00},
-    {"name":"Data Transfer","cost":8.00,"compare":0.50}
-  ],"total":837.00,"totalCompare":-39.50},
-  {"key":"USA-February-2026","account":"USA","month":"February","year":2026,"services":[
-    {"name":"Elastic Compute Cloud","cost":576.13,"compare":-121.69},
-    {"name":"Lightsail","cost":1000.68,"compare":-138.56},
-    {"name":"Amazon Connect","cost":35.32,"compare":-3.92},
-    {"name":"Contact Center Telecommunications","cost":24.94,"compare":-1.93},
-    {"name":"Data Transfer","cost":3.56,"compare":0.22},
-    {"name":"Business Support+","cost":328.95,"compare":264.64},
-    {"name":"Q","cost":76.70,"compare":0}
-  ],"total":2046.28,"totalCompare":-1.24}
+  {"key":"IHA-February-2026","account":"IHA","month":"February","year":2026,"services":[{"name":"Elastic Compute Cloud","cost":850.00,"compare":-50.00},{"name":"Lightsail","cost":66.00,"compare":0},{"name":"Data Transfer","cost":12.00,"compare":1.00}],"total":928.00,"totalCompare":-49.00},
+  {"key":"India-February-2026","account":"India","month":"February","year":2026,"services":[{"name":"Elastic Compute Cloud","cost":620.00,"compare":-30.00},{"name":"Lightsail","cost":209.00,"compare":-10.00},{"name":"Data Transfer","cost":8.00,"compare":0.50}],"total":837.00,"totalCompare":-39.50},
+  {"key":"USA-February-2026","account":"USA","month":"February","year":2026,"services":[{"name":"Elastic Compute Cloud","cost":576.13,"compare":-121.69},{"name":"Lightsail","cost":1000.68,"compare":-138.56},{"name":"Amazon Connect","cost":35.32,"compare":-3.92},{"name":"Contact Center Telecommunications","cost":24.94,"compare":-1.93},{"name":"Data Transfer","cost":3.56,"compare":0.22},{"name":"Business Support+","cost":328.95,"compare":264.64},{"name":"Q","cost":76.70,"compare":0}],"total":2046.28,"totalCompare":-1.24}
 ]
 };
 
 // ═══════════════════════════════════════════════════════
-//  GITHUB CONFIG
+//  GITHUB CONFIG + ADMIN
 // ═══════════════════════════════════════════════════════
 var GH_CFG_KEY="gh_cfg_iha";
 var ADMIN_SESSION_KEY="iha_admin_session";
+var ADMIN_PASS="iha@admin2026";
 var ghCfg={};
 var IS_ADMIN=false;
-var ADMIN_PASS="iha@admin2026";
 
-function checkAdminSession(){
-  try{
-    var s=sessionStorage.getItem(ADMIN_SESSION_KEY);
-    if(s==="1"){IS_ADMIN=true;}
-  }catch(e){}
-}
-function setAdminSession(val){
-  try{
-    if(val)sessionStorage.setItem(ADMIN_SESSION_KEY,"1");
-    else sessionStorage.removeItem(ADMIN_SESSION_KEY);
-  }catch(e){}
-}
-
-function loadGhCfg(){
-  try{var s=localStorage.getItem(GH_CFG_KEY);if(s)ghCfg=JSON.parse(s);}catch(e){}
-}
-function saveGhCfg(){
-  try{localStorage.setItem(GH_CFG_KEY,JSON.stringify(ghCfg));}catch(e){}
-}
-function isGhConfigured(){
-  return ghCfg.user&&ghCfg.repo&&ghCfg.file&&ghCfg.token;
-}
+function loadGhCfg(){try{var s=localStorage.getItem(GH_CFG_KEY);if(s)ghCfg=JSON.parse(s);}catch(e){}}
+function saveGhCfg(){try{localStorage.setItem(GH_CFG_KEY,JSON.stringify(ghCfg));}catch(e){}}
+function isGhConfigured(){return ghCfg.user&&ghCfg.repo&&ghCfg.file&&ghCfg.token;}
 function openCfg(){
   document.getElementById("cfg-user").value=ghCfg.user||"Venky-IHA";
   document.getElementById("cfg-repo").value=ghCfg.repo||"iha-dashboard";
   document.getElementById("cfg-file").value=ghCfg.file||"index.html";
   document.getElementById("cfg-token").value=ghCfg.token||"";
   document.getElementById("cfgOverlay").style.display="flex";
+}
+function checkAdminSession(){try{if(sessionStorage.getItem(ADMIN_SESSION_KEY)==="1")IS_ADMIN=true;}catch(e){}}
+function setAdminSession(v){try{if(v)sessionStorage.setItem(ADMIN_SESSION_KEY,"1");else sessionStorage.removeItem(ADMIN_SESSION_KEY);}catch(e){}}
+function setAdminUI(isAdmin){
+  IS_ADMIN=isAdmin;
+  ["btnAddServer","btnGitHubSave","btnGitHubCfg"].forEach(function(id){
+    document.getElementById(id).style.display=isAdmin?"":"none";
+  });
+  document.getElementById("btnAdminLogin").textContent=isAdmin?"🔓 Admin (Logout)":"🔐 Admin Login";
+  document.getElementById("addFormWrap").style.display="none";
+  if(!isAdmin)document.getElementById("saveBanner").style.display="none";
+  refreshAll();
 }
 
 // ═══════════════════════════════════════════════════════
@@ -400,77 +364,64 @@ async function saveToGitHub(){
   if(!isGhConfigured()){openCfg();return;}
   var btn=document.getElementById("btnGitHubSave");
   btn.textContent="⏳ Saving...";btn.disabled=true;btn.style.background="#475569";
-
   try{
-    // Build fresh HTML with updated DB
     var freshDB={
       iha:IHA.map(function(s){var r=Object.assign({},s);delete r.sno;delete r.gsno;delete r.dsno;return r;}),
       india:INDIA.map(function(s){var r=Object.assign({},s);delete r.sno;delete r.gsno;delete r.dsno;return r;}),
       usa:USA.map(function(s){var r=Object.assign({},s);delete r.sno;delete r.gsno;delete r.dsno;return r;}),
-      deleted:DELETED.map(function(s){var r=Object.assign({},s);delete r.sno;return r;}),
       bills:BILLS
     };
+    // Build updated HTML with new DB embedded
     var newDBStr="var DB = "+JSON.stringify(freshDB,null,2)+";";
     var html=document.documentElement.outerHTML;
+    // Replace the DB variable in the HTML
     html=html.replace(/var DB = \{[\s\S]*?\};\s*\n\/\/ ═+\s*\n\/\/\s*GITHUB/,newDBStr+"\n\n// ═══════════════════════════════════════════════════════\n//  GITHUB");
-
-    // Base64 encode
     var encoded=btoa(unescape(encodeURIComponent(html)));
-
-    // Get current file SHA
     var apiBase="https://api.github.com/repos/"+ghCfg.user+"/"+ghCfg.repo+"/contents/"+ghCfg.file;
     var headers={"Authorization":"token "+ghCfg.token,"Content-Type":"application/json","Accept":"application/vnd.github.v3+json"};
-
     var getRes=await fetch(apiBase,{headers:headers});
     var sha="";
     if(getRes.ok){var getData=await getRes.json();sha=getData.sha||"";}
-
-    // PUT updated file
     var putBody={message:"Dashboard updated "+new Date().toLocaleString("en-GB"),content:encoded};
     if(sha)putBody.sha=sha;
-
     var putRes=await fetch(apiBase,{method:"PUT",headers:headers,body:JSON.stringify(putBody)});
-
     if(putRes.ok){
-      btn.textContent="✅ Saved to GitHub!";btn.style.background="#16a34a";btn.disabled=false;
+      btn.textContent="✅ Saved!";btn.style.background="#16a34a";btn.disabled=false;
       unsavedChanges=0;
       document.getElementById("changeCount").textContent=0;
       document.getElementById("saveBanner").style.display="none";
-      setTimeout(function(){btn.textContent="☁️ Save to GitHub";btn.style.background="";},4000);
-    } else {
+      setTimeout(function(){btn.textContent="☁️ Save to GitHub";btn.style.background="";},3000);
+    }else{
       var err=await putRes.json();
       throw new Error(err.message||"GitHub API error "+putRes.status);
     }
-  } catch(e){
-    btn.textContent="❌ Failed! Try again";btn.style.background="#dc2626";btn.disabled=false;
-    alert("GitHub Save Error: "+e.message+"\n\nCheck your token & repo settings (⚙️ GitHub Setup)");
-    setTimeout(function(){btn.textContent="☁️ Save to GitHub";btn.style.background="";},4000);
+  }catch(e){
+    btn.textContent="❌ Failed!";btn.style.background="#dc2626";btn.disabled=false;
+    alert("Error: "+e.message+"\n\nCheck ⚙️ GitHub Setup — token & repo name correct-a?");
+    setTimeout(function(){btn.textContent="☁️ Save to GitHub";btn.style.background="";},3000);
   }
 }
 
 // ═══════════════════════════════════════════════════════
 //  RUNTIME
 // ═══════════════════════════════════════════════════════
-var IHA=[],INDIA=[],USA=[],ALL=[],DELETED=[],BILLS=[];
+var IHA=[],INDIA=[],USA=[],ALL=[],BILLS=[];
 var activeTab="dashboard",activeBillAcct="IHA",pendingDeleteSno=null,unsavedChanges=0;
 var MONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"];
 var ACCT_CFG={IHA:{color:"#5b21b6",bg:"#ede9fe",emoji:"🟣"},India:{color:"#92400e",bg:"#fef3c7",emoji:"🟡"},USA:{color:"#1d4ed8",bg:"#dbeafe",emoji:"🔵"}};
-var LS_KEY="aws_infra_data";
 
 function loadData(){
-  try{var ls=localStorage.getItem(LS_KEY);if(ls){var d=JSON.parse(ls);IHA=d.iha.map(function(s){return Object.assign({},s);});INDIA=d.india.map(function(s){return Object.assign({},s);});USA=d.usa.map(function(s){return Object.assign({},s);});DELETED=(d.deleted||[]).map(function(s){return Object.assign({},s);});BILLS=(d.bills||[]).map(function(b){return Object.assign({},b);});return;}}catch(e){}
-  IHA=DB.iha.map(function(s){return Object.assign({},s);});INDIA=DB.india.map(function(s){return Object.assign({},s);});USA=DB.usa.map(function(s){return Object.assign({},s);});DELETED=(DB.deleted||[]).map(function(s){return Object.assign({},s);});BILLS=(DB.bills||[]).map(function(b){return Object.assign({},b);});
+  IHA=DB.iha.map(function(s){return Object.assign({},s);});
+  INDIA=DB.india.map(function(s){return Object.assign({},s);});
+  USA=DB.usa.map(function(s){return Object.assign({},s);});
+  BILLS=(DB.bills||[]).map(function(b){return Object.assign({},b);});
 }
-function autoSave(){
-  try{var data={iha:IHA.map(function(s){var r=Object.assign({},s);delete r.sno;delete r.gsno;delete r.dsno;return r;}),india:INDIA.map(function(s){var r=Object.assign({},s);delete r.sno;delete r.gsno;delete r.dsno;return r;}),usa:USA.map(function(s){var r=Object.assign({},s);delete r.sno;delete r.gsno;delete r.dsno;return r;}),deleted:DELETED.map(function(s){var r=Object.assign({},s);delete r.sno;return r;}),bills:BILLS};localStorage.setItem(LS_KEY,JSON.stringify(data));}catch(e){}
-}
+
 function init(){
-  loadGhCfg();
-  checkAdminSession();
+  loadGhCfg();checkAdminSession();
   loadData();rebuildAll();refreshAll();
-  if(IS_ADMIN)setAdminUI(true);
   setupAddForm();setupDownload();setupDeleteModal();setupBillModal();
-  // GitHub buttons
+  if(IS_ADMIN)setAdminUI(true);
   document.getElementById("btnAdminLogin").addEventListener("click",function(){
     if(IS_ADMIN){setAdminSession(false);setAdminUI(false);return;}
     var pwd=prompt("Admin Password:");
@@ -481,79 +432,321 @@ function init(){
     if(!isGhConfigured()){openCfg();return;}
     saveToGitHub();
   });
-  document.getElementById("btnGitHubCfg").addEventListener("click",function(){
-    var pwd=prompt("Admin password:");
-    if(pwd==="iha@admin")openCfg();
-    else if(pwd!==null)alert("❌ Wrong password!");
-  });
+  document.getElementById("btnGitHubCfg").addEventListener("click",openCfg);
   document.getElementById("cfgSaveBtn").addEventListener("click",function(){
     ghCfg={user:document.getElementById("cfg-user").value.trim(),repo:document.getElementById("cfg-repo").value.trim(),file:document.getElementById("cfg-file").value.trim()||"index.html",token:document.getElementById("cfg-token").value.trim()};
     if(!ghCfg.user||!ghCfg.repo||!ghCfg.token){alert("Fill all fields!");return;}
     saveGhCfg();document.getElementById("cfgOverlay").style.display="none";
-    alert("✅ GitHub config saved! Now click 'Save to GitHub' after any changes.");
+    alert("✅ GitHub config saved!");
   });
-  // DO NOT auto-open config — admin only via secret key
   document.getElementById("today-date").textContent=new Date().toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"});
 }
-function rebuildAll(){IHA.forEach(function(s,i){s.account="IHA";s.sno=i+1;});INDIA.forEach(function(s,i){s.account="India";s.sno=i+1;});USA.forEach(function(s,i){s.account="USA";s.sno=i+1;});ALL=IHA.concat(INDIA).concat(USA);ALL.forEach(function(s,i){s.gsno=i+1;});}
-function markChanged(){unsavedChanges++;document.getElementById("changeCount").textContent=unsavedChanges;if(IS_ADMIN){try{if(window.self===window.top)document.getElementById("saveBanner").style.display="flex";}catch(e){}}}
+
+function rebuildAll(){
+  IHA.forEach(function(s,i){s.account="IHA";s.sno=i+1;});
+  INDIA.forEach(function(s,i){s.account="India";s.sno=i+1;});
+  USA.forEach(function(s,i){s.account="USA";s.sno=i+1;});
+  ALL=IHA.concat(INDIA).concat(USA);
+  ALL.forEach(function(s,i){s.gsno=i+1;});
+}
+
+function markChanged(){
+  unsavedChanges++;
+  document.getElementById("changeCount").textContent=unsavedChanges;
+  if(IS_ADMIN){try{if(window.self===window.top)document.getElementById("saveBanner").style.display="flex";}catch(e){}}
+}
+
 var fmt=function(n){return"$"+Number(n).toFixed(2);};
 var sumCost=function(arr){return arr.reduce(function(s,r){return s+Number(r.cost||0);},0);};
 function osChip(os){var s=(os||"").toLowerCase(),bg,fg;if(s.includes("windows")){bg="#dbeafe";fg="#1d4ed8";}else if(s.includes("ubuntu")){bg="#fef9c3";fg="#854d0e";}else if(s.includes("centos")){bg="#fee2e2";fg="#991b1b";}else{bg="#dcfce7";fg="#166534";}return'<span class="chip" style="background:'+bg+';color:'+fg+';">'+os+'</span>';}
 function acctChip(a){var c=ACCT_CFG[a]||{color:"#475569",bg:"#f1f5f9"};return'<span class="chip" style="background:'+c.bg+';color:'+c.color+';font-weight:700;">'+a+'</span>';}
 function typeChip(t){return'<span class="chip" style="background:'+(t==="EC2"?"#e0f2fe":"#f3e8ff")+';color:'+(t==="EC2"?"#0369a1":"#6d28d9")+';">'+t+'</span>';}
+
 function refreshAll(){rebuildAll();refreshHeader();refreshKPI();refreshTabs();renderContent(activeTab);}
 function refreshHeader(){document.getElementById("server-count-p").innerHTML=ALL.length+" Servers &middot; 3 Accounts &middot; Grand Total: <strong style='color:#fbbf24'>"+fmt(sumCost(ALL))+"</strong>/month";}
-function refreshKPI(){var totalBills=BILLS.length;var rows=[{label:"IHA Account",val:IHA.length+" servers",cost:fmt(sumCost(IHA)),c:"#5b21b6",icon:"🟣"},{label:"India Account",val:INDIA.length+" servers",cost:fmt(sumCost(INDIA)),c:"#92400e",icon:"🟡"},{label:"USA Account",val:USA.length+" servers",cost:fmt(sumCost(USA)),c:"#1d4ed8",icon:"🔵"},{label:"Grand Total",val:ALL.length+" servers",cost:fmt(sumCost(ALL))+"/mo",c:"#be123c",icon:"💰"},{label:"Monthly Bills",val:totalBills+" entries",cost:"3 Accounts",c:"#0369a1",icon:"🧾"}];document.getElementById("kpi-grid").innerHTML=rows.map(function(k){return'<div class="kpi" style="border-left:4px solid '+k.c+'"><div class="icon">'+k.icon+'</div><div class="label">'+k.label+'</div><div class="val" style="color:'+k.c+'">'+k.val+'</div><div class="cost">'+k.cost+'</div></div>';}).join("");}
-function refreshTabs(){var defs=[{id:"dashboard",label:"📊 Dashboard",c:"#7c3aed"},{id:"iha",label:"🟣 IHA ("+IHA.length+")",c:"#5b21b6"},{id:"india",label:"🟡 India ("+INDIA.length+")",c:"#92400e"},{id:"usa",label:"🔵 USA ("+USA.length+")",c:"#1d4ed8"},{id:"all",label:"🌐 All ("+ALL.length+")",c:"#0f172a"},{id:"deleted",label:"🗑️ Deleted ("+DELETED.length+")",c:"#dc2626"},{id:"monthly",label:"🧾 Monthly Bills ("+BILLS.length+")",c:"#0369a1"}];document.getElementById("tabs").innerHTML=defs.map(function(t){var a=t.id===activeTab;return'<button class="tab-btn'+(a?" active":"")+'" style="'+(a?"border-bottom-color:"+t.c+";color:"+t.c+";":"")+'" data-tab="'+t.id+'">'+t.label+'</button>';}).join("");document.querySelectorAll(".tab-btn").forEach(function(b){b.addEventListener("click",function(){activeTab=b.dataset.tab;refreshTabs();renderContent(activeTab);});});}
-var typeFilter={iha:"all",india:"all",usa:"all",all:"all"};
-function renderContent(id){var el=document.getElementById("tab-content");if(id==="dashboard"){el.innerHTML=renderDashboard();return;}if(id==="deleted"){el.innerHTML=renderDeletedTab();attachRestoreListeners();return;}if(id==="monthly"){el.innerHTML=renderMonthlyBills();setupMonthlyBillsTab();return;}var cfgMap={iha:{data:IHA,color:"#5b21b6",sa:false},india:{data:INDIA,color:"#92400e",sa:false},usa:{data:USA,color:"#1d4ed8",sa:false},all:{data:ALL,color:"#0f172a",sa:true}};var cfg=cfgMap[id];var isAll=(id==="all");var subTabs="";if(!isAll){var ec2count=cfg.data.filter(function(s){return s.type==="EC2";}).length;var lscount=cfg.data.filter(function(s){return s.type==="Lightsail";}).length;var tf=typeFilter[id];var btnStyle=function(t){var active=(tf===t);var baseColor=cfg.color;return'padding:6px 16px;border-radius:20px;border:2px solid '+(active?baseColor:"#e2e8f0")+';background:'+(active?baseColor:"#fff")+';color:'+(active?"#fff":"#64748b")+';font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;';};subTabs='<div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;"><button style="'+btnStyle("all")+'" onclick="setTypeFilter(\''+id+'\',\'all\')">🖥️ All ('+cfg.data.length+')</button><button style="'+btnStyle("EC2")+'" onclick="setTypeFilter(\''+id+'\',\'EC2\')">⚙️ EC2 ('+ec2count+')</button><button style="'+btnStyle("Lightsail")+'" onclick="setTypeFilter(\''+id+'\',\'Lightsail\')">💡 Lightsail ('+lscount+')</button></div>';}
-var filtered=cfg.data.filter(function(s){var tf=typeFilter[id];return tf==="all"||s.type===tf;});var dispData=filtered.map(function(s,i){return Object.assign({},s,{dsno:i+1});});el.innerHTML=subTabs+'<div class="search-bar"><input type="text" id="search-'+id+'" placeholder="🔍 Search any column..."><span id="count-'+id+'" style="font-size:12px;color:#64748b;">'+dispData.length+' servers</span><span id="total-'+id+'" style="margin-left:auto;font-weight:700;font-size:13px;color:'+cfg.color+';">Total: '+fmt(sumCost(dispData))+'</span></div><div class="table-wrap"><table><thead><tr style="background:'+cfg.color+'">'+buildHeaders(isAll)+'</tr></thead><tbody id="tbody-'+id+'">'+buildRows(dispData,isAll)+'</tbody></table></div>';document.getElementById("search-"+id).addEventListener("input",function(e){var q=e.target.value.toLowerCase();var f=q?dispData.filter(function(r){return Object.values(r).some(function(v){return String(v).toLowerCase().includes(q);});}):dispData;var renum=f.map(function(s,i){return Object.assign({},s,{dsno:i+1});});document.getElementById("tbody-"+id).innerHTML=buildRows(renum,isAll);document.getElementById("count-"+id).textContent=renum.length+" of "+dispData.length+" servers";document.getElementById("total-"+id).textContent="Total: "+fmt(sumCost(renum));attachEditListeners();attachDeleteListeners();});attachEditListeners();attachDeleteListeners();}
-function setTypeFilter(tabId,type){typeFilter[tabId]=type;renderContent(tabId);}
-function buildHeaders(sa){var c=sa?["#","Account","Server Name","IP","Spec","EBS","OS","Region","Type","Category","Domain","Cost","",""]:["#","Server Name","IP","Spec","EBS","OS","Region","Type","Category","Domain","Cost","",""];return c.map(function(h){return"<th>"+h+"</th>";}).join("");}
-function setAdminUI(isAdmin){
-  IS_ADMIN=isAdmin;
-  var show=isAdmin?"":"none";
-  var hide=isAdmin?"none":"";
-  document.getElementById("btnAddServer").style.display=isAdmin?"":"none";
-  document.getElementById("btnGitHubSave").style.display=isAdmin?"":"none";
-  document.getElementById("btnGitHubCfg").style.display=isAdmin?"":"none";
-  document.getElementById("btnAdminLogin").textContent=isAdmin?"🔓 Admin (Logout)":"🔐 Admin Login";
-  document.getElementById("addFormWrap").style.display="none";
-  document.getElementById("saveBanner").style.display="none";
-  refreshAll();
+function refreshKPI(){
+  var rows=[
+    {label:"IHA Account",val:IHA.length+" servers",cost:fmt(sumCost(IHA)),c:"#5b21b6",icon:"🟣"},
+    {label:"India Account",val:INDIA.length+" servers",cost:fmt(sumCost(INDIA)),c:"#92400e",icon:"🟡"},
+    {label:"USA Account",val:USA.length+" servers",cost:fmt(sumCost(USA)),c:"#1d4ed8",icon:"🔵"},
+    {label:"Grand Total",val:ALL.length+" servers",cost:fmt(sumCost(ALL))+"/mo",c:"#be123c",icon:"💰"},
+    {label:"Monthly Bills",val:BILLS.length+" entries",cost:"3 Accounts",c:"#0369a1",icon:"🧾"}
+  ];
+  document.getElementById("kpi-grid").innerHTML=rows.map(function(k){return'<div class="kpi" style="border-left:4px solid '+k.c+'"><div class="icon">'+k.icon+'</div><div class="label">'+k.label+'</div><div class="val" style="color:'+k.c+'">'+k.val+'</div><div class="cost">'+k.cost+'</div></div>';}).join("");
+}
+function refreshTabs(){
+  var defs=[
+    {id:"dashboard",label:"📊 Dashboard",c:"#7c3aed"},
+    {id:"iha",label:"🟣 IHA ("+IHA.length+")",c:"#5b21b6"},
+    {id:"india",label:"🟡 India ("+INDIA.length+")",c:"#92400e"},
+    {id:"usa",label:"🔵 USA ("+USA.length+")",c:"#1d4ed8"},
+    {id:"all",label:"🌐 All ("+ALL.length+")",c:"#0f172a"},
+    {id:"monthly",label:"🧾 Monthly Bills ("+BILLS.length+")",c:"#0369a1"}
+  ];
+  document.getElementById("tabs").innerHTML=defs.map(function(t){var a=t.id===activeTab;return'<button class="tab-btn'+(a?" active":"")+'" style="'+(a?"border-bottom-color:"+t.c+";color:"+t.c+";":"")+'" data-tab="'+t.id+'">'+t.label+'</button>';}).join("");
+  document.querySelectorAll(".tab-btn").forEach(function(b){b.addEventListener("click",function(){activeTab=b.dataset.tab;refreshTabs();renderContent(activeTab);});});
 }
 
-function buildRows(data,sa){return data.map(function(r){var ac=sa?"<td>"+acctChip(r.account)+"</td>":"";var displayNo=(r.dsno!==undefined?r.dsno:r.sno);
-var editDeleteCols=IS_ADMIN?
-  '<td><button class="btn btn-gray edit-btn" style="padding:3px 8px;font-size:11px;" data-sno="'+r.sno+'">✏️</button></td>'+
-  '<td><button class="btn btn-red delete-btn" style="padding:3px 8px;font-size:11px;" data-sno="'+r.sno+'" data-name="'+r.name+'">🗑️</button></td>':
-  '<td></td><td></td>';
-var editRowCols=IS_ADMIN?
-  '<td><button class="btn btn-green save-edit-btn" style="padding:3px 8px;font-size:11px;" data-sno="'+r.sno+'" data-acct="'+r.account+'">✅</button></td>'+
-  '<td><button class="btn btn-gray cancel-btn" style="padding:3px 8px;font-size:11px;" data-sno="'+r.sno+'">✖</button></td>':
-  '<td></td><td></td>';
-return'<tr id="view-'+r.sno+'"><td style="color:#94a3b8;font-size:11px">'+displayNo+'</td>'+ac+'<td style="font-weight:600;color:#1e293b;">'+r.name+'</td><td style="font-family:monospace;color:#475569;font-size:11px">'+r.ip+'</td><td style="color:#475569">'+r.spec+'</td><td style="color:#64748b">'+r.ebs+'</td><td>'+osChip(r.os)+'</td><td style="color:#475569">'+r.region+'</td><td>'+typeChip(r.type)+'</td><td style="color:#475569">'+r.category+'</td><td style="color:#64748b;font-size:11px">'+(r.domain||"—")+'</td><td style="font-weight:700;color:#0369a1">'+fmt(r.cost)+'</td>'+editDeleteCols+'</tr>'+
-'<tr id="edit-'+r.sno+'" style="display:none;" class="edit-row"><td style="color:#94a3b8;font-size:11px">'+r.sno+'</td>'+ac+'<td><input class="edit-input" id="en-'+r.sno+'" value="'+r.name+'"></td><td><input class="edit-input" id="ei-'+r.sno+'" value="'+r.ip+'"></td><td><input class="edit-input" id="es-'+r.sno+'" value="'+r.spec+'"></td><td><input class="edit-input" id="ee-'+r.sno+'" value="'+r.ebs+'"></td><td><input class="edit-input" id="eo-'+r.sno+'" value="'+r.os+'"></td><td><input class="edit-input" id="er-'+r.sno+'" value="'+r.region+'"></td><td><input class="edit-input" id="et-'+r.sno+'" value="'+r.type+'" style="width:70px"></td><td><input class="edit-input" id="ec-'+r.sno+'" value="'+r.category+'"></td><td><input class="edit-input" id="ed-'+r.sno+'" value="'+(r.domain||"")+'"></td><td><input class="edit-input" id="ep-'+r.sno+'" value="'+r.cost+'" type="number" style="width:70px"></td>'+editRowCols+'</tr>';}).join("");}
-function attachEditListeners(){document.querySelectorAll(".edit-btn").forEach(function(b){b.addEventListener("click",function(){document.getElementById("view-"+b.dataset.sno).style.display="none";document.getElementById("edit-"+b.dataset.sno).style.display="";});});document.querySelectorAll(".cancel-btn").forEach(function(b){b.addEventListener("click",function(){document.getElementById("edit-"+b.dataset.sno).style.display="none";document.getElementById("view-"+b.dataset.sno).style.display="";});});document.querySelectorAll(".save-edit-btn").forEach(function(b){b.addEventListener("click",function(){var sno=+b.dataset.sno,acct=b.dataset.acct;function upd(o){o.name=document.getElementById("en-"+sno).value;o.ip=document.getElementById("ei-"+sno).value;o.spec=document.getElementById("es-"+sno).value;o.ebs=document.getElementById("ee-"+sno).value;o.os=document.getElementById("eo-"+sno).value;o.region=document.getElementById("er-"+sno).value;o.type=document.getElementById("et-"+sno).value;o.category=document.getElementById("ec-"+sno).value;o.domain=document.getElementById("ed-"+sno).value;o.cost=parseFloat(document.getElementById("ep-"+sno).value)||0;}var map={IHA:IHA,India:INDIA,USA:USA};var idx=map[acct].findIndex(function(s){return s.sno===sno;});if(idx>=0)upd(map[acct][idx]);var ai=ALL.findIndex(function(s){return s.sno===sno;});if(ai>=0)upd(ALL[ai]);markChanged();refreshAll();});});}
-function attachDeleteListeners(){document.querySelectorAll(".delete-btn").forEach(function(b){b.addEventListener("click",function(){pendingDeleteSno=+b.dataset.sno;document.getElementById("deleteModalMsg").textContent='Delete "'+b.dataset.name+'"?';document.getElementById("deleteModal").style.display="flex";});});}
-function setupDeleteModal(){document.getElementById("modalCancel").addEventListener("click",function(){document.getElementById("deleteModal").style.display="none";pendingDeleteSno=null;});document.getElementById("modalConfirm").addEventListener("click",function(){if(pendingDeleteSno===null)return;var sno=pendingDeleteSno,ai=ALL.findIndex(function(s){return s.sno===sno;});if(ai<0)return;var srv=Object.assign({},ALL[ai]);srv.deletedOn=new Date().toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"});DELETED.push(srv);ALL.splice(ai,1);var map={IHA:IHA,India:INDIA,USA:USA};var arr=map[srv.account],idx=arr.findIndex(function(s){return s.sno===sno;});if(idx>=0)arr.splice(idx,1);document.getElementById("deleteModal").style.display="none";pendingDeleteSno=null;markChanged();refreshAll();});}
-function renderDeletedTab(){if(!DELETED.length)return'<div style="text-align:center;padding:40px;color:#94a3b8;"><div style="font-size:40px;">🗑️</div><div style="font-size:14px;font-weight:600;margin-top:12px;">No deleted servers</div></div>';return'<div style="margin-bottom:12px;"><span style="font-size:12px;color:#dc2626;font-weight:600;">🗑️ '+DELETED.length+' deleted</span></div><div class="table-wrap"><table><thead><tr style="background:#dc2626"><th>#</th><th>Account</th><th>Name</th><th>IP</th><th>Spec</th><th>OS</th><th>Region</th><th>Cost</th><th>Deleted On</th><th>Restore</th></tr></thead><tbody>'+DELETED.map(function(r,i){return'<tr class="deleted-row"><td style="font-size:11px">'+(i+1)+'</td><td>'+acctChip(r.account)+'</td><td style="text-decoration:line-through;font-weight:600;">'+r.name+'</td><td style="font-family:monospace;font-size:11px">'+r.ip+'</td><td>'+r.spec+'</td><td>'+osChip(r.os)+'</td><td>'+r.region+'</td><td style="font-weight:700">'+fmt(r.cost)+'</td><td style="font-size:11px;color:#64748b">'+r.deletedOn+'</td><td><button class="btn btn-green restore-btn" style="padding:3px 10px;font-size:11px;" data-idx="'+i+'">↩️ Restore</button></td></tr>';}).join("")+'</tbody></table></div>';}
-function attachRestoreListeners(){document.querySelectorAll(".restore-btn").forEach(function(b){b.addEventListener("click",function(){var srv=DELETED.splice(+b.dataset.idx,1)[0];delete srv.deletedOn;var map={IHA:IHA,India:INDIA,USA:USA};map[srv.account].push(srv);markChanged();refreshAll();});});}
-function renderDashboard(){var gt=sumCost(ALL);var accts=[{a:"IHA",t:sumCost(IHA),c:"#5b21b6"},{a:"India",t:sumCost(INDIA),c:"#b45309"},{a:"USA",t:sumCost(USA),c:"#1d4ed8"}];var regMap={};ALL.forEach(function(s){regMap[s.region]=(regMap[s.region]||0)+1;});var ec2=ALL.filter(function(s){return s.type==="EC2";}),ls=ALL.filter(function(s){return s.type==="Lightsail";});var catMap={};ALL.forEach(function(s){catMap[s.category]=(catMap[s.category]||0)+s.cost;});var topC=Object.entries(catMap).sort(function(a,b){return b[1]-a[1];}).slice(0,6);var cc=["#5b21b6","#b45309","#1d4ed8","#0369a1","#16a34a","#dc2626"];var latestBills={};["IHA","India","USA"].forEach(function(acct){var ab=BILLS.filter(function(b){return b.account===acct;}).sort(function(a,b){return b.year-a.year||MONTHS.indexOf(b.month)-MONTHS.indexOf(a.month);});if(ab.length)latestBills[acct]=ab[0];});var billCards=Object.entries(latestBills).map(function(e){var acct=e[0],bill=e[1],cfg=ACCT_CFG[acct];return'<div class="dash-card"><h3>🧾 '+cfg.emoji+' '+acct+' — '+bill.month+' '+bill.year+'</h3>'+bill.services.slice(0,5).map(function(s){var cls=s.compare>0?"trend-up":s.compare<0?"trend-down":"";var txt=s.compare>0?"▲"+s.compare.toFixed(2):s.compare<0?"▼"+Math.abs(s.compare).toFixed(2):"—";return'<div class="bar-row"><div class="bar-label"><span style="font-weight:600;color:'+cfg.color+';font-size:11px">'+s.name+'</span><span style="font-weight:700;font-size:11px">'+fmt(s.cost)+' <span class="'+cls+'">'+txt+'</span></span></div></div>';}).join("")+'<div style="margin-top:10px;padding-top:10px;border-top:1px solid #e2e8f0;display:flex;justify-content:space-between;font-weight:800;font-size:13px;"><span>Total</span><span style="color:'+cfg.color+'">'+fmt(bill.total)+'</span></div></div>';}).join("");return'<div class="dashboard-grid"><div class="dash-card"><h3>💰 Cost Share by Account</h3>'+accts.map(function(r){return'<div class="bar-row"><div class="bar-label"><span style="font-weight:600;color:'+r.c+'">'+r.a+'</span><span style="font-weight:700">'+fmt(r.t)+' ('+((r.t/gt)*100).toFixed(1)+'%)</span></div><div class="bar-bg"><div class="bar-fill" style="background:'+r.c+';width:'+((r.t/gt)*100)+'%"></div></div></div>';}).join("")+'<div class="dash-total"><span>Grand Total</span><span style="color:#be123c">'+fmt(gt)+'/mo</span></div><div style="margin-top:8px;font-size:11px;color:#64748b;">Annual estimate: <strong>'+fmt(gt*12)+'</strong></div></div><div class="dash-card"><h3>🖥️ By Type & Region</h3><div class="type-row"><span style="font-size:12px;font-weight:600;color:#0369a1">EC2</span><span><strong style="color:#0369a1">'+ec2.length+'</strong> · <strong>'+fmt(sumCost(ec2))+'</strong></span></div><div class="type-row" style="margin-bottom:12px"><span style="font-size:12px;font-weight:600;color:#7c3aed">Lightsail</span><span><strong style="color:#7c3aed">'+ls.length+'</strong> · <strong>'+fmt(sumCost(ls))+'</strong></span></div>'+Object.entries(regMap).map(function(e){return'<div class="region-row"><span>'+e[0]+'</span><strong>'+e[1]+'</strong></div>';}).join("")+'</div><div class="dash-card"><h3>🏷️ Top Categories by Cost</h3>'+topC.map(function(e,i){return'<div class="bar-row"><div class="bar-label"><span style="font-weight:600;color:'+cc[i]+'">'+e[0]+'</span><span style="font-weight:700">'+fmt(e[1])+'</span></div><div class="bar-bg"><div class="bar-fill" style="background:'+cc[i]+';width:'+((e[1]/topC[0][1])*100)+'%"></div></div></div>';}).join("")+'</div>'+billCards+'</div>';}
-function renderMonthlyBills(){var acctBillCounts=["IHA","India","USA"].map(function(a){var n=BILLS.filter(function(b){return b.account===a;}).length;return'<button class="acct-tab'+(activeBillAcct===a?" active":"")+'" style="'+(activeBillAcct===a?"background:"+ACCT_CFG[a].color+";border-color:"+ACCT_CFG[a].color+";":"")+'" onclick="switchBillAcct(\''+a+'\')">'+ACCT_CFG[a].emoji+' '+a+' ('+n+')</button>';}).join("");var filtered=BILLS.filter(function(b){return b.account===activeBillAcct;}).sort(function(a,b){return b.year-a.year||MONTHS.indexOf(b.month)-MONTHS.indexOf(a.month);});var cfg=ACCT_CFG[activeBillAcct];return'<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px;"><div class="acct-tabs">'+acctBillCounts+'</div><button class="btn btn-indigo" id="btnAddBill" style="padding:8px 16px;">➕ Add '+activeBillAcct+' Bill</button></div>'+(filtered.length===0?'<div style="text-align:center;padding:40px;color:#94a3b8;border:2px dashed #e2e8f0;border-radius:10px;"><div style="font-size:40px;">🧾</div><div style="font-size:14px;font-weight:600;margin-top:12px;color:'+cfg.color+';">No bills for '+activeBillAcct+' yet</div><div style="font-size:12px;margin-top:6px;">Click "➕ Add '+activeBillAcct+' Bill" to enter the first bill</div></div>':'<div id="bills-list">'+filtered.map(renderBillCard).join("")+'</div>');}
-function switchBillAcct(acct){activeBillAcct=acct;renderContent("monthly");}
-function renderBillCard(bill){var cfg=ACCT_CFG[bill.account]||{color:"#0369a1"};function cmpColor(v){return v>0?"#dc2626":v<0?"#16a34a":"#64748b";}function cmpBg(v){return v>0?"#fff1f2":v<0?"#f0fdf4":"#f8fafc";}function cmpTxt(v){return v>0?"+"+v.toFixed(2):v<0?""+v.toFixed(2):"0.00";}return'<div class="bill-month-card"><div class="bill-month-header" onclick="toggleBillCard(\''+bill.key+'\')"><div><div class="bill-month-title">🧾 '+bill.account+' — '+bill.month+' '+bill.year+'</div><div style="font-size:11px;color:#64748b;margin-top:2px;">'+bill.services.length+' services &middot; vs prev: <span style="font-weight:700;color:'+cmpColor(bill.totalCompare)+'">'+(bill.totalCompare>0?"+":"")+bill.totalCompare.toFixed(2)+'</span></div></div><div style="display:flex;align-items:center;gap:10px;"><div class="bill-month-total" style="color:'+cfg.color+'">'+fmt(bill.total)+'</div><button class="btn btn-teal" onclick="event.stopPropagation();editBill(\''+bill.key+'\')" style="padding:4px 10px;font-size:11px;">✏️</button><button class="btn btn-red" onclick="event.stopPropagation();deleteBill(\''+bill.key+'\')" style="padding:4px 10px;font-size:11px;">🗑️</button><span id="arrow-'+bill.key+'" style="font-size:16px;color:#64748b;">▼</span></div></div><div class="bill-month-body" id="body-'+bill.key+'"><div class="table-wrap"><table style="font-size:12px;"><thead><tr style="background:'+cfg.color+'"><th style="width:36px">#</th><th>Service Name</th><th style="text-align:right">Cost (USD)</th><th style="text-align:right">vs Last Month</th></tr></thead><tbody>'+bill.services.map(function(s,i){return'<tr style="background:'+(i%2===0?"#fff":"#f8fafc")+'"><td style="color:#94a3b8;text-align:center;font-size:11px">'+(i+1)+'</td><td style="font-weight:600;color:#1e293b;">'+s.name+'</td><td style="font-weight:700;color:'+cfg.color+';text-align:right;">'+fmt(s.cost)+'</td><td style="text-align:right;"><span style="display:inline-block;padding:2px 8px;border-radius:4px;font-weight:700;font-size:11px;background:'+cmpBg(s.compare)+';color:'+cmpColor(s.compare)+';">'+cmpTxt(s.compare)+'</span></td></tr>';}).join("")+'<tr style="background:#1e293b;"><td colspan="2" style="padding:9px 10px;color:#fff;font-weight:800;">💰 Total</td><td style="padding:9px 10px;color:#fbbf24;font-weight:800;font-size:14px;text-align:right;">'+fmt(bill.total)+'</td><td style="padding:9px 10px;text-align:right;"><span style="display:inline-block;padding:3px 10px;border-radius:4px;font-weight:800;font-size:12px;background:'+cmpBg(bill.totalCompare)+';color:'+cmpColor(bill.totalCompare)+';">'+cmpTxt(bill.totalCompare)+'</span></td></tr></tbody></table></div><div style="margin-top:12px;"><div style="font-size:12px;font-weight:700;color:#1e293b;margin-bottom:8px;">📊 Breakdown</div>'+bill.services.map(function(s){return'<div style="margin-bottom:6px;"><div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:2px;"><span style="color:#475569;">'+s.name+'</span><span style="font-weight:700;">'+fmt(s.cost)+' ('+(bill.total>0?((s.cost/bill.total)*100).toFixed(1):0)+'%)</span></div><div class="bar-bg"><div class="bar-fill" style="background:'+cfg.color+';width:'+(bill.total>0?(s.cost/bill.total)*100:0)+'%;"></div></div></div>';}).join("")+'</div></div></div>';}
-function toggleBillCard(key){var body=document.getElementById("body-"+key);var arrow=document.getElementById("arrow-"+key);var open=body.classList.contains("open");body.classList.toggle("open",!open);arrow.textContent=open?"▼":"▲";}
+var typeFilter={iha:"all",india:"all",usa:"all",all:"all"};
+function setTypeFilter(tabId,type){typeFilter[tabId]=type;renderContent(tabId);}
+
+function renderContent(id){
+  var el=document.getElementById("tab-content");
+  if(id==="dashboard"){el.innerHTML=renderDashboard();return;}
+  if(id==="monthly"){el.innerHTML=renderMonthlyBills();setupMonthlyBillsTab();return;}
+  var cfgMap={iha:{data:IHA,color:"#5b21b6"},india:{data:INDIA,color:"#92400e"},usa:{data:USA,color:"#1d4ed8"},all:{data:ALL,color:"#0f172a"}};
+  var cfg=cfgMap[id];var isAll=(id==="all");
+  var subTabs="";
+  if(!isAll){
+    var ec2c=cfg.data.filter(function(s){return s.type==="EC2";}).length;
+    var lsc=cfg.data.filter(function(s){return s.type==="Lightsail";}).length;
+    var tf=typeFilter[id];
+    var bs=function(t){var a=(tf===t);return'padding:6px 16px;border-radius:20px;border:2px solid '+(a?cfg.color:"#e2e8f0")+';background:'+(a?cfg.color:"#fff")+';color:'+(a?"#fff":"#64748b")+';font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;';};
+    subTabs='<div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;"><button style="'+bs("all")+'" onclick="setTypeFilter(\''+id+'\',\'all\')">🖥️ All ('+cfg.data.length+')</button><button style="'+bs("EC2")+'" onclick="setTypeFilter(\''+id+'\',\'EC2\')">⚙️ EC2 ('+ec2c+')</button><button style="'+bs("Lightsail")+'" onclick="setTypeFilter(\''+id+'\',\'Lightsail\')">💡 Lightsail ('+lsc+')</button></div>';
+  }
+  var filtered=cfg.data.filter(function(s){return typeFilter[id]==="all"||s.type===typeFilter[id];});
+  var dispData=filtered.map(function(s,i){return Object.assign({},s,{dsno:i+1});});
+  el.innerHTML=subTabs+'<div class="search-bar"><input type="text" id="search-'+id+'" placeholder="🔍 Search any column..."><span id="count-'+id+'" style="font-size:12px;color:#64748b;">'+dispData.length+' servers</span><span id="total-'+id+'" style="margin-left:auto;font-weight:700;font-size:13px;color:'+cfg.color+';">Total: '+fmt(sumCost(dispData))+'</span></div><div class="table-wrap"><table><thead><tr style="background:'+cfg.color+'">'+buildHeaders(isAll)+'</tr></thead><tbody id="tbody-'+id+'">'+buildRows(dispData,isAll)+'</tbody></table></div>';
+  document.getElementById("search-"+id).addEventListener("input",function(e){
+    var q=e.target.value.toLowerCase();
+    var f=q?dispData.filter(function(r){return Object.values(r).some(function(v){return String(v).toLowerCase().includes(q);});}):dispData;
+    var rn=f.map(function(s,i){return Object.assign({},s,{dsno:i+1});});
+    document.getElementById("tbody-"+id).innerHTML=buildRows(rn,isAll);
+    document.getElementById("count-"+id).textContent=rn.length+" of "+dispData.length+" servers";
+    document.getElementById("total-"+id).textContent="Total: "+fmt(sumCost(rn));
+    attachEditListeners();attachDeleteListeners();
+  });
+  attachEditListeners();attachDeleteListeners();
+}
+
+function buildHeaders(sa){
+  var c=sa?["#","Account","Server Name","IP","Spec","EBS","OS","Region","Type","Category","Domain","Cost","",""]
+           :["#","Server Name","IP","Spec","EBS","OS","Region","Type","Category","Domain","Cost","",""];
+  return c.map(function(h){return"<th>"+h+"</th>";}).join("");
+}
+
+function buildRows(data,sa){
+  return data.map(function(r){
+    var ac=sa?"<td>"+acctChip(r.account)+"</td>":"";
+    var dn=(r.dsno!==undefined?r.dsno:r.sno);
+    var editCols=IS_ADMIN?
+      '<td><button class="btn btn-gray edit-btn" style="padding:3px 8px;font-size:11px;" data-sno="'+r.sno+'">✏️</button></td>'+
+      '<td><button class="btn btn-red delete-btn" style="padding:3px 8px;font-size:11px;" data-sno="'+r.sno+'" data-name="'+r.name+'">🗑️</button></td>':
+      '<td></td><td></td>';
+    var saveCols=IS_ADMIN?
+      '<td><button class="btn btn-green save-edit-btn" style="padding:3px 8px;font-size:11px;" data-sno="'+r.sno+'" data-acct="'+r.account+'">✅</button></td>'+
+      '<td><button class="btn btn-gray cancel-btn" style="padding:3px 8px;font-size:11px;" data-sno="'+r.sno+'">✖</button></td>':
+      '<td></td><td></td>';
+    return'<tr id="view-'+r.sno+'"><td style="color:#94a3b8;font-size:11px">'+dn+'</td>'+ac+
+      '<td style="font-weight:600;color:#1e293b;">'+r.name+'</td>'+
+      '<td style="font-family:monospace;color:#475569;font-size:11px">'+r.ip+'</td>'+
+      '<td style="color:#475569">'+r.spec+'</td><td style="color:#64748b">'+r.ebs+'</td>'+
+      '<td>'+osChip(r.os)+'</td><td style="color:#475569">'+r.region+'</td>'+
+      '<td>'+typeChip(r.type)+'</td><td style="color:#475569">'+r.category+'</td>'+
+      '<td style="color:#64748b;font-size:11px">'+(r.domain||"—")+'</td>'+
+      '<td style="font-weight:700;color:#0369a1">'+fmt(r.cost)+'</td>'+editCols+'</tr>'+
+      '<tr id="edit-'+r.sno+'" style="display:none;" class="edit-row"><td style="color:#94a3b8;font-size:11px">'+r.sno+'</td>'+ac+
+      '<td><input class="edit-input" id="en-'+r.sno+'" value="'+r.name+'"></td>'+
+      '<td><input class="edit-input" id="ei-'+r.sno+'" value="'+r.ip+'"></td>'+
+      '<td><input class="edit-input" id="es-'+r.sno+'" value="'+r.spec+'"></td>'+
+      '<td><input class="edit-input" id="ee-'+r.sno+'" value="'+r.ebs+'"></td>'+
+      '<td><input class="edit-input" id="eo-'+r.sno+'" value="'+r.os+'"></td>'+
+      '<td><input class="edit-input" id="er-'+r.sno+'" value="'+r.region+'"></td>'+
+      '<td><input class="edit-input" id="et-'+r.sno+'" value="'+r.type+'" style="width:70px"></td>'+
+      '<td><input class="edit-input" id="ec-'+r.sno+'" value="'+r.category+'"></td>'+
+      '<td><input class="edit-input" id="ed-'+r.sno+'" value="'+(r.domain||"")+'"></td>'+
+      '<td><input class="edit-input" id="ep-'+r.sno+'" value="'+r.cost+'" type="number" style="width:70px"></td>'+saveCols+'</tr>';
+  }).join("");
+}
+
+function attachEditListeners(){
+  document.querySelectorAll(".edit-btn").forEach(function(b){b.addEventListener("click",function(){document.getElementById("view-"+b.dataset.sno).style.display="none";document.getElementById("edit-"+b.dataset.sno).style.display="";});});
+  document.querySelectorAll(".cancel-btn").forEach(function(b){b.addEventListener("click",function(){document.getElementById("edit-"+b.dataset.sno).style.display="none";document.getElementById("view-"+b.dataset.sno).style.display="";});});
+  document.querySelectorAll(".save-edit-btn").forEach(function(b){
+    b.addEventListener("click",function(){
+      var sno=+b.dataset.sno,acct=b.dataset.acct;
+      function upd(o){o.name=document.getElementById("en-"+sno).value;o.ip=document.getElementById("ei-"+sno).value;o.spec=document.getElementById("es-"+sno).value;o.ebs=document.getElementById("ee-"+sno).value;o.os=document.getElementById("eo-"+sno).value;o.region=document.getElementById("er-"+sno).value;o.type=document.getElementById("et-"+sno).value;o.category=document.getElementById("ec-"+sno).value;o.domain=document.getElementById("ed-"+sno).value;o.cost=parseFloat(document.getElementById("ep-"+sno).value)||0;}
+      var map={IHA:IHA,India:INDIA,USA:USA};
+      var idx=map[acct].findIndex(function(s){return s.sno===sno;});if(idx>=0)upd(map[acct][idx]);
+      var ai=ALL.findIndex(function(s){return s.sno===sno;});if(ai>=0)upd(ALL[ai]);
+      markChanged();refreshAll();
+    });
+  });
+}
+
+function attachDeleteListeners(){
+  document.querySelectorAll(".delete-btn").forEach(function(b){
+    b.addEventListener("click",function(){
+      pendingDeleteSno=+b.dataset.sno;
+      document.getElementById("deleteModalMsg").textContent='Delete "'+b.dataset.name+'"?';
+      document.getElementById("deleteModal").style.display="flex";
+    });
+  });
+}
+
+function setupDeleteModal(){
+  document.getElementById("modalCancel").addEventListener("click",function(){document.getElementById("deleteModal").style.display="none";pendingDeleteSno=null;});
+  document.getElementById("modalConfirm").addEventListener("click",function(){
+    if(pendingDeleteSno===null)return;
+    var sno=pendingDeleteSno;
+    var ai=ALL.findIndex(function(s){return s.sno===sno;});if(ai<0)return;
+    var srv=ALL[ai];
+    ALL.splice(ai,1);
+    var map={IHA:IHA,India:INDIA,USA:USA};
+    var arr=map[srv.account],idx=arr.findIndex(function(s){return s.sno===sno;});
+    if(idx>=0)arr.splice(idx,1);
+    document.getElementById("deleteModal").style.display="none";pendingDeleteSno=null;
+    markChanged();refreshAll();
+  });
+}
+
+function renderDashboard(){
+  var gt=sumCost(ALL);
+  var accts=[{a:"IHA",t:sumCost(IHA),c:"#5b21b6"},{a:"India",t:sumCost(INDIA),c:"#b45309"},{a:"USA",t:sumCost(USA),c:"#1d4ed8"}];
+  var regMap={};ALL.forEach(function(s){regMap[s.region]=(regMap[s.region]||0)+1;});
+  var ec2=ALL.filter(function(s){return s.type==="EC2";}),ls=ALL.filter(function(s){return s.type==="Lightsail";});
+  var catMap={};ALL.forEach(function(s){catMap[s.category]=(catMap[s.category]||0)+s.cost;});
+  var topC=Object.entries(catMap).sort(function(a,b){return b[1]-a[1];}).slice(0,6);
+  var cc=["#5b21b6","#b45309","#1d4ed8","#0369a1","#16a34a","#dc2626"];
+  var latestBills={};
+  ["IHA","India","USA"].forEach(function(acct){var ab=BILLS.filter(function(b){return b.account===acct;}).sort(function(a,b){return b.year-a.year||MONTHS.indexOf(b.month)-MONTHS.indexOf(a.month);});if(ab.length)latestBills[acct]=ab[0];});
+  var billCards=Object.entries(latestBills).map(function(e){
+    var acct=e[0],bill=e[1],cfg=ACCT_CFG[acct];
+    return'<div class="dash-card"><h3>🧾 '+cfg.emoji+' '+acct+' — '+bill.month+' '+bill.year+'</h3>'+
+      bill.services.slice(0,5).map(function(s){var cls=s.compare>0?"trend-up":s.compare<0?"trend-down":"";var txt=s.compare>0?"▲"+s.compare.toFixed(2):s.compare<0?"▼"+Math.abs(s.compare).toFixed(2):"—";return'<div class="bar-row"><div class="bar-label"><span style="font-weight:600;color:'+cfg.color+';font-size:11px">'+s.name+'</span><span style="font-weight:700;font-size:11px">'+fmt(s.cost)+' <span class="'+cls+'">'+txt+'</span></span></div></div>';}).join("")+
+      '<div style="margin-top:10px;padding-top:10px;border-top:1px solid #e2e8f0;display:flex;justify-content:space-between;font-weight:800;font-size:13px;"><span>Total</span><span style="color:'+cfg.color+'">'+fmt(bill.total)+'</span></div></div>';
+  }).join("");
+  return'<div class="dashboard-grid">'+
+    '<div class="dash-card"><h3>💰 Cost Share by Account</h3>'+accts.map(function(r){return'<div class="bar-row"><div class="bar-label"><span style="font-weight:600;color:'+r.c+'">'+r.a+'</span><span style="font-weight:700">'+fmt(r.t)+' ('+((r.t/gt)*100).toFixed(1)+'%)</span></div><div class="bar-bg"><div class="bar-fill" style="background:'+r.c+';width:'+((r.t/gt)*100)+'%"></div></div></div>';}).join("")+'<div class="dash-total"><span>Grand Total</span><span style="color:#be123c">'+fmt(gt)+'/mo</span></div><div style="margin-top:8px;font-size:11px;color:#64748b;">Annual estimate: <strong>'+fmt(gt*12)+'</strong></div></div>'+
+    '<div class="dash-card"><h3>🖥️ By Type & Region</h3><div class="type-row"><span style="font-size:12px;font-weight:600;color:#0369a1">EC2</span><span><strong style="color:#0369a1">'+ec2.length+'</strong> · <strong>'+fmt(sumCost(ec2))+'</strong></span></div><div class="type-row" style="margin-bottom:12px"><span style="font-size:12px;font-weight:600;color:#7c3aed">Lightsail</span><span><strong style="color:#7c3aed">'+ls.length+'</strong> · <strong>'+fmt(sumCost(ls))+'</strong></span></div>'+Object.entries(regMap).map(function(e){return'<div class="region-row"><span>'+e[0]+'</span><strong>'+e[1]+'</strong></div>';}).join("")+'</div>'+
+    '<div class="dash-card"><h3>🏷️ Top Categories by Cost</h3>'+topC.map(function(e,i){return'<div class="bar-row"><div class="bar-label"><span style="font-weight:600;color:'+cc[i]+'">'+e[0]+'</span><span style="font-weight:700">'+fmt(e[1])+'</span></div><div class="bar-bg"><div class="bar-fill" style="background:'+cc[i]+';width:'+((e[1]/topC[0][1])*100)+'%"></div></div></div>';}).join("")+'</div>'+
+    billCards+'</div>';
+}
+
+function renderMonthlyBills(){
+  var acctBtns=["IHA","India","USA"].map(function(a){var n=BILLS.filter(function(b){return b.account===a;}).length;return'<button class="acct-tab'+(activeBillAcct===a?" active":"")+'" style="'+(activeBillAcct===a?"background:"+ACCT_CFG[a].color+";border-color:"+ACCT_CFG[a].color+";":"")+'" onclick="switchBillAcct(\''+a+'\')">'+ACCT_CFG[a].emoji+' '+a+' ('+n+')</button>';}).join("");
+  var filtered=BILLS.filter(function(b){return b.account===activeBillAcct;}).sort(function(a,b){return b.year-a.year||MONTHS.indexOf(b.month)-MONTHS.indexOf(a.month);});
+  var cfg=ACCT_CFG[activeBillAcct];
+  var addBtn=IS_ADMIN?'<button class="btn btn-indigo" id="btnAddBill" style="padding:8px 16px;">➕ Add '+activeBillAcct+' Bill</button>':'';
+  return'<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px;"><div class="acct-tabs">'+acctBtns+'</div>'+addBtn+'</div>'+
+    (filtered.length===0?'<div style="text-align:center;padding:40px;color:#94a3b8;border:2px dashed #e2e8f0;border-radius:10px;"><div style="font-size:40px;">🧾</div><div style="font-size:14px;font-weight:600;margin-top:12px;color:'+cfg.color+';">No bills for '+activeBillAcct+' yet</div></div>':
+    '<div>'+filtered.map(renderBillCard).join("")+'</div>');
+}
+function switchBillAcct(a){activeBillAcct=a;renderContent("monthly");}
+function renderBillCard(bill){
+  var cfg=ACCT_CFG[bill.account]||{color:"#0369a1"};
+  function cc(v){return v>0?"#dc2626":v<0?"#16a34a":"#64748b";}
+  function cb(v){return v>0?"#fff1f2":v<0?"#f0fdf4":"#f8fafc";}
+  function ct(v){return v>0?"+"+v.toFixed(2):v<0?""+v.toFixed(2):"0.00";}
+  var editBtns=IS_ADMIN?'<button class="btn btn-teal" onclick="event.stopPropagation();editBill(\''+bill.key+'\')" style="padding:4px 10px;font-size:11px;">✏️</button><button class="btn btn-red" onclick="event.stopPropagation();deleteBill(\''+bill.key+'\')" style="padding:4px 10px;font-size:11px;">🗑️</button>':'';
+  return'<div class="bill-month-card"><div class="bill-month-header" onclick="toggleBillCard(\''+bill.key+'\')">'+
+    '<div><div class="bill-month-title">🧾 '+bill.account+' — '+bill.month+' '+bill.year+'</div><div style="font-size:11px;color:#64748b;margin-top:2px;">'+bill.services.length+' services &middot; vs prev: <span style="font-weight:700;color:'+cc(bill.totalCompare)+'">'+(bill.totalCompare>0?"+":"")+bill.totalCompare.toFixed(2)+'</span></div></div>'+
+    '<div style="display:flex;align-items:center;gap:10px;"><div class="bill-month-total" style="color:'+cfg.color+'">'+fmt(bill.total)+'</div>'+editBtns+'<span id="arrow-'+bill.key+'" style="font-size:16px;color:#64748b;">▼</span></div></div>'+
+    '<div class="bill-month-body" id="body-'+bill.key+'">'+
+    '<div class="table-wrap"><table style="font-size:12px;"><thead><tr style="background:'+cfg.color+'"><th>#</th><th>Service Name</th><th style="text-align:right">Cost (USD)</th><th style="text-align:right">vs Last Month</th></tr></thead><tbody>'+
+    bill.services.map(function(s,i){return'<tr style="background:'+(i%2===0?"#fff":"#f8fafc")+'"><td style="color:#94a3b8;text-align:center;font-size:11px">'+(i+1)+'</td><td style="font-weight:600;color:#1e293b;">'+s.name+'</td><td style="font-weight:700;color:'+cfg.color+';text-align:right;">'+fmt(s.cost)+'</td><td style="text-align:right;"><span style="padding:2px 8px;border-radius:4px;font-weight:700;font-size:11px;background:'+cb(s.compare)+';color:'+cc(s.compare)+';">'+ct(s.compare)+'</span></td></tr>';}).join("")+
+    '<tr style="background:#1e293b;"><td colspan="2" style="padding:9px 10px;color:#fff;font-weight:800;">💰 Total</td><td style="padding:9px 10px;color:#fbbf24;font-weight:800;font-size:14px;text-align:right;">'+fmt(bill.total)+'</td><td style="padding:9px 10px;text-align:right;"><span style="padding:3px 10px;border-radius:4px;font-weight:800;font-size:12px;background:'+cb(bill.totalCompare)+';color:'+cc(bill.totalCompare)+';">'+ct(bill.totalCompare)+'</span></td></tr>'+
+    '</tbody></table></div></div></div>';
+}
+function toggleBillCard(key){var b=document.getElementById("body-"+key);var a=document.getElementById("arrow-"+key);var o=b.classList.contains("open");b.classList.toggle("open",!o);a.textContent=o?"▼":"▲";}
 function deleteBill(key){if(!confirm("Delete this bill?"))return;BILLS=BILLS.filter(function(b){return b.key!==key;});markChanged();refreshAll();}
-function editBill(key){var bill=BILLS.find(function(b){return b.key===key;});if(bill)openBillModal(bill);}
-var editingBillKey=null;
-function setupBillModal(){document.getElementById("bmCancel").addEventListener("click",function(){document.getElementById("addBillModal").style.display="none";});document.getElementById("bmAddRow").addEventListener("click",function(){var list=document.getElementById("bm-services-list");var i=list.querySelectorAll(".bm-row").length;var div=document.createElement("div");div.innerHTML=buildModalRow({name:"",cost:"",compare:""},i);list.appendChild(div.firstElementChild);});document.getElementById("bmSave").addEventListener("click",function(){var acct=document.getElementById("bm-account").value;var month=document.getElementById("bm-month").value;var year=parseInt(document.getElementById("bm-year").value)||new Date().getFullYear();var key=acct+"-"+month+"-"+year;var rows=document.querySelectorAll("#bm-services-list .bm-row");var services=[];rows.forEach(function(row){var name=row.querySelector(".bm-name").value.trim();var cost=parseFloat(row.querySelector(".bm-cost").value)||0;var compare=parseFloat(row.querySelector(".bm-cmp").value)||0;if(name)services.push({name:name,cost:cost,compare:compare});});if(!services.length){alert("Add at least one service!");return;}var total=parseFloat(services.reduce(function(s,r){return s+r.cost;},0).toFixed(2));var totalCompare=parseFloat(services.reduce(function(s,r){return s+r.compare;},0).toFixed(2));BILLS=BILLS.filter(function(b){return b.key!==key;});BILLS.push({key:key,account:acct,month:month,year:year,services:services,total:total,totalCompare:totalCompare});activeBillAcct=acct;document.getElementById("addBillModal").style.display="none";markChanged();refreshAll();setTimeout(function(){var body=document.getElementById("body-"+key);if(body){body.classList.add("open");var arrow=document.getElementById("arrow-"+key);if(arrow)arrow.textContent="▲";}},100);});}
-function setupMonthlyBillsTab(){document.getElementById("btnAddBill").addEventListener("click",function(){openBillModal(null);});}
-function openBillModal(bill){editingBillKey=bill?bill.key:null;document.getElementById("bm-account").value=bill?bill.account:activeBillAcct;document.getElementById("bm-year").value=bill?bill.year:new Date().getFullYear();document.getElementById("bm-month").value=bill?bill.month:MONTHS[new Date().getMonth()];var defServices=["Elastic Compute Cloud","Lightsail","Amazon Connect","Contact Center Telecommunications","Data Transfer","Kinesis","Secrets Manager","Simple Storage Service (S3)","Virtual Private Cloud","Elastic Load Balancing","Business Support+","Key Management Service","Q"];var rows=bill?bill.services:defServices.map(function(n){return{name:n,cost:"",compare:""};});document.getElementById("bm-services-list").innerHTML=rows.map(buildModalRow).join("");document.getElementById("billModalTitle").textContent=bill?"✏️ Edit Bill":"📋 Add Monthly Bill";document.getElementById("addBillModal").style.display="flex";}
-function buildModalRow(s,i){return'<div class="bm-row" style="display:grid;grid-template-columns:26px 1fr 100px 100px 28px;gap:6px;align-items:center;padding:4px 0;border-bottom:1px solid #f1f5f9;"><span style="font-size:11px;color:#94a3b8;text-align:center;">'+(i+1)+'</span><input class="bill-input bm-name" placeholder="Service name" value="'+(s.name||"")+'"><input class="bill-input bm-cost" placeholder="0.00" type="number" step="0.01" value="'+(s.cost||"")+'"><input class="bill-input bm-cmp" placeholder="±0.00" type="number" step="0.01" value="'+(s.compare!==undefined&&s.compare!==''?s.compare:"")+'"><button onclick="this.closest(\'.bm-row\').remove()" style="border:none;background:none;cursor:pointer;color:#dc2626;font-size:14px;padding:2px;">✕</button></div>';}
-function setupAddForm(){document.getElementById("btnAddServer").addEventListener("click",function(){var f=document.getElementById("addFormWrap");f.style.display=f.style.display==="block"?"none":"block";});document.getElementById("btnCloseForm").addEventListener("click",function(){document.getElementById("addFormWrap").style.display="none";});document.getElementById("btnClearForm").addEventListener("click",function(){["f-name","f-ip","f-spec","f-ebs","f-category","f-domain","f-cost"].forEach(function(id){document.getElementById(id).value="";});document.getElementById("add-msg").textContent="";});document.getElementById("btnSaveServer").addEventListener("click",function(){var name=document.getElementById("f-name").value.trim();var ip=document.getElementById("f-ip").value.trim();var cost=parseFloat(document.getElementById("f-cost").value);var msg=document.getElementById("add-msg");if(!name||!ip||isNaN(cost)){msg.style.color="#dc2626";msg.textContent="⚠️ Name, IP and Cost required!";return;}var account=document.getElementById("f-account").value;var map={IHA:IHA,India:INDIA,USA:USA};map[account].push({account:account,name:name,ip:ip,spec:document.getElementById("f-spec").value||"",ebs:document.getElementById("f-ebs").value||"",os:document.getElementById("f-os").value,region:document.getElementById("f-region").value,type:document.getElementById("f-type").value,category:document.getElementById("f-category").value||"",domain:document.getElementById("f-domain").value||"",cost:cost});msg.style.color="#16a34a";msg.textContent="✅ Added! Click ☁️ Save to GitHub to push live.";["f-name","f-ip","f-spec","f-ebs","f-category","f-domain","f-cost"].forEach(function(id){document.getElementById(id).value="";});setTimeout(function(){msg.textContent="";},4000);markChanged();refreshAll();});}
-function setupDownload(){var btn=document.getElementById("btnDownload");btn.addEventListener("click",function(){btn.textContent="⏳ Building...";btn.className="btn loading";btn.disabled=true;setTimeout(function(){try{var XLSX=window.XLSX,wb=XLSX.utils.book_new();var HDR=["S.No","Account","Server Name","IP","Spec","EBS","OS","Region","Type","Category","Domain","Cost (USD)"];var COLS=[{wch:5},{wch:9},{wch:36},{wch:16},{wch:28},{wch:16},{wch:18},{wch:15},{wch:10},{wch:18},{wch:28},{wch:14}];function mkWS(rows,title){var aoa=[[title],[],HDR].concat(rows.map(function(r){return[r.sno,r.account,r.name,r.ip,r.spec,r.ebs,r.os,r.region,r.type,r.category,r.domain||"",r.cost];})).concat([[],["","","","","","","","","","","Total",sumCost(rows)]]);var ws=XLSX.utils.aoa_to_sheet(aoa);ws["!cols"]=COLS;return ws;}XLSX.utils.book_append_sheet(wb,mkWS(IHA,"IHA"),"IHA Servers");XLSX.utils.book_append_sheet(wb,mkWS(INDIA,"India"),"India Servers");XLSX.utils.book_append_sheet(wb,mkWS(USA,"USA"),"USA Servers");XLSX.utils.book_append_sheet(wb,mkWS(ALL,"All"),"All Servers");if(DELETED.length){var dA=[["Deleted Servers"],[],["#","Account","Name","IP","Spec","OS","Region","Cost","Deleted On"]].concat(DELETED.map(function(r,i){return[i+1,r.account,r.name,r.ip,r.spec,r.os,r.region,r.cost,r.deletedOn];}));XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(dA),"Deleted");}["IHA","India","USA"].forEach(function(acct){var ab=BILLS.filter(function(b){return b.account===acct;}).sort(function(a,b){return b.year-a.year||MONTHS.indexOf(b.month)-MONTHS.indexOf(a.month);});if(!ab.length)return;var aoa=[[acct+" Monthly Bills"],[],["Month","Service","Cost (USD)","vs Last Month"]];ab.forEach(function(bill){bill.services.forEach(function(s){aoa.push([bill.month+" "+bill.year,s.name,s.cost,s.compare]);});aoa.push([bill.month+" "+bill.year+" TOTAL","",bill.total,bill.totalCompare]);aoa.push([]);});var ws=XLSX.utils.aoa_to_sheet(aoa);ws["!cols"]=[{wch:18},{wch:40},{wch:14},{wch:16}];XLSX.utils.book_append_sheet(wb,ws,acct+" Bills");});XLSX.writeFile(wb,"AWS_Infrastructure.xlsx");btn.textContent="✅ Done!";btn.className="btn done";btn.disabled=false;setTimeout(function(){btn.textContent="⬇️ Download Excel";btn.className="btn btn-orange";},3000);}catch(e){alert("Error: "+e.message);btn.textContent="⬇️ Download Excel";btn.className="btn btn-orange";btn.disabled=false;}},100);});}
+function editBill(key){var b=BILLS.find(function(b){return b.key===key;});if(b)openBillModal(b);}
+
+function setupBillModal(){
+  document.getElementById("bmCancel").addEventListener("click",function(){document.getElementById("addBillModal").style.display="none";});
+  document.getElementById("bmAddRow").addEventListener("click",function(){var l=document.getElementById("bm-services-list");var i=l.querySelectorAll(".bm-row").length;var d=document.createElement("div");d.innerHTML=buildModalRow({name:"",cost:"",compare:""},i);l.appendChild(d.firstElementChild);});
+  document.getElementById("bmSave").addEventListener("click",function(){
+    var acct=document.getElementById("bm-account").value;
+    var month=document.getElementById("bm-month").value;
+    var year=parseInt(document.getElementById("bm-year").value)||new Date().getFullYear();
+    var key=acct+"-"+month+"-"+year;
+    var rows=document.querySelectorAll("#bm-services-list .bm-row");
+    var services=[];
+    rows.forEach(function(row){var n=row.querySelector(".bm-name").value.trim();var c=parseFloat(row.querySelector(".bm-cost").value)||0;var cp=parseFloat(row.querySelector(".bm-cmp").value)||0;if(n)services.push({name:n,cost:c,compare:cp});});
+    if(!services.length){alert("Add at least one service!");return;}
+    var total=parseFloat(services.reduce(function(s,r){return s+r.cost;},0).toFixed(2));
+    var totalCompare=parseFloat(services.reduce(function(s,r){return s+r.compare;},0).toFixed(2));
+    BILLS=BILLS.filter(function(b){return b.key!==key;});
+    BILLS.push({key:key,account:acct,month:month,year:year,services:services,total:total,totalCompare:totalCompare});
+    activeBillAcct=acct;
+    document.getElementById("addBillModal").style.display="none";
+    markChanged();refreshAll();
+    setTimeout(function(){var b=document.getElementById("body-"+key);if(b){b.classList.add("open");var a=document.getElementById("arrow-"+key);if(a)a.textContent="▲";}},100);
+  });
+}
+function setupMonthlyBillsTab(){
+  var btn=document.getElementById("btnAddBill");
+  if(btn)btn.addEventListener("click",function(){openBillModal(null);});
+}
+function openBillModal(bill){
+  document.getElementById("bm-account").value=bill?bill.account:activeBillAcct;
+  document.getElementById("bm-year").value=bill?bill.year:new Date().getFullYear();
+  document.getElementById("bm-month").value=bill?bill.month:MONTHS[new Date().getMonth()];
+  var def=["Elastic Compute Cloud","Lightsail","Amazon Connect","Contact Center Telecommunications","Data Transfer","Kinesis","Secrets Manager","Simple Storage Service (S3)","Virtual Private Cloud","Elastic Load Balancing","Business Support+","Key Management Service","Q"];
+  var rows=bill?bill.services:def.map(function(n){return{name:n,cost:"",compare:""};});
+  document.getElementById("bm-services-list").innerHTML=rows.map(buildModalRow).join("");
+  document.getElementById("billModalTitle").textContent=bill?"✏️ Edit Bill":"📋 Add Monthly Bill";
+  document.getElementById("addBillModal").style.display="flex";
+}
+function buildModalRow(s,i){
+  return'<div class="bm-row" style="display:grid;grid-template-columns:26px 1fr 100px 100px 28px;gap:6px;align-items:center;padding:4px 0;border-bottom:1px solid #f1f5f9;">'+
+    '<span style="font-size:11px;color:#94a3b8;text-align:center;">'+(i+1)+'</span>'+
+    '<input class="bill-input bm-name" placeholder="Service name" value="'+(s.name||"")+'">'+
+    '<input class="bill-input bm-cost" placeholder="0.00" type="number" step="0.01" value="'+(s.cost||"")+'">'+
+    '<input class="bill-input bm-cmp" placeholder="±0.00" type="number" step="0.01" value="'+(s.compare!==undefined&&s.compare!==''?s.compare:"")+'">'+
+    '<button onclick="this.closest(\'.bm-row\').remove()" style="border:none;background:none;cursor:pointer;color:#dc2626;font-size:14px;padding:2px;">✕</button></div>';
+}
+
+function setupAddForm(){
+  document.getElementById("btnAddServer").addEventListener("click",function(){var f=document.getElementById("addFormWrap");f.style.display=f.style.display==="block"?"none":"block";});
+  document.getElementById("btnCloseForm").addEventListener("click",function(){document.getElementById("addFormWrap").style.display="none";});
+  document.getElementById("btnClearForm").addEventListener("click",function(){["f-name","f-ip","f-spec","f-ebs","f-category","f-domain","f-cost"].forEach(function(id){document.getElementById(id).value="";});document.getElementById("add-msg").textContent="";});
+  document.getElementById("btnSaveServer").addEventListener("click",function(){
+    var name=document.getElementById("f-name").value.trim();
+    var ip=document.getElementById("f-ip").value.trim();
+    var cost=parseFloat(document.getElementById("f-cost").value);
+    var msg=document.getElementById("add-msg");
+    if(!name||!ip||isNaN(cost)){msg.style.color="#dc2626";msg.textContent="⚠️ Name, IP and Cost required!";return;}
+    var account=document.getElementById("f-account").value;
+    var map={IHA:IHA,India:INDIA,USA:USA};
+    map[account].push({account:account,name:name,ip:ip,spec:document.getElementById("f-spec").value||"",ebs:document.getElementById("f-ebs").value||"",os:document.getElementById("f-os").value,region:document.getElementById("f-region").value,type:document.getElementById("f-type").value,category:document.getElementById("f-category").value||"",domain:document.getElementById("f-domain").value||"",cost:cost});
+    msg.style.color="#16a34a";msg.textContent="✅ Added! Click ☁️ Save to GitHub.";
+    ["f-name","f-ip","f-spec","f-ebs","f-category","f-domain","f-cost"].forEach(function(id){document.getElementById(id).value="";});
+    setTimeout(function(){msg.textContent="";},4000);
+    markChanged();refreshAll();
+  });
+}
+
+function setupDownload(){
+  var btn=document.getElementById("btnDownload");
+  btn.addEventListener("click",function(){
+    btn.textContent="⏳ Building...";btn.className="btn loading";btn.disabled=true;
+    setTimeout(function(){
+      try{
+        var wb=XLSX.utils.book_new();
+        var HDR=["S.No","Account","Server Name","IP","Spec","EBS","OS","Region","Type","Category","Domain","Cost (USD)"];
+        var COLS=[{wch:5},{wch:9},{wch:36},{wch:16},{wch:28},{wch:16},{wch:18},{wch:15},{wch:10},{wch:18},{wch:28},{wch:14}];
+        function mkWS(rows,title){var aoa=[[title],[],HDR].concat(rows.map(function(r){return[r.sno,r.account,r.name,r.ip,r.spec,r.ebs,r.os,r.region,r.type,r.category,r.domain||"",r.cost];})).concat([[],["","","","","","","","","","","Total",sumCost(rows)]]);var ws=XLSX.utils.aoa_to_sheet(aoa);ws["!cols"]=COLS;return ws;}
+        XLSX.utils.book_append_sheet(wb,mkWS(IHA,"IHA"),"IHA Servers");
+        XLSX.utils.book_append_sheet(wb,mkWS(INDIA,"India"),"India Servers");
+        XLSX.utils.book_append_sheet(wb,mkWS(USA,"USA"),"USA Servers");
+        XLSX.utils.book_append_sheet(wb,mkWS(ALL,"All"),"All Servers");
+        ["IHA","India","USA"].forEach(function(acct){
+          var ab=BILLS.filter(function(b){return b.account===acct;}).sort(function(a,b){return b.year-a.year||MONTHS.indexOf(b.month)-MONTHS.indexOf(a.month);});
+          if(!ab.length)return;
+          var aoa=[[acct+" Monthly Bills"],[],["Month","Service","Cost (USD)","vs Last Month"]];
+          ab.forEach(function(bill){bill.services.forEach(function(s){aoa.push([bill.month+" "+bill.year,s.name,s.cost,s.compare]);});aoa.push([bill.month+" "+bill.year+" TOTAL","",bill.total,bill.totalCompare]);aoa.push([]);});
+          var ws=XLSX.utils.aoa_to_sheet(aoa);ws["!cols"]=[{wch:18},{wch:40},{wch:14},{wch:16}];
+          XLSX.utils.book_append_sheet(wb,ws,acct+" Bills");
+        });
+        XLSX.writeFile(wb,"AWS_Infrastructure.xlsx");
+        btn.textContent="✅ Done!";btn.className="btn done";btn.disabled=false;
+        setTimeout(function(){btn.textContent="⬇️ Download Excel";btn.className="btn btn-orange";},3000);
+      }catch(e){alert("Error: "+e.message);btn.textContent="⬇️ Download Excel";btn.className="btn btn-orange";btn.disabled=false;}
+    },100);
+  });
+}
+
 init();
 </script>
 </body>
