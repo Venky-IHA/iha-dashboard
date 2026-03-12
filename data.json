@@ -129,6 +129,19 @@
       "category": "VoIP",
       "cost": 22,
       "domain": "N/A"
+    },
+    {
+      "account": "IHA",
+      "name": "test22",
+      "ip": "12.12.12.12.12",
+      "spec": "",
+      "ebs": "",
+      "os": "Linux (Ubuntu)",
+      "region": "AP - Mumbai",
+      "type": "EC2",
+      "category": "",
+      "domain": "",
+      "cost": 22333
     }
   ],
   "india": [
