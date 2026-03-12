@@ -358,9 +358,23 @@ var DB = {
 //  GITHUB CONFIG
 // ═══════════════════════════════════════════════════════
 var GH_CFG_KEY="gh_cfg_iha";
+var ADMIN_SESSION_KEY="iha_admin_session";
 var ghCfg={};
 var IS_ADMIN=false;
 var ADMIN_PASS="iha@admin2026";
+
+function checkAdminSession(){
+  try{
+    var s=sessionStorage.getItem(ADMIN_SESSION_KEY);
+    if(s==="1"){IS_ADMIN=true;}
+  }catch(e){}
+}
+function setAdminSession(val){
+  try{
+    if(val)sessionStorage.setItem(ADMIN_SESSION_KEY,"1");
+    else sessionStorage.removeItem(ADMIN_SESSION_KEY);
+  }catch(e){}
+}
 
 function loadGhCfg(){
   try{var s=localStorage.getItem(GH_CFG_KEY);if(s)ghCfg=JSON.parse(s);}catch(e){}
@@ -452,13 +466,15 @@ function autoSave(){
 }
 function init(){
   loadGhCfg();
+  checkAdminSession();
   loadData();rebuildAll();refreshAll();
+  if(IS_ADMIN)setAdminUI(true);
   setupAddForm();setupDownload();setupDeleteModal();setupBillModal();
   // GitHub buttons
   document.getElementById("btnAdminLogin").addEventListener("click",function(){
-    if(IS_ADMIN){setAdminUI(false);return;}
+    if(IS_ADMIN){setAdminSession(false);setAdminUI(false);return;}
     var pwd=prompt("Admin Password:");
-    if(pwd===ADMIN_PASS){setAdminUI(true);}
+    if(pwd===ADMIN_PASS){setAdminSession(true);setAdminUI(true);}
     else if(pwd!==null){alert("❌ Wrong password!");}
   });
   document.getElementById("btnGitHubSave").addEventListener("click",function(){
