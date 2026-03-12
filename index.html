@@ -119,10 +119,10 @@ tbody tr:hover td{background:#eff6ff;}
   <div class="modal-box" style="width:400px;">
     <h3>🗑️ Delete Server?</h3>
     <p id="deleteModalMsg" style="font-size:13px;color:#475569;margin-bottom:6px;"></p>
-    <p style="font-size:12px;color:#dc2626;margin-bottom:16px;">⚠️ This is permanent — cannot be undone!</p>
+    <p style="font-size:12px;color:#dc2626;margin-bottom:16px;">⚠️ Server will move to Deleted Bin — can permanently delete from there.</p>
     <div class="modal-actions">
       <button class="btn btn-gray" id="modalCancel">Cancel</button>
-      <button class="btn btn-red" id="modalConfirm">Yes, Delete Permanently</button>
+      <button class="btn btn-red" id="modalConfirm">🗑️ Move to Deleted Bin</button>
     </div>
   </div>
 </div>
@@ -417,7 +417,7 @@ function setTypeFilter(tabId,type){typeFilter[tabId]=type;renderContent(tabId);}
 function renderContent(id){
   var el=document.getElementById("tab-content");
   if(id==="dashboard"){el.innerHTML=renderDashboard();return;}
-  if(id==="deleted"){el.innerHTML=renderDeletedTab();return;}
+  if(id==="deleted"){el.innerHTML=renderDeletedTab();attachPermDeleteListeners();return;}
   if(id==="monthly"){el.innerHTML=renderMonthlyBills();setupMonthlyBillsTab();return;}
   var cfgMap={iha:{data:IHA,color:"#5b21b6"},india:{data:INDIA,color:"#92400e"},usa:{data:USA,color:"#1d4ed8"},all:{data:ALL,color:"#0f172a"}};
   var cfg=cfgMap[id];var isAll=(id==="all");
@@ -527,10 +527,28 @@ function setupDeleteModal(){
   });
 }
 
+function attachPermDeleteListeners(){
+  document.querySelectorAll(".perm-del-btn").forEach(function(b){
+    b.addEventListener("click",function(){
+      var idx=+b.dataset.idx;
+      var name=DELETED[idx].name;
+      if(!confirm('⚠️ Permanently delete "'+name+'"? This CANNOT be undone!'))return;
+      DELETED.splice(idx,1);
+      markChanged();refreshAll();
+    });
+  });
+  var clearAll=document.getElementById("clearAllDeleted");
+  if(clearAll){clearAll.addEventListener("click",function(){
+    if(!confirm("⚠️ Permanently delete ALL "+DELETED.length+" servers from bin? Cannot be undone!"))return;
+    DELETED=[];
+    markChanged();refreshAll();
+  });}
+}
+
 function renderDeletedTab(){
   if(!DELETED.length)return'<div style="text-align:center;padding:40px;color:#94a3b8;"><div style="font-size:40px;">🗑️</div><div style="font-size:14px;font-weight:600;margin-top:12px;">No deleted servers</div></div>';
   return'<div style="margin-bottom:12px;"><span style="font-size:12px;color:#dc2626;font-weight:600;">🗑️ '+DELETED.length+' deleted servers</span></div>'+
-  '<div class="table-wrap"><table><thead><tr style="background:#dc2626"><th>#</th><th>Account</th><th>Name</th><th>IP</th><th>Spec</th><th>OS</th><th>Region</th><th>Cost</th><th>Deleted On</th></tr></thead><tbody>'+
+  '<div class="table-wrap"><table><thead><tr style="background:#dc2626"><th>#</th><th>Account</th><th>Name</th><th>IP</th><th>Spec</th><th>OS</th><th>Region</th><th>Cost</th><th>Deleted On</th><th>Action</th></tr></thead><tbody>'+
   DELETED.map(function(r,i){
     return'<tr style="background:'+(i%2===0?"#fff1f2":"#fff5f5")+'">'+
       '<td style="font-size:11px;color:#94a3b8">'+(i+1)+'</td>'+
@@ -542,9 +560,11 @@ function renderDeletedTab(){
       '<td style="color:#475569;">'+r.region+'</td>'+
       '<td style="font-weight:700;color:#dc2626;">'+fmt(r.cost)+'</td>'+
       '<td style="font-size:11px;color:#64748b;">'+r.deletedOn+'</td>'+
+      '<td><button class="btn btn-red perm-del-btn" style="padding:3px 8px;font-size:11px;" data-idx="'+i+'">🗑️ Permanently Delete</button></td>'+
     '</tr>';
   }).join("")+
-  '</tbody></table></div>';
+  '</tbody></table></div>'+
+  '<div style="margin-top:12px;"><button class="btn btn-red" id="clearAllDeleted" style="font-size:12px;padding:6px 14px;">🗑️ Clear All Permanently</button></div>';
 }
 
 function renderDashboard(){
