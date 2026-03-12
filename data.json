@@ -142,6 +142,19 @@
       "category": "",
       "domain": "",
       "cost": 22333
+    },
+    {
+      "account": "IHA",
+      "name": "test555",
+      "ip": "1212",
+      "spec": "",
+      "ebs": "",
+      "os": "Linux (Ubuntu)",
+      "region": "AP - Mumbai",
+      "type": "EC2",
+      "category": "",
+      "domain": "",
+      "cost": 12121212
     }
   ],
   "india": [
