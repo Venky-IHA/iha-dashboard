@@ -91,14 +91,12 @@ tbody tr:hover td{background:#eff6ff;}
 </head>
 <body>
 
-<!-- LOADING SCREEN -->
 <div id="loading-screen">
   <div class="spin"></div>
   <div style="font-size:16px;font-weight:700;">☁️ Loading Dashboard...</div>
   <div id="load-msg" style="font-size:12px;color:#93c5fd;margin-top:6px;">Fetching latest data...</div>
 </div>
 
-<!-- GitHub Config Modal -->
 <div class="cfg-overlay" id="cfgOverlay">
   <div class="cfg-box">
     <h2>⚙️ GitHub Auto-Save Setup</h2>
@@ -114,12 +112,11 @@ tbody tr:hover td{background:#eff6ff;}
   </div>
 </div>
 
-<!-- DELETE MODAL -->
 <div class="modal-overlay" id="deleteModal">
   <div class="modal-box" style="width:400px;">
-    <h3>🗑️ Delete Server?</h3>
+    <h3>🗑️ Move to Deleted Bin?</h3>
     <p id="deleteModalMsg" style="font-size:13px;color:#475569;margin-bottom:6px;"></p>
-    <p style="font-size:12px;color:#dc2626;margin-bottom:16px;">⚠️ Server will move to Deleted Bin — can permanently delete from there.</p>
+    <p style="font-size:12px;color:#f97316;margin-bottom:16px;">⚠️ Server will move to Deleted Bin — permanently delete from there.</p>
     <div class="modal-actions">
       <button class="btn btn-gray" id="modalCancel">Cancel</button>
       <button class="btn btn-red" id="modalConfirm">🗑️ Move to Deleted Bin</button>
@@ -127,7 +124,6 @@ tbody tr:hover td{background:#eff6ff;}
   </div>
 </div>
 
-<!-- ADD/EDIT BILL MODAL -->
 <div class="modal-overlay" id="addBillModal">
   <div class="modal-box">
     <h3 id="billModalTitle">📋 Add Monthly Bill</h3>
@@ -227,29 +223,27 @@ var ghCfg = {};
 var IS_ADMIN = false;
 
 // ═══════════════════════════════════════════════════════
-//  LOAD DATA FROM data.json (GitHub raw)
+//  FETCH data.json
 // ═══════════════════════════════════════════════════════
 var IHA=[], INDIA=[], USA=[], ALL=[], DELETED=[], BILLS=[];
 
-async function fetchData() {
-  try {
+async function fetchData(){
+  try{
     loadGhCfg();
     var user = ghCfg.user || "Venky-IHA";
     var repo = ghCfg.repo || "iha-dashboard";
-    // Use raw GitHub URL with cache-bust so we always get fresh data
-    var url = "https://raw.githubusercontent.com/" + user + "/" + repo + "/main/data.json?cb=" + Date.now();
+    var url = "https://raw.githubusercontent.com/"+user+"/"+repo+"/main/data.json?cb="+Date.now();
     document.getElementById("load-msg").textContent = "Fetching from GitHub...";
     var res = await fetch(url);
-    if (!res.ok) throw new Error("HTTP " + res.status);
+    if(!res.ok) throw new Error("HTTP "+res.status);
     var json = await res.json();
-    IHA = (json.iha || []).map(function(s){return Object.assign({},s);});
-    INDIA = (json.india || []).map(function(s){return Object.assign({},s);});
-    USA = (json.usa || []).map(function(s){return Object.assign({},s);});
-    DELETED = (json.deleted || []).map(function(s){return Object.assign({},s);});
-    BILLS = (json.bills || []).map(function(b){return Object.assign({},b);});
-    document.getElementById("load-msg").textContent = "✅ Loaded!";
-  } catch(e) {
-    document.getElementById("load-msg").textContent = "⚠️ Could not load data.json: " + e.message;
+    IHA = (json.iha||[]).map(function(s){return Object.assign({},s);});
+    INDIA = (json.india||[]).map(function(s){return Object.assign({},s);});
+    USA = (json.usa||[]).map(function(s){return Object.assign({},s);});
+    DELETED = (json.deleted||[]).map(function(s){return Object.assign({},s);});
+    BILLS = (json.bills||[]).map(function(b){return Object.assign({},b);});
+  }catch(e){
+    document.getElementById("load-msg").textContent = "⚠️ Could not load: "+e.message;
     await new Promise(function(r){setTimeout(r,2000);});
   }
 }
@@ -263,7 +257,6 @@ function isGhConfigured(){return ghCfg.user&&ghCfg.repo&&ghCfg.token;}
 function openCfg(){
   document.getElementById("cfg-user").value=ghCfg.user||"Venky-IHA";
   document.getElementById("cfg-repo").value=ghCfg.repo||"iha-dashboard";
-  document.getElementById("cfg-file").value=ghCfg.file||"data.json";
   document.getElementById("cfg-token").value=ghCfg.token||"";
   document.getElementById("cfgOverlay").style.display="flex";
 }
@@ -282,7 +275,7 @@ function setAdminUI(isAdmin){
 }
 
 // ═══════════════════════════════════════════════════════
-//  SAVE — only data.json, NO html rebuild!
+//  SAVE — ALWAYS data.json only, NEVER index.html
 // ═══════════════════════════════════════════════════════
 async function saveToGitHub(){
   if(!isGhConfigured()){openCfg();return;}
@@ -301,12 +294,11 @@ async function saveToGitHub(){
 
     var user = ghCfg.user;
     var repo = ghCfg.repo;
-    var file = "data.json"; // Always save to data.json only, never index.html
+    var file = "data.json"; // ← HARDCODED — never changes to index.html
     var apiBase = "https://api.github.com/repos/"+user+"/"+repo+"/contents/"+file;
     var headers = {"Authorization":"token "+ghCfg.token,"Content-Type":"application/json","Accept":"application/vnd.github.v3+json"};
 
-    // Get current SHA
-    var getRes = await fetch(apiBase, {headers:headers});
+    var getRes = await fetch(apiBase,{headers:headers});
     var sha = "";
     if(getRes.ok){var getData=await getRes.json();sha=getData.sha||"";}
 
@@ -320,13 +312,13 @@ async function saveToGitHub(){
       document.getElementById("changeCount").textContent=0;
       document.getElementById("saveBanner").style.display="none";
       setTimeout(function(){btn.textContent="☁️ Save to GitHub";btn.style.background="";},3000);
-    } else {
+    }else{
       var err=await putRes.json();
       throw new Error(err.message||"GitHub API error "+putRes.status);
     }
-  } catch(e) {
+  }catch(e){
     btn.textContent="❌ Failed!";btn.style.background="#dc2626";btn.disabled=false;
-    alert("Error: "+e.message+"\n\nCheck ⚙️ GitHub Setup — token & repo name correct-a?");
+    alert("Error: "+e.message);
     setTimeout(function(){btn.textContent="☁️ Save to GitHub";btn.style.background="";},3000);
   }
 }
@@ -351,16 +343,18 @@ async function init(){
     if(pwd===ADMIN_PASS){setAdminSession(true);setAdminUI(true);}
     else if(pwd!==null){alert("❌ Wrong password!");}
   });
-  document.getElementById("btnGitHubSave").addEventListener("click",function(){
-    if(!isGhConfigured()){openCfg();return;}
-    saveToGitHub();
-  });
+  document.getElementById("btnGitHubSave").addEventListener("click",saveToGitHub);
   document.getElementById("btnGitHubCfg").addEventListener("click",openCfg);
   document.getElementById("cfgSaveBtn").addEventListener("click",function(){
-    ghCfg={user:document.getElementById("cfg-user").value.trim(),repo:document.getElementById("cfg-repo").value.trim(),file:document.getElementById("cfg-file").value.trim()||"data.json",token:document.getElementById("cfg-token").value.trim()};
+    ghCfg={
+      user:document.getElementById("cfg-user").value.trim(),
+      repo:document.getElementById("cfg-repo").value.trim(),
+      token:document.getElementById("cfg-token").value.trim()
+    };
     if(!ghCfg.user||!ghCfg.repo||!ghCfg.token){alert("Fill all fields!");return;}
-    saveGhCfg();document.getElementById("cfgOverlay").style.display="none";
-    alert("✅ GitHub config saved! Refresh page to load latest data.");
+    saveGhCfg();
+    document.getElementById("cfgOverlay").style.display="none";
+    alert("✅ GitHub config saved!");
   });
   document.getElementById("today-date").textContent=new Date().toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"});
 }
@@ -404,7 +398,7 @@ function refreshTabs(){
     {id:"india",label:"🟡 India ("+INDIA.length+")",c:"#92400e"},
     {id:"usa",label:"🔵 USA ("+USA.length+")",c:"#1d4ed8"},
     {id:"all",label:"🌐 All ("+ALL.length+")",c:"#0f172a"},
-    {id:"deleted",label:"🗑️ Deleted ("+DELETED.length+")",c:"#dc2626"},
+    {id:"deleted",label:"🗑️ Bin ("+DELETED.length+")",c:"#dc2626"},
     {id:"monthly",label:"🧾 Monthly Bills ("+BILLS.length+")",c:"#0369a1"}
   ];
   document.getElementById("tabs").innerHTML=defs.map(function(t){var a=t.id===activeTab;return'<button class="tab-btn'+(a?" active":"")+'" style="'+(a?"border-bottom-color:"+t.c+";color:"+t.c+";":"")+'" data-tab="'+t.id+'">'+t.label+'</button>';}).join("");
@@ -503,7 +497,7 @@ function attachDeleteListeners(){
   document.querySelectorAll(".delete-btn").forEach(function(b){
     b.addEventListener("click",function(){
       pendingDeleteSno=+b.dataset.sno;
-      document.getElementById("deleteModalMsg").textContent='Delete "'+b.dataset.name+'"?';
+      document.getElementById("deleteModalMsg").textContent='Move "'+b.dataset.name+'" to Deleted Bin?';
       document.getElementById("deleteModal").style.display="flex";
     });
   });
@@ -527,44 +521,54 @@ function setupDeleteModal(){
   });
 }
 
+// ═══════════════════════════════════════════════════════
+//  DELETED BIN TAB
+// ═══════════════════════════════════════════════════════
+function renderDeletedTab(){
+  if(!DELETED.length)return'<div style="text-align:center;padding:40px;color:#94a3b8;"><div style="font-size:40px;">🗑️</div><div style="font-size:14px;font-weight:600;margin-top:12px;">Deleted Bin is empty</div></div>';
+  var clearBtn=IS_ADMIN?'<button class="btn btn-red" id="clearAllDeleted" style="font-size:12px;padding:6px 14px;margin-bottom:12px;">🗑️ Clear All Permanently ('+DELETED.length+')</button>':'';
+  return'<div style="margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">'+
+    '<span style="font-size:12px;color:#dc2626;font-weight:600;">🗑️ '+DELETED.length+' server(s) in Deleted Bin</span>'+
+    clearBtn+
+    '</div>'+
+    '<div class="table-wrap"><table><thead><tr style="background:#dc2626">'+
+    '<th>#</th><th>Account</th><th>Name</th><th>IP</th><th>Spec</th><th>OS</th><th>Region</th><th>Cost</th><th>Deleted On</th>'+(IS_ADMIN?'<th>Action</th>':'')+
+    '</tr></thead><tbody>'+
+    DELETED.map(function(r,i){
+      return'<tr style="background:'+(i%2===0?"#fff1f2":"#fff5f5")+'">'+
+        '<td style="font-size:11px;color:#94a3b8">'+(i+1)+'</td>'+
+        '<td>'+acctChip(r.account)+'</td>'+
+        '<td style="text-decoration:line-through;font-weight:600;color:#9f1239;">'+r.name+'</td>'+
+        '<td style="font-family:monospace;font-size:11px;color:#64748b;">'+r.ip+'</td>'+
+        '<td style="color:#475569;">'+r.spec+'</td>'+
+        '<td>'+osChip(r.os)+'</td>'+
+        '<td style="color:#475569;">'+r.region+'</td>'+
+        '<td style="font-weight:700;color:#dc2626;">'+fmt(r.cost)+'</td>'+
+        '<td style="font-size:11px;color:#64748b;">'+r.deletedOn+'</td>'+
+        (IS_ADMIN?'<td><button class="btn btn-red perm-del-btn" style="padding:3px 8px;font-size:11px;white-space:nowrap;" data-idx="'+i+'">❌ Permanently Delete</button></td>':'')+
+      '</tr>';
+    }).join("")+
+    '</tbody></table></div>';
+}
+
 function attachPermDeleteListeners(){
   document.querySelectorAll(".perm-del-btn").forEach(function(b){
     b.addEventListener("click",function(){
       var idx=+b.dataset.idx;
       var name=DELETED[idx].name;
-      if(!confirm('⚠️ Permanently delete "'+name+'"? This CANNOT be undone!'))return;
+      if(!confirm('⚠️ Permanently delete "'+name+'"?\n\nThis CANNOT be undone!'))return;
       DELETED.splice(idx,1);
       markChanged();refreshAll();
     });
   });
   var clearAll=document.getElementById("clearAllDeleted");
-  if(clearAll){clearAll.addEventListener("click",function(){
-    if(!confirm("⚠️ Permanently delete ALL "+DELETED.length+" servers from bin? Cannot be undone!"))return;
-    DELETED=[];
-    markChanged();refreshAll();
-  });}
-}
-
-function renderDeletedTab(){
-  if(!DELETED.length)return'<div style="text-align:center;padding:40px;color:#94a3b8;"><div style="font-size:40px;">🗑️</div><div style="font-size:14px;font-weight:600;margin-top:12px;">No deleted servers</div></div>';
-  return'<div style="margin-bottom:12px;"><span style="font-size:12px;color:#dc2626;font-weight:600;">🗑️ '+DELETED.length+' deleted servers</span></div>'+
-  '<div class="table-wrap"><table><thead><tr style="background:#dc2626"><th>#</th><th>Account</th><th>Name</th><th>IP</th><th>Spec</th><th>OS</th><th>Region</th><th>Cost</th><th>Deleted On</th><th>Action</th></tr></thead><tbody>'+
-  DELETED.map(function(r,i){
-    return'<tr style="background:'+(i%2===0?"#fff1f2":"#fff5f5")+'">'+
-      '<td style="font-size:11px;color:#94a3b8">'+(i+1)+'</td>'+
-      '<td>'+acctChip(r.account)+'</td>'+
-      '<td style="text-decoration:line-through;font-weight:600;color:#9f1239;">'+r.name+'</td>'+
-      '<td style="font-family:monospace;font-size:11px;color:#64748b;">'+r.ip+'</td>'+
-      '<td style="color:#475569;">'+r.spec+'</td>'+
-      '<td>'+osChip(r.os)+'</td>'+
-      '<td style="color:#475569;">'+r.region+'</td>'+
-      '<td style="font-weight:700;color:#dc2626;">'+fmt(r.cost)+'</td>'+
-      '<td style="font-size:11px;color:#64748b;">'+r.deletedOn+'</td>'+
-      '<td><button class="btn btn-red perm-del-btn" style="padding:3px 8px;font-size:11px;" data-idx="'+i+'">🗑️ Permanently Delete</button></td>'+
-    '</tr>';
-  }).join("")+
-  '</tbody></table></div>'+
-  '<div style="margin-top:12px;"><button class="btn btn-red" id="clearAllDeleted" style="font-size:12px;padding:6px 14px;">🗑️ Clear All Permanently</button></div>';
+  if(clearAll){
+    clearAll.addEventListener("click",function(){
+      if(!confirm("⚠️ Permanently delete ALL "+DELETED.length+" servers?\n\nThis CANNOT be undone!"))return;
+      DELETED=[];
+      markChanged();refreshAll();
+    });
+  }
 }
 
 function renderDashboard(){
