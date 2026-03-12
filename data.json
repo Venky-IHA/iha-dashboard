@@ -129,32 +129,6 @@
       "category": "VoIP",
       "cost": 22,
       "domain": "N/A"
-    },
-    {
-      "account": "IHA",
-      "name": "test22",
-      "ip": "12.12.12.12.12",
-      "spec": "",
-      "ebs": "",
-      "os": "Linux (Ubuntu)",
-      "region": "AP - Mumbai",
-      "type": "EC2",
-      "category": "",
-      "domain": "",
-      "cost": 22333
-    },
-    {
-      "account": "IHA",
-      "name": "1221221",
-      "ip": "121212",
-      "spec": "",
-      "ebs": "",
-      "os": "Linux (Ubuntu)",
-      "region": "AP - Mumbai",
-      "type": "EC2",
-      "category": "",
-      "domain": "",
-      "cost": 12121212
     }
   ],
   "india": [
@@ -1344,6 +1318,36 @@
       "category": "",
       "domain": "",
       "cost": 244,
+      "gsno": 11,
+      "deletedOn": "12 Mar 2026"
+    },
+    {
+      "account": "IHA",
+      "name": "test22",
+      "ip": "12.12.12.12.12",
+      "spec": "",
+      "ebs": "",
+      "os": "Linux (Ubuntu)",
+      "region": "AP - Mumbai",
+      "type": "EC2",
+      "category": "",
+      "domain": "",
+      "cost": 22333,
+      "gsno": 11,
+      "deletedOn": "12 Mar 2026"
+    },
+    {
+      "account": "IHA",
+      "name": "1221221",
+      "ip": "121212",
+      "spec": "",
+      "ebs": "",
+      "os": "Linux (Ubuntu)",
+      "region": "AP - Mumbai",
+      "type": "EC2",
+      "category": "",
+      "domain": "",
+      "cost": 12121212,
       "gsno": 11,
       "deletedOn": "12 Mar 2026"
     }
