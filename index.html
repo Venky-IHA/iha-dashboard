@@ -1,6 +1,8 @@
-<html lang="en"><head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>AWS Infrastructure — IHA · India · USA</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
@@ -91,14 +93,14 @@ tbody tr:hover td{background:#eff6ff;}
   <div class="cfg-box">
     <h2>⚙️ GitHub Auto-Save Setup</h2>
     <p>One-time setup. Stored only on your browser.</p>
-    <div class="cfg-row"><label>GitHub Username</label><input id="cfg-user" placeholder="e.g. Venky-IHA"></div>
-    <div class="cfg-row"><label>Repository Name</label><input id="cfg-repo" placeholder="e.g. iha-dashboard"></div>
-    <div class="cfg-row"><label>File Name in Repo</label><input id="cfg-file" placeholder="index.html" value="index.html"></div>
+    <div class="cfg-row"><label>GitHub Username</label><input id="cfg-user" placeholder="e.g. Venky-IHA"/></div>
+    <div class="cfg-row"><label>Repository Name</label><input id="cfg-repo" placeholder="e.g. iha-dashboard"/></div>
+    <div class="cfg-row"><label>File Name in Repo</label><input id="cfg-file" placeholder="index.html" value="index.html"/></div>
     <div class="cfg-row">
-      <label>Personal Access Token &nbsp;<a href="https://github.com/settings/tokens/new?scopes=repo&amp;description=iha-dashboard" target="_blank" style="color:#22c55e;font-size:11px;">Generate ↗</a></label>
-      <input id="cfg-token" type="password" placeholder="ghp_xxxxxxxxxxxx">
+      <label>Personal Access Token &nbsp;<a href="https://github.com/settings/tokens/new?scopes=repo&description=iha-dashboard" target="_blank" style="color:#22c55e;font-size:11px;">Generate ↗</a></label>
+      <input id="cfg-token" type="password" placeholder="ghp_xxxxxxxxxxxx"/>
     </div>
-    <button class="btn btn-github" id="cfgSaveBtn" style="width:100%;padding:10px;">✅ Save &amp; Start</button>
+    <button class="btn btn-github" id="cfgSaveBtn" style="width:100%;padding:10px;">✅ Save & Start</button>
     <p class="cfg-hint">Token never sent anywhere except GitHub API</p>
   </div>
 </div>
@@ -151,25 +153,25 @@ tbody tr:hover td{background:#eff6ff;}
       <span style="font-size:24px;">☁️</span>
       <h1>AWS Infrastructure — IHA · India · USA</h1>
     </div>
-    <p id="server-count-p" style="color:#93c5fd;font-size:12px;margin-top:4px;">101 Servers · 3 Accounts · Grand Total: <strong style="color:#fbbf24">$5776.68</strong>/month</p>
-    <p style="margin-top:4px;font-size:11px;color:#93c5fd;">🗓️ Last Updated: <strong style="color:#fbbf24" id="today-date">12 Mar 2026</strong></p>
+    <p id="server-count-p" style="color:#93c5fd;font-size:12px;margin-top:4px;"></p>
+    <p style="margin-top:4px;font-size:11px;color:#93c5fd;">🗓️ Last Updated: <strong style="color:#fbbf24" id="today-date"></strong></p>
   </div>
   <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-    <button class="btn btn-gray" id="btnAdminLogin" style="font-size:12px;padding:8px 14px;">🔓 Admin (Logout)</button>
-    <button class="btn btn-purple" id="btnAddServer" style="">➕ Add Server</button>
-    <button class="btn btn-github" id="btnGitHubSave" style="background: rgb(71, 85, 105);" disabled="">⏳ Saving...</button>
-    <button class="btn btn-gray" id="btnGitHubCfg" style="font-size: 12px; padding: 8px 12px;">⚙️ GitHub Setup</button>
+    <button class="btn btn-gray" id="btnAdminLogin" style="font-size:12px;padding:8px 14px;">🔐 Admin Login</button>
+    <button class="btn btn-purple" id="btnAddServer" style="display:none;">➕ Add Server</button>
+    <button class="btn btn-github" id="btnGitHubSave" style="display:none;">☁️ Save to GitHub</button>
+    <button class="btn btn-gray" id="btnGitHubCfg" style="font-size:12px;padding:8px 12px;display:none;">⚙️ GitHub Setup</button>
     <button class="btn btn-orange" id="btnDownload">⬇️ Download Excel</button>
   </div>
 </div>
 
-<div class="save-banner" id="saveBanner" style="display: flex;">
+<div class="save-banner" id="saveBanner" style="display:none;">
   <span class="pulse"></span>
-  <p>⚠️ You have <strong id="changeCount">1</strong> unsaved change(s). Click <strong>"☁️ Save to GitHub"</strong> to update SharePoint automatically.</p>
+  <p>⚠️ You have <strong id="changeCount">0</strong> unsaved change(s). Click <strong>"☁️ Save to GitHub"</strong> to update SharePoint automatically.</p>
   <button class="btn btn-github" onclick="saveToGitHub()" style="padding:8px 14px;font-size:12px;">☁️ Save Now</button>
 </div>
 
-<div class="add-form-wrap" id="addFormWrap" style="display: block;">
+<div class="add-form-wrap" id="addFormWrap">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
     <h3 style="font-size:14px;font-weight:700;color:#1e293b;">➕ Add New Server</h3>
     <button class="btn btn-gray" id="btnCloseForm" style="padding:4px 12px;font-size:12px;">✖ Close</button>
@@ -194,14 +196,14 @@ tbody tr:hover td{background:#eff6ff;}
   <div style="display:flex;gap:10px;align-items:center;">
     <button class="btn btn-green" id="btnSaveServer">✅ Add Server</button>
     <button class="btn btn-gray" id="btnClearForm">🔄 Clear</button>
-    <span id="add-msg" style="font-size: 12px; font-weight: 600; color: rgb(22, 163, 74);"></span>
+    <span id="add-msg" style="font-size:12px;font-weight:600;"></span>
   </div>
 </div>
 
-<div class="kpi-grid" id="kpi-grid"><div class="kpi" style="border-left:4px solid #5b21b6"><div class="icon">🟣</div><div class="label">IHA Account</div><div class="val" style="color:#5b21b6">11 servers</div><div class="cost">$1237.23</div></div><div class="kpi" style="border-left:4px solid #92400e"><div class="icon">🟡</div><div class="label">India Account</div><div class="val" style="color:#92400e">24 servers</div><div class="cost">$972.41</div></div><div class="kpi" style="border-left:4px solid #1d4ed8"><div class="icon">🔵</div><div class="label">USA Account</div><div class="val" style="color:#1d4ed8">66 servers</div><div class="cost">$3567.04</div></div><div class="kpi" style="border-left:4px solid #be123c"><div class="icon">💰</div><div class="label">Grand Total</div><div class="val" style="color:#be123c">101 servers</div><div class="cost">$5776.68/mo</div></div><div class="kpi" style="border-left:4px solid #0369a1"><div class="icon">🧾</div><div class="label">Monthly Bills</div><div class="val" style="color:#0369a1">3 entries</div><div class="cost">3 Accounts</div></div></div>
+<div class="kpi-grid" id="kpi-grid"></div>
 <div class="main-card">
-  <div class="tabs" id="tabs"><button class="tab-btn" style="" data-tab="dashboard">📊 Dashboard</button><button class="tab-btn active" style="border-bottom-color:#5b21b6;color:#5b21b6;" data-tab="iha">🟣 IHA (11)</button><button class="tab-btn" style="" data-tab="india">🟡 India (24)</button><button class="tab-btn" style="" data-tab="usa">🔵 USA (66)</button><button class="tab-btn" style="" data-tab="all">🌐 All (101)</button><button class="tab-btn" style="" data-tab="monthly">🧾 Monthly Bills (3)</button></div>
-  <div class="tab-content" id="tab-content"><div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;"><button style="padding:6px 16px;border-radius:20px;border:2px solid #5b21b6;background:#5b21b6;color:#fff;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;" onclick="setTypeFilter('iha','all')">🖥️ All (11)</button><button style="padding:6px 16px;border-radius:20px;border:2px solid #e2e8f0;background:#fff;color:#64748b;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;" onclick="setTypeFilter('iha','EC2')">⚙️ EC2 (9)</button><button style="padding:6px 16px;border-radius:20px;border:2px solid #e2e8f0;background:#fff;color:#64748b;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;" onclick="setTypeFilter('iha','Lightsail')">💡 Lightsail (2)</button></div><div class="search-bar"><input type="text" id="search-iha" placeholder="🔍 Search any column..."><span id="count-iha" style="font-size:12px;color:#64748b;">11 servers</span><span id="total-iha" style="margin-left:auto;font-weight:700;font-size:13px;color:#5b21b6;">Total: $1237.23</span></div><div class="table-wrap"><table><thead><tr style="background:#5b21b6"><th>#</th><th>Server Name</th><th>IP</th><th>Spec</th><th>EBS</th><th>OS</th><th>Region</th><th>Type</th><th>Category</th><th>Domain</th><th>Cost</th><th></th><th></th></tr></thead><tbody id="tbody-iha"><tr id="view-1"><td style="color:#94a3b8;font-size:11px">1</td><td style="font-weight:600;color:#1e293b;">Avyukta Dialer - telephony</td><td style="font-family:monospace;color:#475569;font-size:11px">3.139.114.250</td><td style="color:#475569">c6a.4xlarge</td><td style="color:#64748b">1000 GB - gp3</td><td><span class="chip" style="background:#fee2e2;color:#991b1b;">Linux (CentOS)</span></td><td style="color:#475569">US - Ohio</td><td><span class="chip" style="background:#e0f2fe;color:#0369a1;">EC2</span></td><td style="color:#475569">Dialer</td><td style="color:#64748b;font-size:11px">—</td><td style="font-weight:700;color:#0369a1">$526.76</td><td><button class="btn btn-gray edit-btn" style="padding:3px 8px;font-size:11px;" data-sno="1">✏️</button></td><td><button class="btn btn-red delete-btn" style="padding:3px 8px;font-size:11px;" data-sno="1" data-name="Avyukta Dialer - telephony">🗑️</button></td></tr><tr id="edit-1" style="display:none;" class="edit-row"><td style="color:#94a3b8;font-size:11px">1</td><td><input class="edit-input" id="en-1" value="Avyukta Dialer - telephony"></td><td><input class="edit-input" id="ei-1" value="3.139.114.250"></td><td><input class="edit-input" id="es-1" value="c6a.4xlarge"></td><td><input class="edit-input" id="ee-1" value="1000 GB - gp3"></td><td><input class="edit-input" id="eo-1" value="Linux (CentOS)"></td><td><input class="edit-input" id="er-1" value="US - Ohio"></td><td><input class="edit-input" id="et-1" value="EC2" style="width:70px"></td><td><input class="edit-input" id="ec-1" value="Dialer"></td><td><input class="edit-input" id="ed-1" value=""></td><td><input class="edit-input" id="ep-1" value="526.76" type="number" style="width:70px"></td><td><button class="btn btn-green save-edit-btn" style="padding:3px 8px;font-size:11px;" data-sno="1" data-acct="IHA">✅</button></td><td><button class="btn btn-gray cancel-btn" style="padding:3px 8px;font-size:11px;" data-sno="1">✖</button></td></tr><tr id="view-2"><td style="color:#94a3b8;font-size:11px">2</td><td style="font-weight:600;color:#1e293b;">sipp_script</td><td style="font-family:monospace;color:#475569;font-size:11px">35.88.70.221</td><td style="color:#475569">t3.medium</td><td style="color:#64748b">50 GB - gp3</td><td><span class="chip" style="background:#dcfce7;color:#166534;">Linux (Debian)</span></td><td style="color:#475569">US - Oregon</td><td><span class="chip" style="background:#e0f2fe;color:#0369a1;">EC2</span></td><td style="color:#475569">QA/Test</td><td style="color:#64748b;font-size:11px">—</td><td style="font-weight:700;color:#0369a1">$34.37</td><td><button class="btn btn-gray edit-btn" style="padding:3px 8px;font-size:11px;" data-sno="2">✏️</button></td><td><button class="btn btn-red delete-btn" style="padding:3px 8px;font-size:11px;" data-sno="2" data-name="sipp_script">🗑️</button></td></tr><tr id="edit-2" style="display:none;" class="edit-row"><td style="color:#94a3b8;font-size:11px">2</td><td><input class="edit-input" id="en-2" value="sipp_script"></td><td><input class="edit-input" id="ei-2" value="35.88.70.221"></td><td><input class="edit-input" id="es-2" value="t3.medium"></td><td><input class="edit-input" id="ee-2" value="50 GB - gp3"></td><td><input class="edit-input" id="eo-2" value="Linux (Debian)"></td><td><input class="edit-input" id="er-2" value="US - Oregon"></td><td><input class="edit-input" id="et-2" value="EC2" style="width:70px"></td><td><input class="edit-input" id="ec-2" value="QA/Test"></td><td><input class="edit-input" id="ed-2" value=""></td><td><input class="edit-input" id="ep-2" value="34.37" type="number" style="width:70px"></td><td><button class="btn btn-green save-edit-btn" style="padding:3px 8px;font-size:11px;" data-sno="2" data-acct="IHA">✅</button></td><td><button class="btn btn-gray cancel-btn" style="padding:3px 8px;font-size:11px;" data-sno="2">✖</button></td></tr><tr id="view-3"><td style="color:#94a3b8;font-size:11px">3</td><td style="font-weight:600;color:#1e293b;">QA_server1</td><td style="font-family:monospace;color:#475569;font-size:11px">52.33.2.220</td><td style="color:#475569">c5a.xlarge</td><td style="color:#64748b">100 GB - gp3</td><td><span class="chip" style="background:#dcfce7;color:#166534;">Linux (Debian)</span></td><td style="color:#475569">US - Oregon</td><td><span class="chip" style="background:#e0f2fe;color:#0369a1;">EC2</span></td><td style="color:#475569">QA/Test</td><td style="color:#64748b;font-size:11px">—</td><td style="font-weight:700;color:#0369a1">$120.42</td><td><button class="btn btn-gray edit-btn" style="padding:3px 8px;font-size:11px;" data-sno="3">✏️</button></td><td><button class="btn btn-red delete-btn" style="padding:3px 8px;font-size:11px;" data-sno="3" data-name="QA_server1">🗑️</button></td></tr><tr id="edit-3" style="display:none;" class="edit-row"><td style="color:#94a3b8;font-size:11px">3</td><td><input class="edit-input" id="en-3" value="QA_server1"></td><td><input class="edit-input" id="ei-3" value="52.33.2.220"></td><td><input class="edit-input" id="es-3" value="c5a.xlarge"></td><td><input class="edit-input" id="ee-3" value="100 GB - gp3"></td><td><input class="edit-input" id="eo-3" value="Linux (Debian)"></td><td><input class="edit-input" id="er-3" value="US - Oregon"></td><td><input class="edit-input" id="et-3" value="EC2" style="width:70px"></td><td><input class="edit-input" id="ec-3" value="QA/Test"></td><td><input class="edit-input" id="ed-3" value=""></td><td><input class="edit-input" id="ep-3" value="120.42" type="number" style="width:70px"></td><td><button class="btn btn-green save-edit-btn" style="padding:3px 8px;font-size:11px;" data-sno="3" data-acct="IHA">✅</button></td><td><button class="btn btn-gray cancel-btn" style="padding:3px 8px;font-size:11px;" data-sno="3">✖</button></td></tr><tr id="view-4"><td style="color:#94a3b8;font-size:11px">4</td><td style="font-weight:600;color:#1e293b;">QA_server2</td><td style="font-family:monospace;color:#475569;font-size:11px">34.223.170.87</td><td style="color:#475569">c5a.xlarge</td><td style="color:#64748b">100 GB - gp3</td><td><span class="chip" style="background:#dcfce7;color:#166534;">Linux (Debian)</span></td><td style="color:#475569">US - Oregon</td><td><span class="chip" style="background:#e0f2fe;color:#0369a1;">EC2</span></td><td style="color:#475569">QA/Test</td><td style="color:#64748b;font-size:11px">—</td><td style="font-weight:700;color:#0369a1">$120.42</td><td><button class="btn btn-gray edit-btn" style="padding:3px 8px;font-size:11px;" data-sno="4">✏️</button></td><td><button class="btn btn-red delete-btn" style="padding:3px 8px;font-size:11px;" data-sno="4" data-name="QA_server2">🗑️</button></td></tr><tr id="edit-4" style="display:none;" class="edit-row"><td style="color:#94a3b8;font-size:11px">4</td><td><input class="edit-input" id="en-4" value="QA_server2"></td><td><input class="edit-input" id="ei-4" value="34.223.170.87"></td><td><input class="edit-input" id="es-4" value="c5a.xlarge"></td><td><input class="edit-input" id="ee-4" value="100 GB - gp3"></td><td><input class="edit-input" id="eo-4" value="Linux (Debian)"></td><td><input class="edit-input" id="er-4" value="US - Oregon"></td><td><input class="edit-input" id="et-4" value="EC2" style="width:70px"></td><td><input class="edit-input" id="ec-4" value="QA/Test"></td><td><input class="edit-input" id="ed-4" value=""></td><td><input class="edit-input" id="ep-4" value="120.42" type="number" style="width:70px"></td><td><button class="btn btn-green save-edit-btn" style="padding:3px 8px;font-size:11px;" data-sno="4" data-acct="IHA">✅</button></td><td><button class="btn btn-gray cancel-btn" style="padding:3px 8px;font-size:11px;" data-sno="4">✖</button></td></tr><tr id="view-5"><td style="color:#94a3b8;font-size:11px">5</td><td style="font-weight:600;color:#1e293b;">QA_server3</td><td style="font-family:monospace;color:#475569;font-size:11px">54.244.118.84</td><td style="color:#475569">c5a.xlarge</td><td style="color:#64748b">100 GB - gp3</td><td><span class="chip" style="background:#dcfce7;color:#166534;">Linux (Debian)</span></td><td style="color:#475569">US - Oregon</td><td><span class="chip" style="background:#e0f2fe;color:#0369a1;">EC2</span></td><td style="color:#475569">QA/Test</td><td style="color:#64748b;font-size:11px">—</td><td style="font-weight:700;color:#0369a1">$120.42</td><td><button class="btn btn-gray edit-btn" style="padding:3px 8px;font-size:11px;" data-sno="5">✏️</button></td><td><button class="btn btn-red delete-btn" style="padding:3px 8px;font-size:11px;" data-sno="5" data-name="QA_server3">🗑️</button></td></tr><tr id="edit-5" style="display:none;" class="edit-row"><td style="color:#94a3b8;font-size:11px">5</td><td><input class="edit-input" id="en-5" value="QA_server3"></td><td><input class="edit-input" id="ei-5" value="54.244.118.84"></td><td><input class="edit-input" id="es-5" value="c5a.xlarge"></td><td><input class="edit-input" id="ee-5" value="100 GB - gp3"></td><td><input class="edit-input" id="eo-5" value="Linux (Debian)"></td><td><input class="edit-input" id="er-5" value="US - Oregon"></td><td><input class="edit-input" id="et-5" value="EC2" style="width:70px"></td><td><input class="edit-input" id="ec-5" value="QA/Test"></td><td><input class="edit-input" id="ed-5" value=""></td><td><input class="edit-input" id="ep-5" value="120.42" type="number" style="width:70px"></td><td><button class="btn btn-green save-edit-btn" style="padding:3px 8px;font-size:11px;" data-sno="5" data-acct="IHA">✅</button></td><td><button class="btn btn-gray cancel-btn" style="padding:3px 8px;font-size:11px;" data-sno="5">✖</button></td></tr><tr id="view-6"><td style="color:#94a3b8;font-size:11px">6</td><td style="font-weight:600;color:#1e293b;">supertrainer-uat</td><td style="font-family:monospace;color:#475569;font-size:11px">15.207.211.178</td><td style="color:#475569">t4g.large</td><td style="color:#64748b">30 GB - gp3</td><td><span class="chip" style="background:#fef9c3;color:#854d0e;">Linux (Ubuntu)</span></td><td style="color:#475569">AP - Mumbai</td><td><span class="chip" style="background:#e0f2fe;color:#0369a1;">EC2</span></td><td style="color:#475569">App Server</td><td style="color:#64748b;font-size:11px">—</td><td style="font-weight:700;color:#0369a1">$35.44</td><td><button class="btn btn-gray edit-btn" style="padding:3px 8px;font-size:11px;" data-sno="6">✏️</button></td><td><button class="btn btn-red delete-btn" style="padding:3px 8px;font-size:11px;" data-sno="6" data-name="supertrainer-uat">🗑️</button></td></tr><tr id="edit-6" style="display:none;" class="edit-row"><td style="color:#94a3b8;font-size:11px">6</td><td><input class="edit-input" id="en-6" value="supertrainer-uat"></td><td><input class="edit-input" id="ei-6" value="15.207.211.178"></td><td><input class="edit-input" id="es-6" value="t4g.large"></td><td><input class="edit-input" id="ee-6" value="30 GB - gp3"></td><td><input class="edit-input" id="eo-6" value="Linux (Ubuntu)"></td><td><input class="edit-input" id="er-6" value="AP - Mumbai"></td><td><input class="edit-input" id="et-6" value="EC2" style="width:70px"></td><td><input class="edit-input" id="ec-6" value="App Server"></td><td><input class="edit-input" id="ed-6" value=""></td><td><input class="edit-input" id="ep-6" value="35.44" type="number" style="width:70px"></td><td><button class="btn btn-green save-edit-btn" style="padding:3px 8px;font-size:11px;" data-sno="6" data-acct="IHA">✅</button></td><td><button class="btn btn-gray cancel-btn" style="padding:3px 8px;font-size:11px;" data-sno="6">✖</button></td></tr><tr id="view-7"><td style="color:#94a3b8;font-size:11px">7</td><td style="font-weight:600;color:#1e293b;">Caller-id Spam Monitor</td><td style="font-family:monospace;color:#475569;font-size:11px">13.234.137.75</td><td style="color:#475569">c6a.2xlarge</td><td style="color:#64748b">250 GB - gp3</td><td><span class="chip" style="background:#fef9c3;color:#854d0e;">Linux (Ubuntu)</span></td><td style="color:#475569">AP - Mumbai</td><td><span class="chip" style="background:#e0f2fe;color:#0369a1;">EC2</span></td><td style="color:#475569">Monitor</td><td style="color:#64748b;font-size:11px">—</td><td style="font-weight:700;color:#0369a1">$159.31</td><td><button class="btn btn-gray edit-btn" style="padding:3px 8px;font-size:11px;" data-sno="7">✏️</button></td><td><button class="btn btn-red delete-btn" style="padding:3px 8px;font-size:11px;" data-sno="7" data-name="Caller-id Spam Monitor">🗑️</button></td></tr><tr id="edit-7" style="display:none;" class="edit-row"><td style="color:#94a3b8;font-size:11px">7</td><td><input class="edit-input" id="en-7" value="Caller-id Spam Monitor"></td><td><input class="edit-input" id="ei-7" value="13.234.137.75"></td><td><input class="edit-input" id="es-7" value="c6a.2xlarge"></td><td><input class="edit-input" id="ee-7" value="250 GB - gp3"></td><td><input class="edit-input" id="eo-7" value="Linux (Ubuntu)"></td><td><input class="edit-input" id="er-7" value="AP - Mumbai"></td><td><input class="edit-input" id="et-7" value="EC2" style="width:70px"></td><td><input class="edit-input" id="ec-7" value="Monitor"></td><td><input class="edit-input" id="ed-7" value=""></td><td><input class="edit-input" id="ep-7" value="159.31" type="number" style="width:70px"></td><td><button class="btn btn-green save-edit-btn" style="padding:3px 8px;font-size:11px;" data-sno="7" data-acct="IHA">✅</button></td><td><button class="btn btn-gray cancel-btn" style="padding:3px 8px;font-size:11px;" data-sno="7">✖</button></td></tr><tr id="view-8"><td style="color:#94a3b8;font-size:11px">8</td><td style="font-weight:600;color:#1e293b;">Deepak-test-server</td><td style="font-family:monospace;color:#475569;font-size:11px">13.202.254.47</td><td style="color:#475569">t2.medium</td><td style="color:#64748b">20 GB - gp2</td><td><span class="chip" style="background:#fef9c3;color:#854d0e;">Linux (Ubuntu)</span></td><td style="color:#475569">AP - Mumbai</td><td><span class="chip" style="background:#e0f2fe;color:#0369a1;">EC2</span></td><td style="color:#475569">QA/Test</td><td style="color:#64748b;font-size:11px">—</td><td style="font-weight:700;color:#0369a1">$42.09</td><td><button class="btn btn-gray edit-btn" style="padding:3px 8px;font-size:11px;" data-sno="8">✏️</button></td><td><button class="btn btn-red delete-btn" style="padding:3px 8px;font-size:11px;" data-sno="8" data-name="Deepak-test-server">🗑️</button></td></tr><tr id="edit-8" style="display:none;" class="edit-row"><td style="color:#94a3b8;font-size:11px">8</td><td><input class="edit-input" id="en-8" value="Deepak-test-server"></td><td><input class="edit-input" id="ei-8" value="13.202.254.47"></td><td><input class="edit-input" id="es-8" value="t2.medium"></td><td><input class="edit-input" id="ee-8" value="20 GB - gp2"></td><td><input class="edit-input" id="eo-8" value="Linux (Ubuntu)"></td><td><input class="edit-input" id="er-8" value="AP - Mumbai"></td><td><input class="edit-input" id="et-8" value="EC2" style="width:70px"></td><td><input class="edit-input" id="ec-8" value="QA/Test"></td><td><input class="edit-input" id="ed-8" value=""></td><td><input class="edit-input" id="ep-8" value="42.09" type="number" style="width:70px"></td><td><button class="btn btn-green save-edit-btn" style="padding:3px 8px;font-size:11px;" data-sno="8" data-acct="IHA">✅</button></td><td><button class="btn btn-gray cancel-btn" style="padding:3px 8px;font-size:11px;" data-sno="8">✖</button></td></tr><tr id="view-9"><td style="color:#94a3b8;font-size:11px">9</td><td style="font-weight:600;color:#1e293b;">OCR-ubuntu</td><td style="font-family:monospace;color:#475569;font-size:11px">13.234.223.156</td><td style="color:#475569">8 GB RAM, 2 vCPUs, 160 GB SSD</td><td style="color:#64748b">Lightsail</td><td><span class="chip" style="background:#fef9c3;color:#854d0e;">Linux (Ubuntu)</span></td><td style="color:#475569">AP - Mumbai</td><td><span class="chip" style="background:#f3e8ff;color:#6d28d9;">Lightsail</span></td><td style="color:#475569">OCR</td><td style="color:#64748b;font-size:11px">N/A</td><td style="font-weight:700;color:#0369a1">$44.00</td><td><button class="btn btn-gray edit-btn" style="padding:3px 8px;font-size:11px;" data-sno="9">✏️</button></td><td><button class="btn btn-red delete-btn" style="padding:3px 8px;font-size:11px;" data-sno="9" data-name="OCR-ubuntu">🗑️</button></td></tr><tr id="edit-9" style="display:none;" class="edit-row"><td style="color:#94a3b8;font-size:11px">9</td><td><input class="edit-input" id="en-9" value="OCR-ubuntu"></td><td><input class="edit-input" id="ei-9" value="13.234.223.156"></td><td><input class="edit-input" id="es-9" value="8 GB RAM, 2 vCPUs, 160 GB SSD"></td><td><input class="edit-input" id="ee-9" value="Lightsail"></td><td><input class="edit-input" id="eo-9" value="Linux (Ubuntu)"></td><td><input class="edit-input" id="er-9" value="AP - Mumbai"></td><td><input class="edit-input" id="et-9" value="Lightsail" style="width:70px"></td><td><input class="edit-input" id="ec-9" value="OCR"></td><td><input class="edit-input" id="ed-9" value="N/A"></td><td><input class="edit-input" id="ep-9" value="44" type="number" style="width:70px"></td><td><button class="btn btn-green save-edit-btn" style="padding:3px 8px;font-size:11px;" data-sno="9" data-acct="IHA">✅</button></td><td><button class="btn btn-gray cancel-btn" style="padding:3px 8px;font-size:11px;" data-sno="9">✖</button></td></tr><tr id="view-10"><td style="color:#94a3b8;font-size:11px">10</td><td style="font-weight:600;color:#1e293b;">Freeswitch-TTC</td><td style="font-family:monospace;color:#475569;font-size:11px">43.204.179.158</td><td style="color:#475569">2 GB RAM, 2 vCPUs, 60 GB SSD</td><td style="color:#64748b">Lightsail</td><td><span class="chip" style="background:#dcfce7;color:#166534;">Linux (Debian)</span></td><td style="color:#475569">AP - Mumbai</td><td><span class="chip" style="background:#f3e8ff;color:#6d28d9;">Lightsail</span></td><td style="color:#475569">VoIP</td><td style="color:#64748b;font-size:11px">N/A</td><td style="font-weight:700;color:#0369a1">$22.00</td><td><button class="btn btn-gray edit-btn" style="padding:3px 8px;font-size:11px;" data-sno="10">✏️</button></td><td><button class="btn btn-red delete-btn" style="padding:3px 8px;font-size:11px;" data-sno="10" data-name="Freeswitch-TTC">🗑️</button></td></tr><tr id="edit-10" style="display:none;" class="edit-row"><td style="color:#94a3b8;font-size:11px">10</td><td><input class="edit-input" id="en-10" value="Freeswitch-TTC"></td><td><input class="edit-input" id="ei-10" value="43.204.179.158"></td><td><input class="edit-input" id="es-10" value="2 GB RAM, 2 vCPUs, 60 GB SSD"></td><td><input class="edit-input" id="ee-10" value="Lightsail"></td><td><input class="edit-input" id="eo-10" value="Linux (Debian)"></td><td><input class="edit-input" id="er-10" value="AP - Mumbai"></td><td><input class="edit-input" id="et-10" value="Lightsail" style="width:70px"></td><td><input class="edit-input" id="ec-10" value="VoIP"></td><td><input class="edit-input" id="ed-10" value="N/A"></td><td><input class="edit-input" id="ep-10" value="22" type="number" style="width:70px"></td><td><button class="btn btn-green save-edit-btn" style="padding:3px 8px;font-size:11px;" data-sno="10" data-acct="IHA">✅</button></td><td><button class="btn btn-gray cancel-btn" style="padding:3px 8px;font-size:11px;" data-sno="10">✖</button></td></tr><tr id="view-11"><td style="color:#94a3b8;font-size:11px">11</td><td style="font-weight:600;color:#1e293b;">test</td><td style="font-family:monospace;color:#475569;font-size:11px">111</td><td style="color:#475569"></td><td style="color:#64748b"></td><td><span class="chip" style="background:#fef9c3;color:#854d0e;">Linux (Ubuntu)</span></td><td style="color:#475569">AP - Mumbai</td><td><span class="chip" style="background:#e0f2fe;color:#0369a1;">EC2</span></td><td style="color:#475569"></td><td style="color:#64748b;font-size:11px">—</td><td style="font-weight:700;color:#0369a1">$12.00</td><td><button class="btn btn-gray edit-btn" style="padding:3px 8px;font-size:11px;" data-sno="11">✏️</button></td><td><button class="btn btn-red delete-btn" style="padding:3px 8px;font-size:11px;" data-sno="11" data-name="test">🗑️</button></td></tr><tr id="edit-11" style="display:none;" class="edit-row"><td style="color:#94a3b8;font-size:11px">11</td><td><input class="edit-input" id="en-11" value="test"></td><td><input class="edit-input" id="ei-11" value="111"></td><td><input class="edit-input" id="es-11" value=""></td><td><input class="edit-input" id="ee-11" value=""></td><td><input class="edit-input" id="eo-11" value="Linux (Ubuntu)"></td><td><input class="edit-input" id="er-11" value="AP - Mumbai"></td><td><input class="edit-input" id="et-11" value="EC2" style="width:70px"></td><td><input class="edit-input" id="ec-11" value=""></td><td><input class="edit-input" id="ed-11" value=""></td><td><input class="edit-input" id="ep-11" value="12" type="number" style="width:70px"></td><td><button class="btn btn-green save-edit-btn" style="padding:3px 8px;font-size:11px;" data-sno="11" data-acct="IHA">✅</button></td><td><button class="btn btn-gray cancel-btn" style="padding:3px 8px;font-size:11px;" data-sno="11">✖</button></td></tr></tbody></table></div></div>
+  <div class="tabs" id="tabs"></div>
+  <div class="tab-content" id="tab-content"></div>
 </div>
 <p class="footer-note">☁️ Admin: edit data → "Save to GitHub" → everyone sees latest instantly</p>
 
@@ -210,1422 +212,117 @@ tbody tr:hover td{background:#eff6ff;}
 //  DATA
 // ═══════════════════════════════════════════════════════
 var DB = {
-  "iha": [
-    {
-      "account": "IHA",
-      "name": "Avyukta Dialer - telephony",
-      "ip": "3.139.114.250",
-      "spec": "c6a.4xlarge",
-      "ebs": "1000 GB - gp3",
-      "os": "Linux (CentOS)",
-      "region": "US - Ohio",
-      "type": "EC2",
-      "category": "Dialer",
-      "cost": 526.76,
-      "domain": ""
-    },
-    {
-      "account": "IHA",
-      "name": "sipp_script",
-      "ip": "35.88.70.221",
-      "spec": "t3.medium",
-      "ebs": "50 GB - gp3",
-      "os": "Linux (Debian)",
-      "region": "US - Oregon",
-      "type": "EC2",
-      "category": "QA/Test",
-      "cost": 34.37,
-      "domain": ""
-    },
-    {
-      "account": "IHA",
-      "name": "QA_server1",
-      "ip": "52.33.2.220",
-      "spec": "c5a.xlarge",
-      "ebs": "100 GB - gp3",
-      "os": "Linux (Debian)",
-      "region": "US - Oregon",
-      "type": "EC2",
-      "category": "QA/Test",
-      "cost": 120.42,
-      "domain": ""
-    },
-    {
-      "account": "IHA",
-      "name": "QA_server2",
-      "ip": "34.223.170.87",
-      "spec": "c5a.xlarge",
-      "ebs": "100 GB - gp3",
-      "os": "Linux (Debian)",
-      "region": "US - Oregon",
-      "type": "EC2",
-      "category": "QA/Test",
-      "cost": 120.42,
-      "domain": ""
-    },
-    {
-      "account": "IHA",
-      "name": "QA_server3",
-      "ip": "54.244.118.84",
-      "spec": "c5a.xlarge",
-      "ebs": "100 GB - gp3",
-      "os": "Linux (Debian)",
-      "region": "US - Oregon",
-      "type": "EC2",
-      "category": "QA/Test",
-      "cost": 120.42,
-      "domain": ""
-    },
-    {
-      "account": "IHA",
-      "name": "supertrainer-uat",
-      "ip": "15.207.211.178",
-      "spec": "t4g.large",
-      "ebs": "30 GB - gp3",
-      "os": "Linux (Ubuntu)",
-      "region": "AP - Mumbai",
-      "type": "EC2",
-      "category": "App Server",
-      "cost": 35.44,
-      "domain": ""
-    },
-    {
-      "account": "IHA",
-      "name": "Caller-id Spam Monitor",
-      "ip": "13.234.137.75",
-      "spec": "c6a.2xlarge",
-      "ebs": "250 GB - gp3",
-      "os": "Linux (Ubuntu)",
-      "region": "AP - Mumbai",
-      "type": "EC2",
-      "category": "Monitor",
-      "cost": 159.31,
-      "domain": ""
-    },
-    {
-      "account": "IHA",
-      "name": "Deepak-test-server",
-      "ip": "13.202.254.47",
-      "spec": "t2.medium",
-      "ebs": "20 GB - gp2",
-      "os": "Linux (Ubuntu)",
-      "region": "AP - Mumbai",
-      "type": "EC2",
-      "category": "QA/Test",
-      "cost": 42.09,
-      "domain": ""
-    },
-    {
-      "account": "IHA",
-      "name": "OCR-ubuntu",
-      "ip": "13.234.223.156",
-      "spec": "8 GB RAM, 2 vCPUs, 160 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Linux (Ubuntu)",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "OCR",
-      "cost": 44,
-      "domain": "N/A"
-    },
-    {
-      "account": "IHA",
-      "name": "Freeswitch-TTC",
-      "ip": "43.204.179.158",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Linux (Debian)",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "VoIP",
-      "cost": 22,
-      "domain": "N/A"
-    },
-    {
-      "account": "IHA",
-      "name": "test",
-      "ip": "111",
-      "spec": "",
-      "ebs": "",
-      "os": "Linux (Ubuntu)",
-      "region": "AP - Mumbai",
-      "type": "EC2",
-      "category": "",
-      "domain": "",
-      "cost": 12
-    }
-  ],
-  "india": [
-    {
-      "account": "India",
-      "name": "callatlas.io-wordpress-latest",
-      "ip": "3.208.100.210",
-      "spec": "4 GB RAM, 2 vCPUs, 80 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Ubuntu",
-      "region": "US - Virginia",
-      "type": "Lightsail",
-      "category": "WordPress",
-      "cost": 24,
-      "domain": "callatlas.io"
-    },
-    {
-      "account": "India",
-      "name": "forum.thetelephony.co-server-Upgraded",
-      "ip": "15.207.139.203",
-      "spec": "4 GB RAM, 2 vCPUs, 80 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Ubuntu",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "Forum",
-      "cost": 24,
-      "domain": "forum.thetelephony.co"
-    },
-    {
-      "account": "India",
-      "name": "paypercalldeals.com_forum",
-      "ip": "13.233.107.178",
-      "spec": "4 GB RAM, 2 vCPUs, 80 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Ubuntu",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "Forum",
-      "cost": 24,
-      "domain": "paypercalldeals.com"
-    },
-    {
-      "account": "India",
-      "name": "thetelephony.in-wp",
-      "ip": "13.233.186.207",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Ubuntu",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "WordPress",
-      "cost": 12,
-      "domain": "thetelephony.in"
-    },
-    {
-      "account": "India",
-      "name": "nhfp.in",
-      "ip": "3.111.186.110",
-      "spec": "512 MB RAM, 2 vCPUs, 20 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Ubuntu",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "WordPress",
-      "cost": 5,
-      "domain": "nhfp.in"
-    },
-    {
-      "account": "India",
-      "name": "ihasoft.us-wordpress",
-      "ip": "3.110.62.229",
-      "spec": "4 GB RAM, 2 vCPUs, 80 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Ubuntu",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "WordPress",
-      "cost": 24,
-      "domain": "ihasoft.us"
-    },
-    {
-      "account": "India",
-      "name": "Teamihallp-wordpress-new",
-      "ip": "3.230.66.6",
-      "spec": "4 GB RAM, 2 vCPUs, 80 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Bitnami WordPress",
-      "region": "US - Virginia",
-      "type": "Lightsail",
-      "category": "WordPress",
-      "cost": 24,
-      "domain": "teamihallp.com"
-    },
-    {
-      "account": "India",
-      "name": "telephony-wp",
-      "ip": "15.206.27.16",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Ubuntu",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "WordPress",
-      "cost": 12,
-      "domain": "thetelephony.co"
-    },
-    {
-      "account": "India",
-      "name": "trueaccounts.us",
-      "ip": "13.201.36.181",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Bitnami WordPress",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "WordPress",
-      "cost": 12,
-      "domain": "trueaccounts.us"
-    },
-    {
-      "account": "India",
-      "name": "crystal-hygiene",
-      "ip": "43.205.216.188",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Bitnami WordPress",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "WordPress",
-      "cost": 12,
-      "domain": "crystalhygiene.co"
-    },
-    {
-      "account": "India",
-      "name": "Forum-Voipset.com",
-      "ip": "13.205.6.243",
-      "spec": "4 GB RAM, 2 vCPUs, 80 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Ubuntu",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "Forum",
-      "cost": 24,
-      "domain": ""
-    },
-    {
-      "account": "India",
-      "name": "WordPress-11-01-24-1",
-      "ip": "13.233.167.140",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Bitnami WordPress",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "WordPress",
-      "cost": 12,
-      "domain": "kaydeecommercialbrokers.com"
-    },
-    {
-      "account": "India",
-      "name": "HoduPBX",
-      "ip": "65.1.125.45",
-      "spec": "c6i.2xlarge",
-      "ebs": "400 GiB - gp2",
-      "os": "Linux (CentOS)",
-      "region": "AP - Mumbai",
-      "type": "EC2",
-      "category": "PBX",
-      "cost": 297.4,
-      "domain": "ucaas.vespertelecom.com"
-    },
-    {
-      "account": "India",
-      "name": "Poppyhola",
-      "ip": "13.232.229.198",
-      "spec": "t2.medium",
-      "ebs": "30 GiB - gp2",
-      "os": "Linux (Debian)",
-      "region": "AP - Mumbai",
-      "type": "EC2",
-      "category": "App Server",
-      "cost": 39.63,
-      "domain": "poppyhola.com"
-    },
-    {
-      "account": "India",
-      "name": "Reserve-XP",
-      "ip": "52.66.88.39",
-      "spec": "t3.small",
-      "ebs": "50 GiB - gp2",
-      "os": "Linux (Ubuntu)",
-      "region": "AP - Mumbai",
-      "type": "EC2",
-      "category": "App Server",
-      "cost": 45.51,
-      "domain": ""
-    },
-    {
-      "account": "India",
-      "name": "IHA_VPN",
-      "ip": "3.110.187.100",
-      "spec": "t2.small",
-      "ebs": "30 GiB - gp2",
-      "os": "Linux (Ubuntu)",
-      "region": "AP - Mumbai",
-      "type": "EC2",
-      "category": "VPN",
-      "cost": 21.52,
-      "domain": "vpn.teamihallp.com"
-    },
-    {
-      "account": "India",
-      "name": "prakash",
-      "ip": "13.127.227.121",
-      "spec": "t2.medium",
-      "ebs": "100 GiB - gp2",
-      "os": "Windows",
-      "region": "AP - Mumbai",
-      "type": "EC2",
-      "category": "Dev/Test",
-      "cost": 60.75,
-      "domain": ""
-    },
-    {
-      "account": "India",
-      "name": "bloodline",
-      "ip": "13.233.111.39",
-      "spec": "t2.small",
-      "ebs": "40 GiB - gp2",
-      "os": "Linux (Ubuntu)",
-      "region": "AP - Mumbai",
-      "type": "EC2",
-      "category": "App Server",
-      "cost": 22.66,
-      "domain": "bloodlin.com"
-    },
-    {
-      "account": "India",
-      "name": "Super-Trainer-Updated",
-      "ip": "35.154.139.63",
-      "spec": "t2.large",
-      "ebs": "50 GiB - gp3",
-      "os": "Linux (Ubuntu)",
-      "region": "AP - Mumbai",
-      "type": "EC2",
-      "category": "App Server",
-      "cost": 76.98,
-      "domain": "supertrainers.io"
-    },
-    {
-      "account": "India",
-      "name": "shuffle-with-akanksha-Updated",
-      "ip": "52.66.240.32",
-      "spec": "t2.large",
-      "ebs": "100 GiB - gp3",
-      "os": "Linux (Ubuntu)",
-      "region": "AP - Mumbai",
-      "type": "EC2",
-      "category": "App Server",
-      "cost": 81.54,
-      "domain": "shufflewithakanksha.com"
-    },
-    {
-      "account": "India",
-      "name": "Prometheus - Grafana - Central Server",
-      "ip": "13.201.146.40",
-      "spec": "t2.micro",
-      "ebs": "30 GiB - gp3",
-      "os": "Linux (Ubuntu)",
-      "region": "AP - Mumbai",
-      "type": "EC2",
-      "category": "Monitor",
-      "cost": 15.39,
-      "domain": ""
-    },
-    {
-      "account": "India",
-      "name": "Vesta Panel Main Hosting Server",
-      "ip": "52.204.41.234",
-      "spec": "t2.medium",
-      "ebs": "150 GiB - gp2",
-      "os": "Linux (CentOS)",
-      "region": "US - Virginia",
-      "type": "EC2",
-      "category": "Hosting",
-      "cost": 56.91,
-      "domain": ""
-    },
-    {
-      "account": "India",
-      "name": "Bridge License Server",
-      "ip": "34.197.116.94",
-      "spec": "t2.small",
-      "ebs": "80 GiB - gp3",
-      "os": "Linux (Debian)",
-      "region": "US - Virginia",
-      "type": "EC2",
-      "category": "License",
-      "cost": 29,
-      "domain": ""
-    },
-    {
-      "account": "India",
-      "name": "uptime-kuma",
-      "ip": "44.211.133.200",
-      "spec": "t3a.small",
-      "ebs": "30 GiB - gp3",
-      "os": "Linux (Ubuntu)",
-      "region": "US - Virginia",
-      "type": "EC2",
-      "category": "Monitor",
-      "cost": 16.12,
-      "domain": ""
-    }
-  ],
-  "usa": [
-    {
-      "account": "USA",
-      "name": "northeastnew",
-      "ip": "3.111.125.53",
-      "spec": "4 GB RAM, 2 vCPUs, 80 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 24,
-      "domain": "northeast.my3cx.us"
-    },
-    {
-      "account": "USA",
-      "name": "Britishcouncil-pentest",
-      "ip": "13.201.67.108",
-      "spec": "4 GB RAM, 2 vCPUs, 80 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 24,
-      "domain": "britishcouncil.3cx.in"
-    },
-    {
-      "account": "USA",
-      "name": "clariant",
-      "ip": "13.202.248.51",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 12,
-      "domain": "clariant.my3cx.us"
-    },
-    {
-      "account": "USA",
-      "name": "agentflow.3cx.us-agentflow",
-      "ip": "65.2.100.18",
-      "spec": "4 GB RAM, 2 vCPUs, 80 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Ubuntu",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 24,
-      "domain": "agentflow.voipsetu.com"
-    },
-    {
-      "account": "USA",
-      "name": "agentflowttc",
-      "ip": "3.109.119.228",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 12,
-      "domain": "agentflow.3cx.us"
-    },
-    {
-      "account": "USA",
-      "name": "smsoultionnew3cx",
-      "ip": "35.154.145.2",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 12,
-      "domain": "smsolution.my3cx.us"
-    },
-    {
-      "account": "USA",
-      "name": "voipsetulinux",
-      "ip": "13.202.104.206",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 12,
-      "domain": "voipsetulinux.3cx.in"
-    },
-    {
-      "account": "USA",
-      "name": "smsolution",
-      "ip": "3.109.222.217",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 12,
-      "domain": "smsolution.my3cx.us"
-    },
-    {
-      "account": "USA",
-      "name": "call.thetelephony.co-3cx",
-      "ip": "3.109.92.19",
-      "spec": "4 GB RAM, 2 vCPUs, 80 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Windows",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 24,
-      "domain": "call.thetelephony.co"
-    },
-    {
-      "account": "USA",
-      "name": "milansupport-Upgraded",
-      "ip": "65.1.6.135",
-      "spec": "16 GB RAM, 4 vCPUs, 320 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 164,
-      "domain": "milansupport.my3cx.us"
-    },
-    {
-      "account": "USA",
-      "name": "3cx-AI-connector-Ecosmob",
-      "ip": "13.203.93.90",
-      "spec": "4 GB RAM, 2 vCPUs, 80 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 24,
-      "domain": "N/A"
-    },
-    {
-      "account": "USA",
-      "name": "skilnitro",
-      "ip": "35.154.41.184",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 12,
-      "domain": "skillnitro.3cx.in"
-    },
-    {
-      "account": "USA",
-      "name": "soodhospital1",
-      "ip": "13.201.114.164",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 12,
-      "domain": "soodhospital.3cx.in"
-    },
-    {
-      "account": "USA",
-      "name": "primerishta",
-      "ip": "43.204.90.31",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 12,
-      "domain": "primerishta.my3cx.ca"
-    },
-    {
-      "account": "USA",
-      "name": "superdash",
-      "ip": "13.234.194.111",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 12,
-      "domain": "superdash.my3cx.us"
-    },
-    {
-      "account": "USA",
-      "name": "fiveabhome",
-      "ip": "13.201.165.106",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 12,
-      "domain": "5abhome.3cx.com.au"
-    },
-    {
-      "account": "USA",
-      "name": "vm-d7kqd-ap332-g5su8",
-      "ip": "3.109.97.211",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 12,
-      "domain": "ronnietech.my3cx.us"
-    },
-    {
-      "account": "USA",
-      "name": "naresh-test",
-      "ip": "15.206.167.79",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Ubuntu",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "QA/Test",
-      "cost": 12,
-      "domain": ""
-    },
-    {
-      "account": "USA",
-      "name": "ronnietech",
-      "ip": "3.7.144.52",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 12,
-      "domain": "ronnietech.my3cx.us"
-    },
-    {
-      "account": "USA",
-      "name": "techhivellc",
-      "ip": "52.66.135.150",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 12,
-      "domain": "techhivellc.my3cx.us"
-    },
-    {
-      "account": "USA",
-      "name": "vueloexpress",
-      "ip": "65.1.199.45",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 12,
-      "domain": "vueloexpress.my3cx.us"
-    },
-    {
-      "account": "USA",
-      "name": "thetelephony3cx",
-      "ip": "65.2.160.70",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 12,
-      "domain": "thetelephony.3cx.in"
-    },
-    {
-      "account": "USA",
-      "name": "hanavmanufacturing",
-      "ip": "3.110.152.146",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 12,
-      "domain": "hanavmanufacturing.my3cx.us"
-    },
-    {
-      "account": "USA",
-      "name": "divinesol-new-aug7",
-      "ip": "13.201.111.191",
-      "spec": "16 GB RAM, 4 vCPUs, 320 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 84,
-      "domain": "divinesol.my3cx.us"
-    },
-    {
-      "account": "USA",
-      "name": "britishcouncil",
-      "ip": "43.205.143.1",
-      "spec": "4 GB RAM, 2 vCPUs, 80 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 24,
-      "domain": "britishcouncil.3cx.in"
-    },
-    {
-      "account": "USA",
-      "name": "travobus-new",
-      "ip": "3.111.134.98",
-      "spec": "16 GB RAM, 4 vCPUs, 320 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 84,
-      "domain": "travobus.3cx.in"
-    },
-    {
-      "account": "USA",
-      "name": "HARI-3cx-new",
-      "ip": "13.202.26.11",
-      "spec": "32 GB RAM, 8 vCPUs, 640 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Windows",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 164,
-      "domain": "callttcthetelephonyco.3cx.in"
-    },
-    {
-      "account": "USA",
-      "name": "dthservices",
-      "ip": "3.7.47.184",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 12,
-      "domain": "dthservices.my3cx.us"
-    },
-    {
-      "account": "USA",
-      "name": "crusttechs",
-      "ip": "3.111.121.34",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 12,
-      "domain": "crusttechs.my3cx.us"
-    },
-    {
-      "account": "USA",
-      "name": "sksolution",
-      "ip": "13.200.209.74",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 12,
-      "domain": "sksolution.my3cx.us"
-    },
-    {
-      "account": "USA",
-      "name": "northeast",
-      "ip": "15.207.232.43",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 12,
-      "domain": "northeast.my3cx.us"
-    },
-    {
-      "account": "USA",
-      "name": "shakti-infotech",
-      "ip": "65.1.228.35",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 12,
-      "domain": "shaktitelephony.3cx.in"
-    },
-    {
-      "account": "USA",
-      "name": "aamodhospitality",
-      "ip": "43.205.128.127",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 12,
-      "domain": "aamodtelephony.3cx.in"
-    },
-    {
-      "account": "USA",
-      "name": "melwintech",
-      "ip": "13.200.162.230",
-      "spec": "4 GB RAM, 2 vCPUs, 80 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 24,
-      "domain": "melwintech.my3cx.us"
-    },
-    {
-      "account": "USA",
-      "name": "telephony-3cx",
-      "ip": "13.200.43.113",
-      "spec": "4 GB RAM, 2 vCPUs, 80 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 24,
-      "domain": "telephony.3cx.in"
-    },
-    {
-      "account": "USA",
-      "name": "iata-telephony-3cx",
-      "ip": "13.235.198.19",
-      "spec": "4 GB RAM, 2 vCPUs, 80 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 24,
-      "domain": "iatatelephony.3cx.in"
-    },
-    {
-      "account": "USA",
-      "name": "demo.ttc.live-agentflow",
-      "ip": "3.111.143.213",
-      "spec": "4 GB RAM, 2 vCPUs, 80 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Ubuntu",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "Agentflow",
-      "cost": 24,
-      "domain": "demo-ttc.voipsetu.com"
-    },
-    {
-      "account": "USA",
-      "name": "telephony-agentflow",
-      "ip": "13.232.125.78",
-      "spec": "4 GB RAM, 2 vCPUs, 80 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Ubuntu",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "Agentflow",
-      "cost": 24,
-      "domain": "ttc.voipsetu.com"
-    },
-    {
-      "account": "USA",
-      "name": "angelsolution-Agentflow",
-      "ip": "13.233.81.159",
-      "spec": "4 GB RAM, 2 vCPUs, 80 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Ubuntu",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "Agentflow",
-      "cost": 24,
-      "domain": "angelsolution.voipsetu.com"
-    },
-    {
-      "account": "USA",
-      "name": "agent-flow-central-database-production-upgraded",
-      "ip": "15.206.139.213",
-      "spec": "16 GB RAM, 4 vCPUs, 320 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Ubuntu",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "Agentflow",
-      "cost": 84,
-      "domain": "N/A"
-    },
-    {
-      "account": "USA",
-      "name": "callerid-test-database-upgraded",
-      "ip": "13.201.136.36",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Ubuntu",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "Agentflow",
-      "cost": 12,
-      "domain": "N/A"
-    },
-    {
-      "account": "USA",
-      "name": "Agentflow-Demo-server",
-      "ip": "43.205.255.224",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Ubuntu",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "Agentflow",
-      "cost": 12,
-      "domain": "demo-af.voipsetu.com"
-    },
-    {
-      "account": "USA",
-      "name": "crm.ihacloud.co",
-      "ip": "13.127.133.205",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Ubuntu",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "Agentflow",
-      "cost": 12,
-      "domain": "crm.ihacloud.co"
-    },
-    {
-      "account": "USA",
-      "name": "NickPersonalServer",
-      "ip": "35.166.47.145",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Windows",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "Agentflow",
-      "cost": 12,
-      "domain": "N/A"
-    },
-    {
-      "account": "USA",
-      "name": "jazztech-Agentflow",
-      "ip": "13.202.106.81",
-      "spec": "4 GB RAM, 2 vCPUs, 80 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Ubuntu",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "Agentflow",
-      "cost": 24,
-      "domain": "jazztech.voipsetu.com"
-    },
-    {
-      "account": "USA",
-      "name": "sm-solution-Agentflow",
-      "ip": "13.204.0.60",
-      "spec": "4 GB RAM, 2 vCPUs, 80 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "Agentflow",
-      "cost": 24,
-      "domain": "smsolutions.voipsetu.com"
-    },
-    {
-      "account": "USA",
-      "name": "divinesol-Agentflow",
-      "ip": "13.202.104.141",
-      "spec": "4 GB RAM, 2 vCPUs, 80 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "Agentflow",
-      "cost": 24,
-      "domain": "divinesol.voipsetu.com"
-    },
-    {
-      "account": "USA",
-      "name": "ihacloud.co-wp",
-      "ip": "3.108.104.192",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Ubuntu",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "Agentflow",
-      "cost": 12,
-      "domain": "ihacloud.co"
-    },
-    {
-      "account": "USA",
-      "name": "agentflow-testing-hari",
-      "ip": "13.127.126.255",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Ubuntu",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "Agentflow",
-      "cost": 12,
-      "domain": "test-af.voipsetu.com"
-    },
-    {
-      "account": "USA",
-      "name": "Letsgolegal",
-      "ip": "3.6.90.74",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Windows",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "Agentflow",
-      "cost": 12,
-      "domain": "N/A"
-    },
-    {
-      "account": "USA",
-      "name": "Teamihainc-wp",
-      "ip": "13.202.119.189",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Ubuntu",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "Agentflow",
-      "cost": 12,
-      "domain": "teamihainc.com"
-    },
-    {
-      "account": "USA",
-      "name": "voip-setu-ubuntu",
-      "ip": "43.205.254.156",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Ubuntu",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "Agentflow",
-      "cost": 12,
-      "domain": "app.voipsetu.com"
-    },
-    {
-      "account": "USA",
-      "name": "vpn-server",
-      "ip": "54.198.199.129",
-      "spec": "t2.medium",
-      "ebs": "30 GB - gp2",
-      "os": "Ubuntu",
-      "region": "US - Virginia",
-      "type": "EC2",
-      "category": "VPN",
-      "cost": 40.47,
-      "domain": ""
-    },
-    {
-      "account": "USA",
-      "name": "windows 3cx poc",
-      "ip": "52.66.248.242",
-      "spec": "t2.medium",
-      "ebs": "30 GB - gp2",
-      "os": "Windows",
-      "region": "AP - Mumbai",
-      "type": "EC2",
-      "category": "3CX",
-      "cost": 52.77,
-      "domain": ""
-    },
-    {
-      "account": "USA",
-      "name": "Prometheus - Grafana - Central Server",
-      "ip": "13.200.248.184",
-      "spec": "t2.small",
-      "ebs": "30 GB - gp2",
-      "os": "Ubuntu",
-      "region": "AP - Mumbai",
-      "type": "EC2",
-      "category": "Monitor",
-      "cost": 25.12,
-      "domain": ""
-    },
-    {
-      "account": "USA",
-      "name": "3cx.thetelephony.co - 3cx-server",
-      "ip": "3.7.84.115",
-      "spec": "t3a.2xlarge",
-      "ebs": "320GB - gp3",
-      "os": "Windows",
-      "region": "AP - Mumbai",
-      "type": "EC2",
-      "category": "3CX",
-      "cost": 284.12,
-      "domain": ""
-    },
-    {
-      "account": "USA",
-      "name": "echo.thetelephony.co-restored",
-      "ip": "13.201.159.47",
-      "spec": "c4.2xlarge",
-      "ebs": "500GB - gp3",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "EC2",
-      "category": "App Server",
-      "cost": 341.2,
-      "domain": ""
-    },
-    {
-      "account": "USA",
-      "name": "Opensip",
-      "ip": "3.142.31.189",
-      "spec": "c5.xlarge",
-      "ebs": "50 GB - gp3",
-      "os": "Debian",
-      "region": "US - Ohio",
-      "type": "EC2",
-      "category": "Callatlas VoIP",
-      "cost": 131.7,
-      "domain": ""
-    },
-    {
-      "account": "USA",
-      "name": "Freeswitch1",
-      "ip": "3.13.84.200",
-      "spec": "c5.xlarge",
-      "ebs": "50 GB - gp3",
-      "os": "Debian",
-      "region": "US - Ohio",
-      "type": "EC2",
-      "category": "Callatlas VoIP",
-      "cost": 131.7,
-      "domain": ""
-    },
-    {
-      "account": "USA",
-      "name": "Freeswitch2",
-      "ip": "3.142.75.248",
-      "spec": "c5.xlarge",
-      "ebs": "50 GB - gp3",
-      "os": "Debian",
-      "region": "US - Ohio",
-      "type": "EC2",
-      "category": "Callatlas VoIP",
-      "cost": 131.7,
-      "domain": ""
-    },
-    {
-      "account": "USA",
-      "name": "DB/RabbitMQ1",
-      "ip": "18.218.56.97",
-      "spec": "c5a.2xlarge",
-      "ebs": "150 GB - gp3",
-      "os": "Debian",
-      "region": "US - Ohio",
-      "type": "EC2",
-      "category": "Callatlas DB",
-      "cost": 240.44,
-      "domain": ""
-    },
-    {
-      "account": "USA",
-      "name": "DB/RabbitMQ2",
-      "ip": "3.131.75.212",
-      "spec": "c5a.2xlarge",
-      "ebs": "150 GB - gp3",
-      "os": "Debian",
-      "region": "US - Ohio",
-      "type": "EC2",
-      "category": "Callatlas DB",
-      "cost": 240.44,
-      "domain": ""
-    },
-    {
-      "account": "USA",
-      "name": "DB/RabbitMQ3",
-      "ip": "3.141.171.140",
-      "spec": "c5a.2xlarge",
-      "ebs": "150 GB - gp3",
-      "os": "Debian",
-      "region": "US - Ohio",
-      "type": "EC2",
-      "category": "Callatlas DB",
-      "cost": 240.44,
-      "domain": ""
-    },
-    {
-      "account": "USA",
-      "name": "Webapp/microservice1",
-      "ip": "3.129.94.78",
-      "spec": "c5a.xlarge",
-      "ebs": "70 GB - gp3",
-      "os": "Debian",
-      "region": "US - Ohio",
-      "type": "EC2",
-      "category": "Callatlas App",
-      "cost": 121.62,
-      "domain": ""
-    },
-    {
-      "account": "USA",
-      "name": "Webapp/microservice2",
-      "ip": "52.14.29.7",
-      "spec": "c5a.xlarge",
-      "ebs": "70 GB - gp3",
-      "os": "Debian",
-      "region": "US - Ohio",
-      "type": "EC2",
-      "category": "Callatlas App",
-      "cost": 121.62,
-      "domain": ""
-    },
-    {
-      "account": "USA",
-      "name": "Voipmonitor",
-      "ip": "3.147.14.7",
-      "spec": "c5.xlarge",
-      "ebs": "150 GB - gp3",
-      "os": "Debian",
-      "region": "US - Ohio",
-      "type": "EC2",
-      "category": "Callatlas Monitor",
-      "cost": 139.7,
-      "domain": ""
-    }
-  ],
-  "bills": [
-    {
-      "key": "IHA-February-2026",
-      "account": "IHA",
-      "month": "February",
-      "year": 2026,
-      "services": [
-        {
-          "name": "Elastic Compute Cloud",
-          "cost": 850,
-          "compare": -50
-        },
-        {
-          "name": "Lightsail",
-          "cost": 66,
-          "compare": 0
-        },
-        {
-          "name": "Data Transfer",
-          "cost": 12,
-          "compare": 1
-        }
-      ],
-      "total": 928,
-      "totalCompare": -49
-    },
-    {
-      "key": "India-February-2026",
-      "account": "India",
-      "month": "February",
-      "year": 2026,
-      "services": [
-        {
-          "name": "Elastic Compute Cloud",
-          "cost": 620,
-          "compare": -30
-        },
-        {
-          "name": "Lightsail",
-          "cost": 209,
-          "compare": -10
-        },
-        {
-          "name": "Data Transfer",
-          "cost": 8,
-          "compare": 0.5
-        }
-      ],
-      "total": 837,
-      "totalCompare": -39.5
-    },
-    {
-      "key": "USA-February-2026",
-      "account": "USA",
-      "month": "February",
-      "year": 2026,
-      "services": [
-        {
-          "name": "Elastic Compute Cloud",
-          "cost": 576.13,
-          "compare": -121.69
-        },
-        {
-          "name": "Lightsail",
-          "cost": 1000.68,
-          "compare": -138.56
-        },
-        {
-          "name": "Amazon Connect",
-          "cost": 35.32,
-          "compare": -3.92
-        },
-        {
-          "name": "Contact Center Telecommunications",
-          "cost": 24.94,
-          "compare": -1.93
-        },
-        {
-          "name": "Data Transfer",
-          "cost": 3.56,
-          "compare": 0.22
-        },
-        {
-          "name": "Business Support+",
-          "cost": 328.95,
-          "compare": 264.64
-        },
-        {
-          "name": "Q",
-          "cost": 76.7,
-          "compare": 0
-        }
-      ],
-      "total": 2046.28,
-      "totalCompare": -1.24
-    }
-  ]
+"iha":[
+  {"account":"IHA","name":"Avyukta Dialer - telephony","ip":"3.139.114.250","spec":"c6a.4xlarge","ebs":"1000 GB - gp3","os":"Linux (CentOS)","region":"US - Ohio","type":"EC2","category":"Dialer","cost":526.76,"domain":""},
+  {"account":"IHA","name":"sipp_script","ip":"35.88.70.221","spec":"t3.medium","ebs":"50 GB - gp3","os":"Linux (Debian)","region":"US - Oregon","type":"EC2","category":"QA/Test","cost":34.37,"domain":""},
+  {"account":"IHA","name":"QA_server1","ip":"52.33.2.220","spec":"c5a.xlarge","ebs":"100 GB - gp3","os":"Linux (Debian)","region":"US - Oregon","type":"EC2","category":"QA/Test","cost":120.42,"domain":""},
+  {"account":"IHA","name":"QA_server2","ip":"34.223.170.87","spec":"c5a.xlarge","ebs":"100 GB - gp3","os":"Linux (Debian)","region":"US - Oregon","type":"EC2","category":"QA/Test","cost":120.42,"domain":""},
+  {"account":"IHA","name":"QA_server3","ip":"54.244.118.84","spec":"c5a.xlarge","ebs":"100 GB - gp3","os":"Linux (Debian)","region":"US - Oregon","type":"EC2","category":"QA/Test","cost":120.42,"domain":""},
+  {"account":"IHA","name":"supertrainer-uat","ip":"15.207.211.178","spec":"t4g.large","ebs":"30 GB - gp3","os":"Linux (Ubuntu)","region":"AP - Mumbai","type":"EC2","category":"App Server","cost":35.44,"domain":""},
+  {"account":"IHA","name":"Caller-id Spam Monitor","ip":"13.234.137.75","spec":"c6a.2xlarge","ebs":"250 GB - gp3","os":"Linux (Ubuntu)","region":"AP - Mumbai","type":"EC2","category":"Monitor","cost":159.31,"domain":""},
+  {"account":"IHA","name":"Deepak-test-server","ip":"13.202.254.47","spec":"t2.medium","ebs":"20 GB - gp2","os":"Linux (Ubuntu)","region":"AP - Mumbai","type":"EC2","category":"QA/Test","cost":42.09,"domain":""},
+  {"account":"IHA","name":"OCR-ubuntu","ip":"13.234.223.156","spec":"8 GB RAM, 2 vCPUs, 160 GB SSD","ebs":"Lightsail","os":"Linux (Ubuntu)","region":"AP - Mumbai","type":"Lightsail","category":"OCR","cost":44,"domain":"N/A"},
+  {"account":"IHA","name":"Freeswitch-TTC","ip":"43.204.179.158","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Linux (Debian)","region":"AP - Mumbai","type":"Lightsail","category":"VoIP","cost":22,"domain":"N/A"}
+],
+"india":[
+  {"account":"India","name":"callatlas.io-wordpress-latest","ip":"3.208.100.210","spec":"4 GB RAM, 2 vCPUs, 80 GB SSD","ebs":"Lightsail","os":"Ubuntu","region":"US - Virginia","type":"Lightsail","category":"WordPress","cost":24,"domain":"callatlas.io"},
+  {"account":"India","name":"forum.thetelephony.co-server-Upgraded","ip":"15.207.139.203","spec":"4 GB RAM, 2 vCPUs, 80 GB SSD","ebs":"Lightsail","os":"Ubuntu","region":"AP - Mumbai","type":"Lightsail","category":"Forum","cost":24,"domain":"forum.thetelephony.co"},
+  {"account":"India","name":"paypercalldeals.com_forum","ip":"13.233.107.178","spec":"4 GB RAM, 2 vCPUs, 80 GB SSD","ebs":"Lightsail","os":"Ubuntu","region":"AP - Mumbai","type":"Lightsail","category":"Forum","cost":24,"domain":"paypercalldeals.com"},
+  {"account":"India","name":"thetelephony.in-wp","ip":"13.233.186.207","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Ubuntu","region":"AP - Mumbai","type":"Lightsail","category":"WordPress","cost":12,"domain":"thetelephony.in"},
+  {"account":"India","name":"nhfp.in","ip":"3.111.186.110","spec":"512 MB RAM, 2 vCPUs, 20 GB SSD","ebs":"Lightsail","os":"Ubuntu","region":"AP - Mumbai","type":"Lightsail","category":"WordPress","cost":5,"domain":"nhfp.in"},
+  {"account":"India","name":"ihasoft.us-wordpress","ip":"3.110.62.229","spec":"4 GB RAM, 2 vCPUs, 80 GB SSD","ebs":"Lightsail","os":"Ubuntu","region":"AP - Mumbai","type":"Lightsail","category":"WordPress","cost":24,"domain":"ihasoft.us"},
+  {"account":"India","name":"Teamihallp-wordpress-new","ip":"3.230.66.6","spec":"4 GB RAM, 2 vCPUs, 80 GB SSD","ebs":"Lightsail","os":"Bitnami WordPress","region":"US - Virginia","type":"Lightsail","category":"WordPress","cost":24,"domain":"teamihallp.com"},
+  {"account":"India","name":"telephony-wp","ip":"15.206.27.16","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Ubuntu","region":"AP - Mumbai","type":"Lightsail","category":"WordPress","cost":12,"domain":"thetelephony.co"},
+  {"account":"India","name":"trueaccounts.us","ip":"13.201.36.181","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Bitnami WordPress","region":"AP - Mumbai","type":"Lightsail","category":"WordPress","cost":12,"domain":"trueaccounts.us"},
+  {"account":"India","name":"crystal-hygiene","ip":"43.205.216.188","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Bitnami WordPress","region":"AP - Mumbai","type":"Lightsail","category":"WordPress","cost":12,"domain":"crystalhygiene.co"},
+  {"account":"India","name":"Forum-Voipset.com","ip":"13.205.6.243","spec":"4 GB RAM, 2 vCPUs, 80 GB SSD","ebs":"Lightsail","os":"Ubuntu","region":"AP - Mumbai","type":"Lightsail","category":"Forum","cost":24,"domain":""},
+  {"account":"India","name":"WordPress-11-01-24-1","ip":"13.233.167.140","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Bitnami WordPress","region":"AP - Mumbai","type":"Lightsail","category":"WordPress","cost":12,"domain":"kaydeecommercialbrokers.com"},
+  {"account":"India","name":"HoduPBX","ip":"65.1.125.45","spec":"c6i.2xlarge","ebs":"400 GiB - gp2","os":"Linux (CentOS)","region":"AP - Mumbai","type":"EC2","category":"PBX","cost":297.4,"domain":"ucaas.vespertelecom.com"},
+  {"account":"India","name":"Poppyhola","ip":"13.232.229.198","spec":"t2.medium","ebs":"30 GiB - gp2","os":"Linux (Debian)","region":"AP - Mumbai","type":"EC2","category":"App Server","cost":39.63,"domain":"poppyhola.com"},
+  {"account":"India","name":"Reserve-XP","ip":"52.66.88.39","spec":"t3.small","ebs":"50 GiB - gp2","os":"Linux (Ubuntu)","region":"AP - Mumbai","type":"EC2","category":"App Server","cost":45.51,"domain":""},
+  {"account":"India","name":"IHA_VPN","ip":"3.110.187.100","spec":"t2.small","ebs":"30 GiB - gp2","os":"Linux (Ubuntu)","region":"AP - Mumbai","type":"EC2","category":"VPN","cost":21.52,"domain":"vpn.teamihallp.com"},
+  {"account":"India","name":"prakash","ip":"13.127.227.121","spec":"t2.medium","ebs":"100 GiB - gp2","os":"Windows","region":"AP - Mumbai","type":"EC2","category":"Dev/Test","cost":60.75,"domain":""},
+  {"account":"India","name":"bloodline","ip":"13.233.111.39","spec":"t2.small","ebs":"40 GiB - gp2","os":"Linux (Ubuntu)","region":"AP - Mumbai","type":"EC2","category":"App Server","cost":22.66,"domain":"bloodlin.com"},
+  {"account":"India","name":"Super-Trainer-Updated","ip":"35.154.139.63","spec":"t2.large","ebs":"50 GiB - gp3","os":"Linux (Ubuntu)","region":"AP - Mumbai","type":"EC2","category":"App Server","cost":76.98,"domain":"supertrainers.io"},
+  {"account":"India","name":"shuffle-with-akanksha-Updated","ip":"52.66.240.32","spec":"t2.large","ebs":"100 GiB - gp3","os":"Linux (Ubuntu)","region":"AP - Mumbai","type":"EC2","category":"App Server","cost":81.54,"domain":"shufflewithakanksha.com"},
+  {"account":"India","name":"Prometheus - Grafana - Central Server","ip":"13.201.146.40","spec":"t2.micro","ebs":"30 GiB - gp3","os":"Linux (Ubuntu)","region":"AP - Mumbai","type":"EC2","category":"Monitor","cost":15.39,"domain":""},
+  {"account":"India","name":"Vesta Panel Main Hosting Server","ip":"52.204.41.234","spec":"t2.medium","ebs":"150 GiB - gp2","os":"Linux (CentOS)","region":"US - Virginia","type":"EC2","category":"Hosting","cost":56.91,"domain":""},
+  {"account":"India","name":"Bridge License Server","ip":"34.197.116.94","spec":"t2.small","ebs":"80 GiB - gp3","os":"Linux (Debian)","region":"US - Virginia","type":"EC2","category":"License","cost":29,"domain":""},
+  {"account":"India","name":"uptime-kuma","ip":"44.211.133.200","spec":"t3a.small","ebs":"30 GiB - gp3","os":"Linux (Ubuntu)","region":"US - Virginia","type":"EC2","category":"Monitor","cost":16.12,"domain":""}
+],
+"usa":[
+  {"account":"USA","name":"northeastnew","ip":"3.111.125.53","spec":"4 GB RAM, 2 vCPUs, 80 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":24,"domain":"northeast.my3cx.us"},
+  {"account":"USA","name":"Britishcouncil-pentest","ip":"13.201.67.108","spec":"4 GB RAM, 2 vCPUs, 80 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":24,"domain":"britishcouncil.3cx.in"},
+  {"account":"USA","name":"clariant","ip":"13.202.248.51","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":12,"domain":"clariant.my3cx.us"},
+  {"account":"USA","name":"agentflow.3cx.us-agentflow","ip":"65.2.100.18","spec":"4 GB RAM, 2 vCPUs, 80 GB SSD","ebs":"Lightsail","os":"Ubuntu","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":24,"domain":"agentflow.voipsetu.com"},
+  {"account":"USA","name":"agentflowttc","ip":"3.109.119.228","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":12,"domain":"agentflow.3cx.us"},
+  {"account":"USA","name":"smsoultionnew3cx","ip":"35.154.145.2","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":12,"domain":"smsolution.my3cx.us"},
+  {"account":"USA","name":"voipsetulinux","ip":"13.202.104.206","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":12,"domain":"voipsetulinux.3cx.in"},
+  {"account":"USA","name":"smsolution","ip":"3.109.222.217","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":12,"domain":"smsolution.my3cx.us"},
+  {"account":"USA","name":"call.thetelephony.co-3cx","ip":"3.109.92.19","spec":"4 GB RAM, 2 vCPUs, 80 GB SSD","ebs":"Lightsail","os":"Windows","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":24,"domain":"call.thetelephony.co"},
+  {"account":"USA","name":"milansupport-Upgraded","ip":"65.1.6.135","spec":"16 GB RAM, 4 vCPUs, 320 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":164,"domain":"milansupport.my3cx.us"},
+  {"account":"USA","name":"3cx-AI-connector-Ecosmob","ip":"13.203.93.90","spec":"4 GB RAM, 2 vCPUs, 80 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":24,"domain":"N/A"},
+  {"account":"USA","name":"skilnitro","ip":"35.154.41.184","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":12,"domain":"skillnitro.3cx.in"},
+  {"account":"USA","name":"soodhospital1","ip":"13.201.114.164","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":12,"domain":"soodhospital.3cx.in"},
+  {"account":"USA","name":"primerishta","ip":"43.204.90.31","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":12,"domain":"primerishta.my3cx.ca"},
+  {"account":"USA","name":"superdash","ip":"13.234.194.111","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":12,"domain":"superdash.my3cx.us"},
+  {"account":"USA","name":"fiveabhome","ip":"13.201.165.106","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":12,"domain":"5abhome.3cx.com.au"},
+  {"account":"USA","name":"vm-d7kqd-ap332-g5su8","ip":"3.109.97.211","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":12,"domain":"ronnietech.my3cx.us"},
+  {"account":"USA","name":"naresh-test","ip":"15.206.167.79","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Ubuntu","region":"AP - Mumbai","type":"Lightsail","category":"QA/Test","cost":12,"domain":""},
+  {"account":"USA","name":"ronnietech","ip":"3.7.144.52","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":12,"domain":"ronnietech.my3cx.us"},
+  {"account":"USA","name":"techhivellc","ip":"52.66.135.150","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":12,"domain":"techhivellc.my3cx.us"},
+  {"account":"USA","name":"vueloexpress","ip":"65.1.199.45","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":12,"domain":"vueloexpress.my3cx.us"},
+  {"account":"USA","name":"thetelephony3cx","ip":"65.2.160.70","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":12,"domain":"thetelephony.3cx.in"},
+  {"account":"USA","name":"hanavmanufacturing","ip":"3.110.152.146","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":12,"domain":"hanavmanufacturing.my3cx.us"},
+  {"account":"USA","name":"divinesol-new-aug7","ip":"13.201.111.191","spec":"16 GB RAM, 4 vCPUs, 320 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":84,"domain":"divinesol.my3cx.us"},
+  {"account":"USA","name":"britishcouncil","ip":"43.205.143.1","spec":"4 GB RAM, 2 vCPUs, 80 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":24,"domain":"britishcouncil.3cx.in"},
+  {"account":"USA","name":"travobus-new","ip":"3.111.134.98","spec":"16 GB RAM, 4 vCPUs, 320 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":84,"domain":"travobus.3cx.in"},
+  {"account":"USA","name":"HARI-3cx-new","ip":"13.202.26.11","spec":"32 GB RAM, 8 vCPUs, 640 GB SSD","ebs":"Lightsail","os":"Windows","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":164,"domain":"callttcthetelephonyco.3cx.in"},
+  {"account":"USA","name":"dthservices","ip":"3.7.47.184","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":12,"domain":"dthservices.my3cx.us"},
+  {"account":"USA","name":"crusttechs","ip":"3.111.121.34","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":12,"domain":"crusttechs.my3cx.us"},
+  {"account":"USA","name":"sksolution","ip":"13.200.209.74","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":12,"domain":"sksolution.my3cx.us"},
+  {"account":"USA","name":"northeast","ip":"15.207.232.43","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":12,"domain":"northeast.my3cx.us"},
+  {"account":"USA","name":"shakti-infotech","ip":"65.1.228.35","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":12,"domain":"shaktitelephony.3cx.in"},
+  {"account":"USA","name":"aamodhospitality","ip":"43.205.128.127","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":12,"domain":"aamodtelephony.3cx.in"},
+  {"account":"USA","name":"melwintech","ip":"13.200.162.230","spec":"4 GB RAM, 2 vCPUs, 80 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":24,"domain":"melwintech.my3cx.us"},
+  {"account":"USA","name":"telephony-3cx","ip":"13.200.43.113","spec":"4 GB RAM, 2 vCPUs, 80 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":24,"domain":"telephony.3cx.in"},
+  {"account":"USA","name":"iata-telephony-3cx","ip":"13.235.198.19","spec":"4 GB RAM, 2 vCPUs, 80 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"3CX","cost":24,"domain":"iatatelephony.3cx.in"},
+  {"account":"USA","name":"demo.ttc.live-agentflow","ip":"3.111.143.213","spec":"4 GB RAM, 2 vCPUs, 80 GB SSD","ebs":"Lightsail","os":"Ubuntu","region":"AP - Mumbai","type":"Lightsail","category":"Agentflow","cost":24,"domain":"demo-ttc.voipsetu.com"},
+  {"account":"USA","name":"telephony-agentflow","ip":"13.232.125.78","spec":"4 GB RAM, 2 vCPUs, 80 GB SSD","ebs":"Lightsail","os":"Ubuntu","region":"AP - Mumbai","type":"Lightsail","category":"Agentflow","cost":24,"domain":"ttc.voipsetu.com"},
+  {"account":"USA","name":"angelsolution-Agentflow","ip":"13.233.81.159","spec":"4 GB RAM, 2 vCPUs, 80 GB SSD","ebs":"Lightsail","os":"Ubuntu","region":"AP - Mumbai","type":"Lightsail","category":"Agentflow","cost":24,"domain":"angelsolution.voipsetu.com"},
+  {"account":"USA","name":"agent-flow-central-database-production-upgraded","ip":"15.206.139.213","spec":"16 GB RAM, 4 vCPUs, 320 GB SSD","ebs":"Lightsail","os":"Ubuntu","region":"AP - Mumbai","type":"Lightsail","category":"Agentflow","cost":84,"domain":"N/A"},
+  {"account":"USA","name":"callerid-test-database-upgraded","ip":"13.201.136.36","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Ubuntu","region":"AP - Mumbai","type":"Lightsail","category":"Agentflow","cost":12,"domain":"N/A"},
+  {"account":"USA","name":"Agentflow-Demo-server","ip":"43.205.255.224","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Ubuntu","region":"AP - Mumbai","type":"Lightsail","category":"Agentflow","cost":12,"domain":"demo-af.voipsetu.com"},
+  {"account":"USA","name":"crm.ihacloud.co","ip":"13.127.133.205","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Ubuntu","region":"AP - Mumbai","type":"Lightsail","category":"Agentflow","cost":12,"domain":"crm.ihacloud.co"},
+  {"account":"USA","name":"NickPersonalServer","ip":"35.166.47.145","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Windows","region":"AP - Mumbai","type":"Lightsail","category":"Agentflow","cost":12,"domain":"N/A"},
+  {"account":"USA","name":"jazztech-Agentflow","ip":"13.202.106.81","spec":"4 GB RAM, 2 vCPUs, 80 GB SSD","ebs":"Lightsail","os":"Ubuntu","region":"AP - Mumbai","type":"Lightsail","category":"Agentflow","cost":24,"domain":"jazztech.voipsetu.com"},
+  {"account":"USA","name":"sm-solution-Agentflow","ip":"13.204.0.60","spec":"4 GB RAM, 2 vCPUs, 80 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"Agentflow","cost":24,"domain":"smsolutions.voipsetu.com"},
+  {"account":"USA","name":"divinesol-Agentflow","ip":"13.202.104.141","spec":"4 GB RAM, 2 vCPUs, 80 GB SSD","ebs":"Lightsail","os":"Debian","region":"AP - Mumbai","type":"Lightsail","category":"Agentflow","cost":24,"domain":"divinesol.voipsetu.com"},
+  {"account":"USA","name":"ihacloud.co-wp","ip":"3.108.104.192","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Ubuntu","region":"AP - Mumbai","type":"Lightsail","category":"Agentflow","cost":12,"domain":"ihacloud.co"},
+  {"account":"USA","name":"agentflow-testing-hari","ip":"13.127.126.255","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Ubuntu","region":"AP - Mumbai","type":"Lightsail","category":"Agentflow","cost":12,"domain":"test-af.voipsetu.com"},
+  {"account":"USA","name":"Letsgolegal","ip":"3.6.90.74","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Windows","region":"AP - Mumbai","type":"Lightsail","category":"Agentflow","cost":12,"domain":"N/A"},
+  {"account":"USA","name":"Teamihainc-wp","ip":"13.202.119.189","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Ubuntu","region":"AP - Mumbai","type":"Lightsail","category":"Agentflow","cost":12,"domain":"teamihainc.com"},
+  {"account":"USA","name":"voip-setu-ubuntu","ip":"43.205.254.156","spec":"2 GB RAM, 2 vCPUs, 60 GB SSD","ebs":"Lightsail","os":"Ubuntu","region":"AP - Mumbai","type":"Lightsail","category":"Agentflow","cost":12,"domain":"app.voipsetu.com"},
+  {"account":"USA","name":"vpn-server","ip":"54.198.199.129","spec":"t2.medium","ebs":"30 GB - gp2","os":"Ubuntu","region":"US - Virginia","type":"EC2","category":"VPN","cost":40.47,"domain":""},
+  {"account":"USA","name":"windows 3cx poc","ip":"52.66.248.242","spec":"t2.medium","ebs":"30 GB - gp2","os":"Windows","region":"AP - Mumbai","type":"EC2","category":"3CX","cost":52.77,"domain":""},
+  {"account":"USA","name":"Prometheus - Grafana - Central Server","ip":"13.200.248.184","spec":"t2.small","ebs":"30 GB - gp2","os":"Ubuntu","region":"AP - Mumbai","type":"EC2","category":"Monitor","cost":25.12,"domain":""},
+  {"account":"USA","name":"3cx.thetelephony.co - 3cx-server","ip":"3.7.84.115","spec":"t3a.2xlarge","ebs":"320GB - gp3","os":"Windows","region":"AP - Mumbai","type":"EC2","category":"3CX","cost":284.12,"domain":""},
+  {"account":"USA","name":"echo.thetelephony.co-restored","ip":"13.201.159.47","spec":"c4.2xlarge","ebs":"500GB - gp3","os":"Debian","region":"AP - Mumbai","type":"EC2","category":"App Server","cost":341.20,"domain":""},
+  {"account":"USA","name":"Opensip","ip":"3.142.31.189","spec":"c5.xlarge","ebs":"50 GB - gp3","os":"Debian","region":"US - Ohio","type":"EC2","category":"Callatlas VoIP","cost":131.70,"domain":""},
+  {"account":"USA","name":"Freeswitch1","ip":"3.13.84.200","spec":"c5.xlarge","ebs":"50 GB - gp3","os":"Debian","region":"US - Ohio","type":"EC2","category":"Callatlas VoIP","cost":131.70,"domain":""},
+  {"account":"USA","name":"Freeswitch2","ip":"3.142.75.248","spec":"c5.xlarge","ebs":"50 GB - gp3","os":"Debian","region":"US - Ohio","type":"EC2","category":"Callatlas VoIP","cost":131.70,"domain":""},
+  {"account":"USA","name":"DB/RabbitMQ1","ip":"18.218.56.97","spec":"c5a.2xlarge","ebs":"150 GB - gp3","os":"Debian","region":"US - Ohio","type":"EC2","category":"Callatlas DB","cost":240.44,"domain":""},
+  {"account":"USA","name":"DB/RabbitMQ2","ip":"3.131.75.212","spec":"c5a.2xlarge","ebs":"150 GB - gp3","os":"Debian","region":"US - Ohio","type":"EC2","category":"Callatlas DB","cost":240.44,"domain":""},
+  {"account":"USA","name":"DB/RabbitMQ3","ip":"3.141.171.140","spec":"c5a.2xlarge","ebs":"150 GB - gp3","os":"Debian","region":"US - Ohio","type":"EC2","category":"Callatlas DB","cost":240.44,"domain":""},
+  {"account":"USA","name":"Webapp/microservice1","ip":"3.129.94.78","spec":"c5a.xlarge","ebs":"70 GB - gp3","os":"Debian","region":"US - Ohio","type":"EC2","category":"Callatlas App","cost":121.62,"domain":""},
+  {"account":"USA","name":"Webapp/microservice2","ip":"52.14.29.7","spec":"c5a.xlarge","ebs":"70 GB - gp3","os":"Debian","region":"US - Ohio","type":"EC2","category":"Callatlas App","cost":121.62,"domain":""},
+  {"account":"USA","name":"Voipmonitor","ip":"3.147.14.7","spec":"c5.xlarge","ebs":"150 GB - gp3","os":"Debian","region":"US - Ohio","type":"EC2","category":"Callatlas Monitor","cost":139.70,"domain":""}
+],
+"bills":[
+  {"key":"IHA-February-2026","account":"IHA","month":"February","year":2026,"services":[{"name":"Elastic Compute Cloud","cost":850.00,"compare":-50.00},{"name":"Lightsail","cost":66.00,"compare":0},{"name":"Data Transfer","cost":12.00,"compare":1.00}],"total":928.00,"totalCompare":-49.00},
+  {"key":"India-February-2026","account":"India","month":"February","year":2026,"services":[{"name":"Elastic Compute Cloud","cost":620.00,"compare":-30.00},{"name":"Lightsail","cost":209.00,"compare":-10.00},{"name":"Data Transfer","cost":8.00,"compare":0.50}],"total":837.00,"totalCompare":-39.50},
+  {"key":"USA-February-2026","account":"USA","month":"February","year":2026,"services":[{"name":"Elastic Compute Cloud","cost":576.13,"compare":-121.69},{"name":"Lightsail","cost":1000.68,"compare":-138.56},{"name":"Amazon Connect","cost":35.32,"compare":-3.92},{"name":"Contact Center Telecommunications","cost":24.94,"compare":-1.93},{"name":"Data Transfer","cost":3.56,"compare":0.22},{"name":"Business Support+","cost":328.95,"compare":264.64},{"name":"Q","cost":76.70,"compare":0}],"total":2046.28,"totalCompare":-1.24}
+]
 };
 
 // ═══════════════════════════════════════════════════════
@@ -1652,12 +349,14 @@ function setAdminSession(v){try{if(v)sessionStorage.setItem(ADMIN_SESSION_KEY,"1
 function setAdminUI(isAdmin){
   IS_ADMIN=isAdmin;
   ["btnAddServer","btnGitHubSave","btnGitHubCfg"].forEach(function(id){
-    document.getElementById(id).style.display=isAdmin?"":"none";
+    document.getElementById(id).style.display=isAdmin?"inline-block":"none";
   });
   document.getElementById("btnAdminLogin").textContent=isAdmin?"🔓 Admin (Logout)":"🔐 Admin Login";
   document.getElementById("addFormWrap").style.display="none";
   if(!isAdmin)document.getElementById("saveBanner").style.display="none";
-  refreshAll();
+  // Re-render current tab so edit/delete buttons appear immediately
+  renderContent(activeTab);
+  refreshHeader();refreshKPI();refreshTabs();
 }
 
 // ═══════════════════════════════════════════════════════
@@ -1672,6 +371,7 @@ async function saveToGitHub(){
       iha:IHA.map(function(s){var r=Object.assign({},s);delete r.sno;delete r.gsno;delete r.dsno;return r;}),
       india:INDIA.map(function(s){var r=Object.assign({},s);delete r.sno;delete r.gsno;delete r.dsno;return r;}),
       usa:USA.map(function(s){var r=Object.assign({},s);delete r.sno;delete r.gsno;delete r.dsno;return r;}),
+      deleted:DELETED.map(function(s){var r=Object.assign({},s);delete r.sno;return r;}),
       bills:BILLS
     };
     // Build updated HTML with new DB embedded
@@ -1708,7 +408,7 @@ async function saveToGitHub(){
 // ═══════════════════════════════════════════════════════
 //  RUNTIME
 // ═══════════════════════════════════════════════════════
-var IHA=[],INDIA=[],USA=[],ALL=[],BILLS=[];
+var IHA=[],INDIA=[],USA=[],ALL=[],DELETED=[],BILLS=[];
 var activeTab="dashboard",activeBillAcct="IHA",pendingDeleteSno=null,unsavedChanges=0;
 var MONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"];
 var ACCT_CFG={IHA:{color:"#5b21b6",bg:"#ede9fe",emoji:"🟣"},India:{color:"#92400e",bg:"#fef3c7",emoji:"🟡"},USA:{color:"#1d4ed8",bg:"#dbeafe",emoji:"🔵"}};
@@ -1717,6 +417,7 @@ function loadData(){
   IHA=DB.iha.map(function(s){return Object.assign({},s);});
   INDIA=DB.india.map(function(s){return Object.assign({},s);});
   USA=DB.usa.map(function(s){return Object.assign({},s);});
+  DELETED=(DB.deleted||[]).map(function(s){return Object.assign({},s);});
   BILLS=(DB.bills||[]).map(function(b){return Object.assign({},b);});
 }
 
@@ -1784,6 +485,7 @@ function refreshTabs(){
     {id:"india",label:"🟡 India ("+INDIA.length+")",c:"#92400e"},
     {id:"usa",label:"🔵 USA ("+USA.length+")",c:"#1d4ed8"},
     {id:"all",label:"🌐 All ("+ALL.length+")",c:"#0f172a"},
+    {id:"deleted",label:"🗑️ Deleted ("+DELETED.length+")",c:"#dc2626"},
     {id:"monthly",label:"🧾 Monthly Bills ("+BILLS.length+")",c:"#0369a1"}
   ];
   document.getElementById("tabs").innerHTML=defs.map(function(t){var a=t.id===activeTab;return'<button class="tab-btn'+(a?" active":"")+'" style="'+(a?"border-bottom-color:"+t.c+";color:"+t.c+";":"")+'" data-tab="'+t.id+'">'+t.label+'</button>';}).join("");
@@ -1796,6 +498,7 @@ function setTypeFilter(tabId,type){typeFilter[tabId]=type;renderContent(tabId);}
 function renderContent(id){
   var el=document.getElementById("tab-content");
   if(id==="dashboard"){el.innerHTML=renderDashboard();return;}
+  if(id==="deleted"){el.innerHTML=renderDeletedTab();return;}
   if(id==="monthly"){el.innerHTML=renderMonthlyBills();setupMonthlyBillsTab();return;}
   var cfgMap={iha:{data:IHA,color:"#5b21b6"},india:{data:INDIA,color:"#92400e"},usa:{data:USA,color:"#1d4ed8"},all:{data:ALL,color:"#0f172a"}};
   var cfg=cfgMap[id];var isAll=(id==="all");
@@ -1893,7 +596,9 @@ function setupDeleteModal(){
     if(pendingDeleteSno===null)return;
     var sno=pendingDeleteSno;
     var ai=ALL.findIndex(function(s){return s.sno===sno;});if(ai<0)return;
-    var srv=ALL[ai];
+    var srv=Object.assign({},ALL[ai]);
+    srv.deletedOn=new Date().toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"});
+    DELETED.push(srv);
     ALL.splice(ai,1);
     var map={IHA:IHA,India:INDIA,USA:USA};
     var arr=map[srv.account],idx=arr.findIndex(function(s){return s.sno===sno;});
@@ -1901,6 +606,26 @@ function setupDeleteModal(){
     document.getElementById("deleteModal").style.display="none";pendingDeleteSno=null;
     markChanged();refreshAll();
   });
+}
+
+function renderDeletedTab(){
+  if(!DELETED.length)return'<div style="text-align:center;padding:40px;color:#94a3b8;"><div style="font-size:40px;">🗑️</div><div style="font-size:14px;font-weight:600;margin-top:12px;">No deleted servers</div></div>';
+  return'<div style="margin-bottom:12px;"><span style="font-size:12px;color:#dc2626;font-weight:600;">🗑️ '+DELETED.length+' deleted servers</span></div>'+
+  '<div class="table-wrap"><table><thead><tr style="background:#dc2626"><th>#</th><th>Account</th><th>Name</th><th>IP</th><th>Spec</th><th>OS</th><th>Region</th><th>Cost</th><th>Deleted On</th></tr></thead><tbody>'+
+  DELETED.map(function(r,i){
+    return'<tr style="background:'+(i%2===0?"#fff1f2":"#fff5f5")+'">'+
+      '<td style="font-size:11px;color:#94a3b8">'+(i+1)+'</td>'+
+      '<td>'+acctChip(r.account)+'</td>'+
+      '<td style="text-decoration:line-through;font-weight:600;color:#9f1239;">'+r.name+'</td>'+
+      '<td style="font-family:monospace;font-size:11px;color:#64748b;">'+r.ip+'</td>'+
+      '<td style="color:#475569;">'+r.spec+'</td>'+
+      '<td>'+osChip(r.os)+'</td>'+
+      '<td style="color:#475569;">'+r.region+'</td>'+
+      '<td style="font-weight:700;color:#dc2626;">'+fmt(r.cost)+'</td>'+
+      '<td style="font-size:11px;color:#64748b;">'+r.deletedOn+'</td>'+
+    '</tr>';
+  }).join("")+
+  '</tbody></table></div>';
 }
 
 function renderDashboard(){
@@ -2052,6 +777,5 @@ function setupDownload(){
 
 init();
 </script>
-
-
-</body></html>
+</body>
+</html>
