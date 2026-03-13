@@ -11,7 +11,8 @@
       "type": "EC2",
       "category": "Dialer",
       "cost": 526.76,
-      "domain": ""
+      "domain": "",
+      "uid": "mmon7meakp9cu"
     },
     {
       "account": "IHA",
@@ -24,7 +25,8 @@
       "type": "EC2",
       "category": "QA/Test",
       "cost": 34.37,
-      "domain": ""
+      "domain": "",
+      "uid": "mmon7mea7t20r"
     },
     {
       "account": "IHA",
@@ -37,7 +39,8 @@
       "type": "EC2",
       "category": "QA/Test",
       "cost": 120.42,
-      "domain": ""
+      "domain": "",
+      "uid": "mmon7mea5pgcv"
     },
     {
       "account": "IHA",
@@ -50,7 +53,8 @@
       "type": "EC2",
       "category": "QA/Test",
       "cost": 120.42,
-      "domain": ""
+      "domain": "",
+      "uid": "mmon7meavos0p"
     },
     {
       "account": "IHA",
@@ -63,7 +67,8 @@
       "type": "EC2",
       "category": "QA/Test",
       "cost": 120.42,
-      "domain": ""
+      "domain": "",
+      "uid": "mmon7mea6a6fw"
     },
     {
       "account": "IHA",
@@ -76,7 +81,8 @@
       "type": "EC2",
       "category": "App Server",
       "cost": 35.44,
-      "domain": ""
+      "domain": "",
+      "uid": "mmon7mea71vwp"
     },
     {
       "account": "IHA",
@@ -89,7 +95,8 @@
       "type": "EC2",
       "category": "Monitor",
       "cost": 159.31,
-      "domain": ""
+      "domain": "",
+      "uid": "mmon7meaypvqz"
     },
     {
       "account": "IHA",
@@ -102,7 +109,8 @@
       "type": "EC2",
       "category": "QA/Test",
       "cost": 42.09,
-      "domain": ""
+      "domain": "",
+      "uid": "mmon7meapq7po"
     },
     {
       "account": "IHA",
@@ -115,7 +123,8 @@
       "type": "Lightsail",
       "category": "OCR",
       "cost": 44,
-      "domain": "N/A"
+      "domain": "N/A",
+      "uid": "mmon7mea0bzqk"
     },
     {
       "account": "IHA",
@@ -128,7 +137,8 @@
       "type": "Lightsail",
       "category": "VoIP",
       "cost": 22,
-      "domain": "N/A"
+      "domain": "N/A",
+      "uid": "mmon7mea2708q"
     }
   ],
   "india": [
@@ -143,7 +153,8 @@
       "type": "Lightsail",
       "category": "WordPress",
       "cost": 24,
-      "domain": "callatlas.io"
+      "domain": "callatlas.io",
+      "uid": "mmon7mea8vv23"
     },
     {
       "account": "India",
@@ -156,7 +167,8 @@
       "type": "Lightsail",
       "category": "Forum",
       "cost": 24,
-      "domain": "forum.thetelephony.co"
+      "domain": "forum.thetelephony.co",
+      "uid": "mmon7mea5pl24"
     },
     {
       "account": "India",
@@ -169,7 +181,8 @@
       "type": "Lightsail",
       "category": "Forum",
       "cost": 24,
-      "domain": "paypercalldeals.com"
+      "domain": "paypercalldeals.com",
+      "uid": "mmon7mear2lor"
     },
     {
       "account": "India",
@@ -182,7 +195,8 @@
       "type": "Lightsail",
       "category": "WordPress",
       "cost": 12,
-      "domain": "thetelephony.in"
+      "domain": "thetelephony.in",
+      "uid": "mmon7mea2p320"
     },
     {
       "account": "India",
@@ -195,7 +209,8 @@
       "type": "Lightsail",
       "category": "WordPress",
       "cost": 5,
-      "domain": "nhfp.in"
+      "domain": "nhfp.in",
+      "uid": "mmon7mea3i6ro"
     },
     {
       "account": "India",
@@ -208,7 +223,8 @@
       "type": "Lightsail",
       "category": "WordPress",
       "cost": 24,
-      "domain": "ihasoft.us"
+      "domain": "ihasoft.us",
+      "uid": "mmon7meahrehx"
     },
     {
       "account": "India",
@@ -221,7 +237,8 @@
       "type": "Lightsail",
       "category": "WordPress",
       "cost": 24,
-      "domain": "teamihallp.com"
+      "domain": "teamihallp.com",
+      "uid": "mmon7mea48pgv"
     },
     {
       "account": "India",
@@ -234,7 +251,8 @@
       "type": "Lightsail",
       "category": "WordPress",
       "cost": 12,
-      "domain": "thetelephony.co"
+      "domain": "thetelephony.co",
+      "uid": "mmon7mea1j27s"
     },
     {
       "account": "India",
@@ -247,7 +265,8 @@
       "type": "Lightsail",
       "category": "WordPress",
       "cost": 12,
-      "domain": "trueaccounts.us"
+      "domain": "trueaccounts.us",
+      "uid": "mmon7meairbgg"
     },
     {
       "account": "India",
@@ -260,7 +279,8 @@
       "type": "Lightsail",
       "category": "WordPress",
       "cost": 12,
-      "domain": "crystalhygiene.co"
+      "domain": "crystalhygiene.co",
+      "uid": "mmon7meahffyc"
     },
     {
       "account": "India",
@@ -273,7 +293,8 @@
       "type": "Lightsail",
       "category": "Forum",
       "cost": 24,
-      "domain": ""
+      "domain": "",
+      "uid": "mmon7meachkyv"
     },
     {
       "account": "India",
@@ -286,7 +307,8 @@
       "type": "Lightsail",
       "category": "WordPress",
       "cost": 12,
-      "domain": "kaydeecommercialbrokers.com"
+      "domain": "kaydeecommercialbrokers.com",
+      "uid": "mmon7meaol9bs"
     },
     {
       "account": "India",
@@ -299,7 +321,8 @@
       "type": "EC2",
       "category": "PBX",
       "cost": 297.4,
-      "domain": "ucaas.vespertelecom.com"
+      "domain": "ucaas.vespertelecom.com",
+      "uid": "mmon7meajq24a"
     },
     {
       "account": "India",
@@ -312,7 +335,8 @@
       "type": "EC2",
       "category": "App Server",
       "cost": 39.63,
-      "domain": "poppyhola.com"
+      "domain": "poppyhola.com",
+      "uid": "mmon7mea1iv95"
     },
     {
       "account": "India",
@@ -325,7 +349,8 @@
       "type": "EC2",
       "category": "App Server",
       "cost": 45.51,
-      "domain": ""
+      "domain": "",
+      "uid": "mmon7meaj8hat"
     },
     {
       "account": "India",
@@ -338,7 +363,8 @@
       "type": "EC2",
       "category": "VPN",
       "cost": 21.52,
-      "domain": "vpn.teamihallp.com"
+      "domain": "vpn.teamihallp.com",
+      "uid": "mmon7meafondk"
     },
     {
       "account": "India",
@@ -351,7 +377,8 @@
       "type": "EC2",
       "category": "Dev/Test",
       "cost": 60.75,
-      "domain": ""
+      "domain": "",
+      "uid": "mmon7mea7uppp"
     },
     {
       "account": "India",
@@ -364,7 +391,8 @@
       "type": "EC2",
       "category": "App Server",
       "cost": 22.66,
-      "domain": "bloodlin.com"
+      "domain": "bloodlin.com",
+      "uid": "mmon7meah9thl"
     },
     {
       "account": "India",
@@ -377,7 +405,8 @@
       "type": "EC2",
       "category": "App Server",
       "cost": 76.98,
-      "domain": "supertrainers.io"
+      "domain": "supertrainers.io",
+      "uid": "mmon7meabk9un"
     },
     {
       "account": "India",
@@ -390,7 +419,8 @@
       "type": "EC2",
       "category": "App Server",
       "cost": 81.54,
-      "domain": "shufflewithakanksha.com"
+      "domain": "shufflewithakanksha.com",
+      "uid": "mmon7meawukag"
     },
     {
       "account": "India",
@@ -403,7 +433,8 @@
       "type": "EC2",
       "category": "Monitor",
       "cost": 15.39,
-      "domain": ""
+      "domain": "",
+      "uid": "mmon7meajdq05"
     },
     {
       "account": "India",
@@ -416,7 +447,8 @@
       "type": "EC2",
       "category": "Hosting",
       "cost": 56.91,
-      "domain": ""
+      "domain": "",
+      "uid": "mmon7mea0tm5m"
     },
     {
       "account": "India",
@@ -429,7 +461,8 @@
       "type": "EC2",
       "category": "License",
       "cost": 29,
-      "domain": ""
+      "domain": "",
+      "uid": "mmon7mea77hnd"
     },
     {
       "account": "India",
@@ -442,7 +475,8 @@
       "type": "EC2",
       "category": "Monitor",
       "cost": 16.12,
-      "domain": ""
+      "domain": "",
+      "uid": "mmon7meac3o3e"
     }
   ],
   "usa": [
@@ -457,20 +491,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 24,
-      "domain": "northeast.my3cx.us"
-    },
-    {
-      "account": "USA",
-      "name": "Britishcouncil-pentest",
-      "ip": "13.201.67.108",
-      "spec": "4 GB RAM, 2 vCPUs, 80 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 24,
-      "domain": "britishcouncil.3cx.in"
+      "domain": "northeast.my3cx.us",
+      "uid": "mmon7mea64cu3"
     },
     {
       "account": "USA",
@@ -483,7 +505,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 12,
-      "domain": "clariant.my3cx.us"
+      "domain": "clariant.my3cx.us",
+      "uid": "mmon7meapxu1m"
     },
     {
       "account": "USA",
@@ -496,7 +519,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 24,
-      "domain": "agentflow.voipsetu.com"
+      "domain": "agentflow.voipsetu.com",
+      "uid": "mmon7mea856zu"
     },
     {
       "account": "USA",
@@ -509,7 +533,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 12,
-      "domain": "agentflow.3cx.us"
+      "domain": "agentflow.3cx.us",
+      "uid": "mmon7meaosyla"
     },
     {
       "account": "USA",
@@ -522,7 +547,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 12,
-      "domain": "smsolution.my3cx.us"
+      "domain": "smsolution.my3cx.us",
+      "uid": "mmon7mealxp6j"
     },
     {
       "account": "USA",
@@ -535,7 +561,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 12,
-      "domain": "voipsetulinux.3cx.in"
+      "domain": "voipsetulinux.3cx.in",
+      "uid": "mmon7meaxr7a3"
     },
     {
       "account": "USA",
@@ -548,7 +575,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 12,
-      "domain": "smsolution.my3cx.us"
+      "domain": "smsolution.my3cx.us",
+      "uid": "mmon7meago9wm"
     },
     {
       "account": "USA",
@@ -561,7 +589,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 24,
-      "domain": "call.thetelephony.co"
+      "domain": "call.thetelephony.co",
+      "uid": "mmon7mea0g2ol"
     },
     {
       "account": "USA",
@@ -574,7 +603,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 164,
-      "domain": "milansupport.my3cx.us"
+      "domain": "milansupport.my3cx.us",
+      "uid": "mmon7meampcii"
     },
     {
       "account": "USA",
@@ -587,7 +617,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 24,
-      "domain": "N/A"
+      "domain": "N/A",
+      "uid": "mmon7meath71q"
     },
     {
       "account": "USA",
@@ -600,7 +631,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 12,
-      "domain": "skillnitro.3cx.in"
+      "domain": "skillnitro.3cx.in",
+      "uid": "mmon7mea5ujvr"
     },
     {
       "account": "USA",
@@ -613,7 +645,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 12,
-      "domain": "soodhospital.3cx.in"
+      "domain": "soodhospital.3cx.in",
+      "uid": "mmon7means07n"
     },
     {
       "account": "USA",
@@ -626,7 +659,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 12,
-      "domain": "primerishta.my3cx.ca"
+      "domain": "primerishta.my3cx.ca",
+      "uid": "mmon7meadc4bj"
     },
     {
       "account": "USA",
@@ -639,7 +673,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 12,
-      "domain": "superdash.my3cx.us"
+      "domain": "superdash.my3cx.us",
+      "uid": "mmon7mea7b9gb"
     },
     {
       "account": "USA",
@@ -652,7 +687,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 12,
-      "domain": "5abhome.3cx.com.au"
+      "domain": "5abhome.3cx.com.au",
+      "uid": "mmon7measvtj4"
     },
     {
       "account": "USA",
@@ -665,20 +701,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 12,
-      "domain": "ronnietech.my3cx.us"
-    },
-    {
-      "account": "USA",
-      "name": "naresh-test",
-      "ip": "15.206.167.79",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Ubuntu",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "QA/Test",
-      "cost": 12,
-      "domain": ""
+      "domain": "ronnietech.my3cx.us",
+      "uid": "mmon7mea2094g"
     },
     {
       "account": "USA",
@@ -691,7 +715,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 12,
-      "domain": "ronnietech.my3cx.us"
+      "domain": "ronnietech.my3cx.us",
+      "uid": "mmon7meapgn3u"
     },
     {
       "account": "USA",
@@ -704,7 +729,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 12,
-      "domain": "techhivellc.my3cx.us"
+      "domain": "techhivellc.my3cx.us",
+      "uid": "mmon7meakj519"
     },
     {
       "account": "USA",
@@ -717,7 +743,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 12,
-      "domain": "vueloexpress.my3cx.us"
+      "domain": "vueloexpress.my3cx.us",
+      "uid": "mmon7mealx4kx"
     },
     {
       "account": "USA",
@@ -730,7 +757,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 12,
-      "domain": "thetelephony.3cx.in"
+      "domain": "thetelephony.3cx.in",
+      "uid": "mmon7meafx63p"
     },
     {
       "account": "USA",
@@ -743,7 +771,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 12,
-      "domain": "hanavmanufacturing.my3cx.us"
+      "domain": "hanavmanufacturing.my3cx.us",
+      "uid": "mmon7mea9898s"
     },
     {
       "account": "USA",
@@ -756,7 +785,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 84,
-      "domain": "divinesol.my3cx.us"
+      "domain": "divinesol.my3cx.us",
+      "uid": "mmon7meamhsh1"
     },
     {
       "account": "USA",
@@ -769,7 +799,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 24,
-      "domain": "britishcouncil.3cx.in"
+      "domain": "britishcouncil.3cx.in",
+      "uid": "mmon7mealsptl"
     },
     {
       "account": "USA",
@@ -782,7 +813,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 84,
-      "domain": "travobus.3cx.in"
+      "domain": "travobus.3cx.in",
+      "uid": "mmon7meajm80s"
     },
     {
       "account": "USA",
@@ -795,7 +827,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 164,
-      "domain": "callttcthetelephonyco.3cx.in"
+      "domain": "callttcthetelephonyco.3cx.in",
+      "uid": "mmon7meabi9kv"
     },
     {
       "account": "USA",
@@ -808,7 +841,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 12,
-      "domain": "dthservices.my3cx.us"
+      "domain": "dthservices.my3cx.us",
+      "uid": "mmon7meavlobj"
     },
     {
       "account": "USA",
@@ -821,7 +855,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 12,
-      "domain": "crusttechs.my3cx.us"
+      "domain": "crusttechs.my3cx.us",
+      "uid": "mmon7mea0twyf"
     },
     {
       "account": "USA",
@@ -834,7 +869,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 12,
-      "domain": "sksolution.my3cx.us"
+      "domain": "sksolution.my3cx.us",
+      "uid": "mmon7meai5grc"
     },
     {
       "account": "USA",
@@ -847,7 +883,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 12,
-      "domain": "northeast.my3cx.us"
+      "domain": "northeast.my3cx.us",
+      "uid": "mmon7meah8tmr"
     },
     {
       "account": "USA",
@@ -860,7 +897,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 12,
-      "domain": "shaktitelephony.3cx.in"
+      "domain": "shaktitelephony.3cx.in",
+      "uid": "mmon7mean142x"
     },
     {
       "account": "USA",
@@ -873,7 +911,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 12,
-      "domain": "aamodtelephony.3cx.in"
+      "domain": "aamodtelephony.3cx.in",
+      "uid": "mmon7mea92gar"
     },
     {
       "account": "USA",
@@ -886,7 +925,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 24,
-      "domain": "melwintech.my3cx.us"
+      "domain": "melwintech.my3cx.us",
+      "uid": "mmon7meaucej9"
     },
     {
       "account": "USA",
@@ -899,7 +939,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 24,
-      "domain": "telephony.3cx.in"
+      "domain": "telephony.3cx.in",
+      "uid": "mmon7meadc5q2"
     },
     {
       "account": "USA",
@@ -912,7 +953,8 @@
       "type": "Lightsail",
       "category": "3CX",
       "cost": 24,
-      "domain": "iatatelephony.3cx.in"
+      "domain": "iatatelephony.3cx.in",
+      "uid": "mmon7meadm1fc"
     },
     {
       "account": "USA",
@@ -925,7 +967,8 @@
       "type": "Lightsail",
       "category": "Agentflow",
       "cost": 24,
-      "domain": "demo-ttc.voipsetu.com"
+      "domain": "demo-ttc.voipsetu.com",
+      "uid": "mmon7meadk3bj"
     },
     {
       "account": "USA",
@@ -938,20 +981,8 @@
       "type": "Lightsail",
       "category": "Agentflow",
       "cost": 24,
-      "domain": "ttc.voipsetu.com"
-    },
-    {
-      "account": "USA",
-      "name": "angelsolution-Agentflow",
-      "ip": "13.233.81.159",
-      "spec": "4 GB RAM, 2 vCPUs, 80 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Ubuntu",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "Agentflow",
-      "cost": 24,
-      "domain": "angelsolution.voipsetu.com"
+      "domain": "ttc.voipsetu.com",
+      "uid": "mmon7meagwicd"
     },
     {
       "account": "USA",
@@ -964,7 +995,8 @@
       "type": "Lightsail",
       "category": "Agentflow",
       "cost": 84,
-      "domain": "N/A"
+      "domain": "N/A",
+      "uid": "mmon7meazpskj"
     },
     {
       "account": "USA",
@@ -977,7 +1009,8 @@
       "type": "Lightsail",
       "category": "Agentflow",
       "cost": 12,
-      "domain": "N/A"
+      "domain": "N/A",
+      "uid": "mmon7mea428lh"
     },
     {
       "account": "USA",
@@ -990,33 +1023,8 @@
       "type": "Lightsail",
       "category": "Agentflow",
       "cost": 12,
-      "domain": "demo-af.voipsetu.com"
-    },
-    {
-      "account": "USA",
-      "name": "crm.ihacloud.co",
-      "ip": "13.127.133.205",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Ubuntu",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "Agentflow",
-      "cost": 12,
-      "domain": "crm.ihacloud.co"
-    },
-    {
-      "account": "USA",
-      "name": "NickPersonalServer",
-      "ip": "35.166.47.145",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Windows",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "Agentflow",
-      "cost": 12,
-      "domain": "N/A"
+      "domain": "demo-af.voipsetu.com",
+      "uid": "mmon7meafwbku"
     },
     {
       "account": "USA",
@@ -1029,7 +1037,8 @@
       "type": "Lightsail",
       "category": "Agentflow",
       "cost": 24,
-      "domain": "jazztech.voipsetu.com"
+      "domain": "jazztech.voipsetu.com",
+      "uid": "mmon7meav2ofb"
     },
     {
       "account": "USA",
@@ -1042,7 +1051,8 @@
       "type": "Lightsail",
       "category": "Agentflow",
       "cost": 24,
-      "domain": "smsolutions.voipsetu.com"
+      "domain": "smsolutions.voipsetu.com",
+      "uid": "mmon7meakcr7t"
     },
     {
       "account": "USA",
@@ -1055,7 +1065,8 @@
       "type": "Lightsail",
       "category": "Agentflow",
       "cost": 24,
-      "domain": "divinesol.voipsetu.com"
+      "domain": "divinesol.voipsetu.com",
+      "uid": "mmon7mea82msw"
     },
     {
       "account": "USA",
@@ -1068,7 +1079,8 @@
       "type": "Lightsail",
       "category": "Agentflow",
       "cost": 12,
-      "domain": "ihacloud.co"
+      "domain": "ihacloud.co",
+      "uid": "mmon7meazs0er"
     },
     {
       "account": "USA",
@@ -1081,20 +1093,8 @@
       "type": "Lightsail",
       "category": "Agentflow",
       "cost": 12,
-      "domain": "test-af.voipsetu.com"
-    },
-    {
-      "account": "USA",
-      "name": "Letsgolegal",
-      "ip": "3.6.90.74",
-      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Windows",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "Agentflow",
-      "cost": 12,
-      "domain": "N/A"
+      "domain": "test-af.voipsetu.com",
+      "uid": "mmon7meap60ur"
     },
     {
       "account": "USA",
@@ -1107,7 +1107,8 @@
       "type": "Lightsail",
       "category": "Agentflow",
       "cost": 12,
-      "domain": "teamihainc.com"
+      "domain": "teamihainc.com",
+      "uid": "mmon7mea8xqc0"
     },
     {
       "account": "USA",
@@ -1120,7 +1121,8 @@
       "type": "Lightsail",
       "category": "Agentflow",
       "cost": 12,
-      "domain": "app.voipsetu.com"
+      "domain": "app.voipsetu.com",
+      "uid": "mmon7meahb5e0"
     },
     {
       "account": "USA",
@@ -1133,7 +1135,8 @@
       "type": "EC2",
       "category": "VPN",
       "cost": 40.47,
-      "domain": ""
+      "domain": "",
+      "uid": "mmon7meayvelp"
     },
     {
       "account": "USA",
@@ -1146,7 +1149,8 @@
       "type": "EC2",
       "category": "3CX",
       "cost": 52.77,
-      "domain": ""
+      "domain": "",
+      "uid": "mmon7mea1yqni"
     },
     {
       "account": "USA",
@@ -1159,7 +1163,8 @@
       "type": "EC2",
       "category": "Monitor",
       "cost": 25.12,
-      "domain": ""
+      "domain": "",
+      "uid": "mmon7meaznehm"
     },
     {
       "account": "USA",
@@ -1172,7 +1177,8 @@
       "type": "EC2",
       "category": "3CX",
       "cost": 284.12,
-      "domain": ""
+      "domain": "",
+      "uid": "mmon7mea1t0fg"
     },
     {
       "account": "USA",
@@ -1185,7 +1191,8 @@
       "type": "EC2",
       "category": "App Server",
       "cost": 341.2,
-      "domain": ""
+      "domain": "",
+      "uid": "mmon7meaxt98b"
     },
     {
       "account": "USA",
@@ -1198,7 +1205,8 @@
       "type": "EC2",
       "category": "Callatlas VoIP",
       "cost": 131.7,
-      "domain": ""
+      "domain": "",
+      "uid": "mmon7meawhwdo"
     },
     {
       "account": "USA",
@@ -1211,7 +1219,8 @@
       "type": "EC2",
       "category": "Callatlas VoIP",
       "cost": 131.7,
-      "domain": ""
+      "domain": "",
+      "uid": "mmon7meay18ur"
     },
     {
       "account": "USA",
@@ -1224,7 +1233,8 @@
       "type": "EC2",
       "category": "Callatlas VoIP",
       "cost": 131.7,
-      "domain": ""
+      "domain": "",
+      "uid": "mmon7mea6j9y5"
     },
     {
       "account": "USA",
@@ -1237,7 +1247,8 @@
       "type": "EC2",
       "category": "Callatlas DB",
       "cost": 240.44,
-      "domain": ""
+      "domain": "",
+      "uid": "mmon7mea0h9fi"
     },
     {
       "account": "USA",
@@ -1250,7 +1261,8 @@
       "type": "EC2",
       "category": "Callatlas DB",
       "cost": 240.44,
-      "domain": ""
+      "domain": "",
+      "uid": "mmon7meap5vpk"
     },
     {
       "account": "USA",
@@ -1263,7 +1275,8 @@
       "type": "EC2",
       "category": "Callatlas DB",
       "cost": 240.44,
-      "domain": ""
+      "domain": "",
+      "uid": "mmon7meadltdp"
     },
     {
       "account": "USA",
@@ -1276,7 +1289,8 @@
       "type": "EC2",
       "category": "Callatlas App",
       "cost": 121.62,
-      "domain": ""
+      "domain": "",
+      "uid": "mmon7meay8z8m"
     },
     {
       "account": "USA",
@@ -1289,7 +1303,8 @@
       "type": "EC2",
       "category": "Callatlas App",
       "cost": 121.62,
-      "domain": ""
+      "domain": "",
+      "uid": "mmon7meapm9kn"
     },
     {
       "account": "USA",
@@ -1302,54 +1317,106 @@
       "type": "EC2",
       "category": "Callatlas Monitor",
       "cost": 139.7,
-      "domain": ""
+      "domain": "",
+      "uid": "mmon7meapvth2"
     }
   ],
   "deleted": [
     {
-      "account": "IHA",
-      "name": "test",
-      "ip": "12.12.12.12",
-      "spec": "",
-      "ebs": "",
-      "os": "Linux (Ubuntu)",
+      "account": "USA",
+      "name": "Britishcouncil-pentest",
+      "ip": "13.201.67.108",
+      "spec": "4 GB RAM, 2 vCPUs, 80 GB SSD",
+      "ebs": "Lightsail",
+      "os": "Debian",
       "region": "AP - Mumbai",
-      "type": "EC2",
-      "category": "",
-      "domain": "",
-      "cost": 244,
-      "gsno": 11,
-      "deletedOn": "12 Mar 2026"
+      "type": "Lightsail",
+      "category": "3CX",
+      "cost": 24,
+      "domain": "britishcouncil.3cx.in",
+      "uid": "mmon7meaus4fz",
+      "gsno": 36,
+      "deletedOn": "13 Mar 2026"
     },
     {
-      "account": "IHA",
-      "name": "test22",
-      "ip": "12.12.12.12.12",
-      "spec": "",
-      "ebs": "",
-      "os": "Linux (Ubuntu)",
+      "account": "USA",
+      "name": "naresh-test",
+      "ip": "15.206.167.79",
+      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
+      "ebs": "Lightsail",
+      "os": "Ubuntu",
       "region": "AP - Mumbai",
-      "type": "EC2",
-      "category": "",
+      "type": "Lightsail",
+      "category": "QA/Test",
+      "cost": 12,
       "domain": "",
-      "cost": 22333,
-      "gsno": 11,
-      "deletedOn": "12 Mar 2026"
+      "uid": "mmon7meajonae",
+      "gsno": 51,
+      "deletedOn": "13 Mar 2026"
     },
     {
-      "account": "IHA",
-      "name": "1221221",
-      "ip": "121212",
-      "spec": "",
-      "ebs": "",
-      "os": "Linux (Ubuntu)",
+      "account": "USA",
+      "name": "angelsolution-Agentflow",
+      "ip": "13.233.81.159",
+      "spec": "4 GB RAM, 2 vCPUs, 80 GB SSD",
+      "ebs": "Lightsail",
+      "os": "Ubuntu",
       "region": "AP - Mumbai",
-      "type": "EC2",
-      "category": "",
-      "domain": "",
-      "cost": 12121212,
-      "gsno": 11,
-      "deletedOn": "12 Mar 2026"
+      "type": "Lightsail",
+      "category": "Agentflow",
+      "cost": 24,
+      "domain": "angelsolution.voipsetu.com",
+      "uid": "mmon7mea9rwpz",
+      "gsno": 71,
+      "deletedOn": "13 Mar 2026"
+    },
+    {
+      "account": "USA",
+      "name": "crm.ihacloud.co",
+      "ip": "13.127.133.205",
+      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
+      "ebs": "Lightsail",
+      "os": "Ubuntu",
+      "region": "AP - Mumbai",
+      "type": "Lightsail",
+      "category": "Agentflow",
+      "cost": 12,
+      "domain": "crm.ihacloud.co",
+      "uid": "mmon7meaewhmk",
+      "gsno": 74,
+      "deletedOn": "13 Mar 2026"
+    },
+    {
+      "account": "USA",
+      "name": "NickPersonalServer",
+      "ip": "35.166.47.145",
+      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
+      "ebs": "Lightsail",
+      "os": "Windows",
+      "region": "AP - Mumbai",
+      "type": "Lightsail",
+      "category": "Agentflow",
+      "cost": 12,
+      "domain": "N/A",
+      "uid": "mmon7meawo5uf",
+      "gsno": 74,
+      "deletedOn": "13 Mar 2026"
+    },
+    {
+      "account": "USA",
+      "name": "Letsgolegal",
+      "ip": "3.6.90.74",
+      "spec": "2 GB RAM, 2 vCPUs, 60 GB SSD",
+      "ebs": "Lightsail",
+      "os": "Windows",
+      "region": "AP - Mumbai",
+      "type": "Lightsail",
+      "category": "Agentflow",
+      "cost": 12,
+      "domain": "N/A",
+      "uid": "mmon7meal4dug",
+      "gsno": 79,
+      "deletedOn": "13 Mar 2026"
     }
   ],
   "bills": [
