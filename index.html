@@ -19,6 +19,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#f1f5f9;min-height:1
 .btn-indigo{background:#4f46e5;color:#fff;}.btn-indigo:hover{background:#4338ca;}
 .btn-teal{background:#0891b2;color:#fff;}.btn-teal:hover{background:#0e7490;}
 .btn-github{background:#22c55e;color:#fff;}.btn-github:hover{background:#16a34a;}
+.btn-yellow{background:#f59e0b;color:#fff;}.btn-yellow:hover{background:#d97706;}
 .btn.loading{background:#475569;cursor:not-allowed;}.btn.done{background:#16a34a;}
 .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:16px;}
 .kpi{background:#fff;border-radius:10px;padding:12px 14px;box-shadow:0 1px 4px rgba(0,0,0,.07);}
@@ -116,7 +117,7 @@ tbody tr:hover td{background:#eff6ff;}
   <div class="modal-box" style="width:400px;">
     <h3>🗑️ Move to Deleted Bin?</h3>
     <p id="deleteModalMsg" style="font-size:13px;color:#475569;margin-bottom:6px;"></p>
-    <p style="font-size:12px;color:#f97316;margin-bottom:16px;">⚠️ Server will move to Deleted Bin — permanently delete from there.</p>
+    <p style="font-size:12px;color:#f97316;margin-bottom:16px;">⚠️ Server will move to Deleted Bin — restore or permanently delete from there.</p>
     <div class="modal-actions">
       <button class="btn btn-gray" id="modalCancel">Cancel</button>
       <button class="btn btn-red" id="modalConfirm">🗑️ Move to Deleted Bin</button>
@@ -213,44 +214,37 @@ tbody tr:hover td{background:#eff6ff;}
 <p class="footer-note">☁️ Admin: edit data → "Save to GitHub" → data.json updates instantly, no rebuild!</p>
 
 <script>
-// ═══════════════════════════════════════════════════════
-//  CONFIG
-// ═══════════════════════════════════════════════════════
-var GH_CFG_KEY = "gh_cfg_iha";
-var ADMIN_SESSION_KEY = "iha_admin_session";
-var ADMIN_PASS = "iha@admin2026";
-var ghCfg = {};
-var IS_ADMIN = false;
+var GH_CFG_KEY="gh_cfg_iha",ADMIN_SESSION_KEY="iha_admin_session",ADMIN_PASS="iha@admin2026";
+var ghCfg={},IS_ADMIN=false;
+var IHA=[],INDIA=[],USA=[],ALL=[],DELETED=[],BILLS=[];
+var activeTab="dashboard",activeBillAcct="IHA",pendingDeleteUID=null,unsavedChanges=0;
+var MONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"];
+var ACCT_CFG={IHA:{color:"#5b21b6",bg:"#ede9fe",emoji:"🟣"},India:{color:"#92400e",bg:"#fef3c7",emoji:"🟡"},USA:{color:"#1d4ed8",bg:"#dbeafe",emoji:"🔵"}};
 
-// ═══════════════════════════════════════════════════════
-//  FETCH data.json
-// ═══════════════════════════════════════════════════════
-var IHA=[], INDIA=[], USA=[], ALL=[], DELETED=[], BILLS=[];
+// ── UID generator — unique per server, never changes ──
+function makeUID(){return Date.now().toString(36)+Math.random().toString(36).substr(2,5);}
 
 async function fetchData(){
   try{
     loadGhCfg();
-    var user = ghCfg.user || "Venky-IHA";
-    var repo = ghCfg.repo || "iha-dashboard";
-    var url = "https://raw.githubusercontent.com/"+user+"/"+repo+"/main/data.json?cb="+Date.now();
-    document.getElementById("load-msg").textContent = "Fetching from GitHub...";
-    var res = await fetch(url);
-    if(!res.ok) throw new Error("HTTP "+res.status);
-    var json = await res.json();
-    IHA = (json.iha||[]).map(function(s){return Object.assign({},s);});
-    INDIA = (json.india||[]).map(function(s){return Object.assign({},s);});
-    USA = (json.usa||[]).map(function(s){return Object.assign({},s);});
-    DELETED = (json.deleted||[]).map(function(s){return Object.assign({},s);});
-    BILLS = (json.bills||[]).map(function(b){return Object.assign({},b);});
+    var user=ghCfg.user||"Venky-IHA",repo=ghCfg.repo||"iha-dashboard";
+    var url="https://raw.githubusercontent.com/"+user+"/"+repo+"/main/data.json?cb="+Date.now();
+    document.getElementById("load-msg").textContent="Fetching from GitHub...";
+    var res=await fetch(url);
+    if(!res.ok)throw new Error("HTTP "+res.status);
+    var json=await res.json();
+    // Assign UID to any server that doesn't have one
+    IHA=(json.iha||[]).map(function(s){var r=Object.assign({},s);if(!r.uid)r.uid=makeUID();return r;});
+    INDIA=(json.india||[]).map(function(s){var r=Object.assign({},s);if(!r.uid)r.uid=makeUID();return r;});
+    USA=(json.usa||[]).map(function(s){var r=Object.assign({},s);if(!r.uid)r.uid=makeUID();return r;});
+    DELETED=(json.deleted||[]).map(function(s){var r=Object.assign({},s);if(!r.uid)r.uid=makeUID();return r;});
+    BILLS=(json.bills||[]).map(function(b){return Object.assign({},b);});
   }catch(e){
-    document.getElementById("load-msg").textContent = "⚠️ Could not load: "+e.message;
+    document.getElementById("load-msg").textContent="⚠️ Could not load: "+e.message;
     await new Promise(function(r){setTimeout(r,2000);});
   }
 }
 
-// ═══════════════════════════════════════════════════════
-//  GITHUB CONFIG
-// ═══════════════════════════════════════════════════════
 function loadGhCfg(){try{var s=localStorage.getItem(GH_CFG_KEY);if(s)ghCfg=JSON.parse(s);}catch(e){}}
 function saveGhCfg(){try{localStorage.setItem(GH_CFG_KEY,JSON.stringify(ghCfg));}catch(e){}}
 function isGhConfigured(){return ghCfg.user&&ghCfg.repo&&ghCfg.token;}
@@ -264,19 +258,13 @@ function checkAdminSession(){try{if(sessionStorage.getItem(ADMIN_SESSION_KEY)===
 function setAdminSession(v){try{if(v)sessionStorage.setItem(ADMIN_SESSION_KEY,"1");else sessionStorage.removeItem(ADMIN_SESSION_KEY);}catch(e){}}
 function setAdminUI(isAdmin){
   IS_ADMIN=isAdmin;
-  ["btnAddServer","btnGitHubSave","btnGitHubCfg"].forEach(function(id){
-    document.getElementById(id).style.display=isAdmin?"inline-block":"none";
-  });
+  ["btnAddServer","btnGitHubSave","btnGitHubCfg"].forEach(function(id){document.getElementById(id).style.display=isAdmin?"inline-block":"none";});
   document.getElementById("btnAdminLogin").textContent=isAdmin?"🔓 Admin (Logout)":"🔐 Admin Login";
   document.getElementById("addFormWrap").style.display="none";
   if(!isAdmin)document.getElementById("saveBanner").style.display="none";
-  renderContent(activeTab);
-  refreshHeader();refreshKPI();refreshTabs();
+  renderContent(activeTab);refreshHeader();refreshKPI();refreshTabs();
 }
 
-// ═══════════════════════════════════════════════════════
-//  SAVE — ALWAYS data.json only, NEVER index.html
-// ═══════════════════════════════════════════════════════
 async function saveToGitHub(){
   if(!isGhConfigured()){openCfg();return;}
   var btn=document.getElementById("btnGitHubSave");
@@ -289,46 +277,26 @@ async function saveToGitHub(){
       deleted:DELETED.map(function(s){var r=Object.assign({},s);delete r.sno;return r;}),
       bills:BILLS
     };
-    var jsonStr = JSON.stringify(payload, null, 2);
-    var encoded = btoa(unescape(encodeURIComponent(jsonStr)));
-
-    var user = ghCfg.user;
-    var repo = ghCfg.repo;
-    var file = "data.json"; // ← HARDCODED — never changes to index.html
-    var apiBase = "https://api.github.com/repos/"+user+"/"+repo+"/contents/"+file;
-    var headers = {"Authorization":"token "+ghCfg.token,"Content-Type":"application/json","Accept":"application/vnd.github.v3+json"};
-
-    var getRes = await fetch(apiBase,{headers:headers});
-    var sha = "";
-    if(getRes.ok){var getData=await getRes.json();sha=getData.sha||"";}
-
-    var putBody = {message:"Data updated "+new Date().toLocaleString("en-GB"),content:encoded};
-    if(sha) putBody.sha = sha;
-
-    var putRes = await fetch(apiBase,{method:"PUT",headers:headers,body:JSON.stringify(putBody)});
+    var encoded=btoa(unescape(encodeURIComponent(JSON.stringify(payload,null,2))));
+    var apiBase="https://api.github.com/repos/"+ghCfg.user+"/"+ghCfg.repo+"/contents/data.json";
+    var headers={"Authorization":"token "+ghCfg.token,"Content-Type":"application/json","Accept":"application/vnd.github.v3+json"};
+    var getRes=await fetch(apiBase,{headers:headers});
+    var sha="";if(getRes.ok){var gd=await getRes.json();sha=gd.sha||"";}
+    var putBody={message:"Data updated "+new Date().toLocaleString("en-GB"),content:encoded};
+    if(sha)putBody.sha=sha;
+    var putRes=await fetch(apiBase,{method:"PUT",headers:headers,body:JSON.stringify(putBody)});
     if(putRes.ok){
       btn.textContent="✅ Saved!";btn.style.background="#16a34a";btn.disabled=false;
-      unsavedChanges=0;
-      document.getElementById("changeCount").textContent=0;
+      unsavedChanges=0;document.getElementById("changeCount").textContent=0;
       document.getElementById("saveBanner").style.display="none";
       setTimeout(function(){btn.textContent="☁️ Save to GitHub";btn.style.background="";},3000);
-    }else{
-      var err=await putRes.json();
-      throw new Error(err.message||"GitHub API error "+putRes.status);
-    }
+    }else{var err=await putRes.json();throw new Error(err.message||"GitHub API error");}
   }catch(e){
     btn.textContent="❌ Failed!";btn.style.background="#dc2626";btn.disabled=false;
     alert("Error: "+e.message);
     setTimeout(function(){btn.textContent="☁️ Save to GitHub";btn.style.background="";},3000);
   }
 }
-
-// ═══════════════════════════════════════════════════════
-//  RUNTIME
-// ═══════════════════════════════════════════════════════
-var activeTab="dashboard", activeBillAcct="IHA", pendingDeleteSno=null, unsavedChanges=0;
-var MONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"];
-var ACCT_CFG={IHA:{color:"#5b21b6",bg:"#ede9fe",emoji:"🟣"},India:{color:"#92400e",bg:"#fef3c7",emoji:"🟡"},USA:{color:"#1d4ed8",bg:"#dbeafe",emoji:"🔵"}};
 
 async function init(){
   loadGhCfg();checkAdminSession();
@@ -341,38 +309,29 @@ async function init(){
     if(IS_ADMIN){setAdminSession(false);setAdminUI(false);return;}
     var pwd=prompt("Admin Password:");
     if(pwd===ADMIN_PASS){setAdminSession(true);setAdminUI(true);}
-    else if(pwd!==null){alert("❌ Wrong password!");}
+    else if(pwd!==null)alert("❌ Wrong password!");
   });
   document.getElementById("btnGitHubSave").addEventListener("click",saveToGitHub);
   document.getElementById("btnGitHubCfg").addEventListener("click",openCfg);
   document.getElementById("cfgSaveBtn").addEventListener("click",function(){
-    ghCfg={
-      user:document.getElementById("cfg-user").value.trim(),
-      repo:document.getElementById("cfg-repo").value.trim(),
-      token:document.getElementById("cfg-token").value.trim()
-    };
+    ghCfg={user:document.getElementById("cfg-user").value.trim(),repo:document.getElementById("cfg-repo").value.trim(),token:document.getElementById("cfg-token").value.trim()};
     if(!ghCfg.user||!ghCfg.repo||!ghCfg.token){alert("Fill all fields!");return;}
-    saveGhCfg();
-    document.getElementById("cfgOverlay").style.display="none";
-    alert("✅ GitHub config saved!");
+    saveGhCfg();document.getElementById("cfgOverlay").style.display="none";alert("✅ GitHub config saved!");
   });
   document.getElementById("today-date").textContent=new Date().toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"});
 }
 
 function rebuildAll(){
-  IHA.forEach(function(s,i){s.account="IHA";s.sno=i+1;});
-  INDIA.forEach(function(s,i){s.account="India";s.sno=i+1;});
-  USA.forEach(function(s,i){s.account="USA";s.sno=i+1;});
+  IHA.forEach(function(s,i){s.sno=i+1;});
+  INDIA.forEach(function(s,i){s.sno=i+1;});
+  USA.forEach(function(s,i){s.sno=i+1;});
   ALL=IHA.concat(INDIA).concat(USA);
   ALL.forEach(function(s,i){s.gsno=i+1;});
 }
-
 function markChanged(){
-  unsavedChanges++;
-  document.getElementById("changeCount").textContent=unsavedChanges;
+  unsavedChanges++;document.getElementById("changeCount").textContent=unsavedChanges;
   if(IS_ADMIN){try{if(window.self===window.top)document.getElementById("saveBanner").style.display="flex";}catch(e){}}
 }
-
 var fmt=function(n){return"$"+Number(n).toFixed(2);};
 var sumCost=function(arr){return arr.reduce(function(s,r){return s+Number(r.cost||0);},0);};
 function osChip(os){var s=(os||"").toLowerCase(),bg,fg;if(s.includes("windows")){bg="#dbeafe";fg="#1d4ed8";}else if(s.includes("ubuntu")){bg="#fef9c3";fg="#854d0e";}else if(s.includes("centos")){bg="#fee2e2";fg="#991b1b";}else{bg="#dcfce7";fg="#166534";}return'<span class="chip" style="background:'+bg+';color:'+fg+';">'+os+'</span>';}
@@ -411,7 +370,7 @@ function setTypeFilter(tabId,type){typeFilter[tabId]=type;renderContent(tabId);}
 function renderContent(id){
   var el=document.getElementById("tab-content");
   if(id==="dashboard"){el.innerHTML=renderDashboard();return;}
-  if(id==="deleted"){el.innerHTML=renderDeletedTab();attachPermDeleteListeners();return;}
+  if(id==="deleted"){el.innerHTML=renderDeletedTab();attachBinListeners();return;}
   if(id==="monthly"){el.innerHTML=renderMonthlyBills();setupMonthlyBillsTab();return;}
   var cfgMap={iha:{data:IHA,color:"#5b21b6"},india:{data:INDIA,color:"#92400e"},usa:{data:USA,color:"#1d4ed8"},all:{data:ALL,color:"#0f172a"}};
   var cfg=cfgMap[id];var isAll=(id==="all");
@@ -443,20 +402,19 @@ function buildHeaders(sa){
            :["#","Server Name","IP","Spec","EBS","OS","Region","Type","Category","Domain","Cost","",""];
   return c.map(function(h){return"<th>"+h+"</th>";}).join("");
 }
-
 function buildRows(data,sa){
   return data.map(function(r){
     var ac=sa?"<td>"+acctChip(r.account)+"</td>":"";
-    var dn=(r.dsno!==undefined?r.dsno:r.sno);
+    var dn=r.dsno!==undefined?r.dsno:r.sno;
     var editCols=IS_ADMIN?
-      '<td><button class="btn btn-gray edit-btn" style="padding:3px 8px;font-size:11px;" data-sno="'+r.sno+'">✏️</button></td>'+
-      '<td><button class="btn btn-red delete-btn" style="padding:3px 8px;font-size:11px;" data-sno="'+r.sno+'" data-name="'+r.name+'">🗑️</button></td>':
+      '<td><button class="btn btn-gray edit-btn" style="padding:3px 8px;font-size:11px;" data-uid="'+r.uid+'">✏️</button></td>'+
+      '<td><button class="btn btn-red delete-btn" style="padding:3px 8px;font-size:11px;" data-uid="'+r.uid+'" data-name="'+r.name+'">🗑️</button></td>':
       '<td></td><td></td>';
     var saveCols=IS_ADMIN?
-      '<td><button class="btn btn-green save-edit-btn" style="padding:3px 8px;font-size:11px;" data-sno="'+r.sno+'" data-acct="'+r.account+'">✅</button></td>'+
-      '<td><button class="btn btn-gray cancel-btn" style="padding:3px 8px;font-size:11px;" data-sno="'+r.sno+'">✖</button></td>':
+      '<td><button class="btn btn-green save-edit-btn" style="padding:3px 8px;font-size:11px;" data-uid="'+r.uid+'" data-acct="'+r.account+'">✅</button></td>'+
+      '<td><button class="btn btn-gray cancel-btn" style="padding:3px 8px;font-size:11px;" data-uid="'+r.uid+'">✖</button></td>':
       '<td></td><td></td>';
-    return'<tr id="view-'+r.sno+'"><td style="color:#94a3b8;font-size:11px">'+dn+'</td>'+ac+
+    return'<tr id="view-'+r.uid+'"><td style="color:#94a3b8;font-size:11px">'+dn+'</td>'+ac+
       '<td style="font-weight:600;color:#1e293b;">'+r.name+'</td>'+
       '<td style="font-family:monospace;color:#475569;font-size:11px">'+r.ip+'</td>'+
       '<td style="color:#475569">'+r.spec+'</td><td style="color:#64748b">'+r.ebs+'</td>'+
@@ -464,30 +422,51 @@ function buildRows(data,sa){
       '<td>'+typeChip(r.type)+'</td><td style="color:#475569">'+r.category+'</td>'+
       '<td style="color:#64748b;font-size:11px">'+(r.domain||"—")+'</td>'+
       '<td style="font-weight:700;color:#0369a1">'+fmt(r.cost)+'</td>'+editCols+'</tr>'+
-      '<tr id="edit-'+r.sno+'" style="display:none;" class="edit-row"><td style="color:#94a3b8;font-size:11px">'+r.sno+'</td>'+ac+
-      '<td><input class="edit-input" id="en-'+r.sno+'" value="'+r.name+'"></td>'+
-      '<td><input class="edit-input" id="ei-'+r.sno+'" value="'+r.ip+'"></td>'+
-      '<td><input class="edit-input" id="es-'+r.sno+'" value="'+r.spec+'"></td>'+
-      '<td><input class="edit-input" id="ee-'+r.sno+'" value="'+r.ebs+'"></td>'+
-      '<td><input class="edit-input" id="eo-'+r.sno+'" value="'+r.os+'"></td>'+
-      '<td><input class="edit-input" id="er-'+r.sno+'" value="'+r.region+'"></td>'+
-      '<td><input class="edit-input" id="et-'+r.sno+'" value="'+r.type+'" style="width:70px"></td>'+
-      '<td><input class="edit-input" id="ec-'+r.sno+'" value="'+r.category+'"></td>'+
-      '<td><input class="edit-input" id="ed-'+r.sno+'" value="'+(r.domain||"")+'"></td>'+
-      '<td><input class="edit-input" id="ep-'+r.sno+'" value="'+r.cost+'" type="number" style="width:70px"></td>'+saveCols+'</tr>';
+      '<tr id="edit-'+r.uid+'" style="display:none;" class="edit-row"><td style="color:#94a3b8;font-size:11px">'+r.sno+'</td>'+ac+
+      '<td><input class="edit-input" id="en-'+r.uid+'" value="'+r.name+'"></td>'+
+      '<td><input class="edit-input" id="ei-'+r.uid+'" value="'+r.ip+'"></td>'+
+      '<td><input class="edit-input" id="es-'+r.uid+'" value="'+r.spec+'"></td>'+
+      '<td><input class="edit-input" id="ee-'+r.uid+'" value="'+r.ebs+'"></td>'+
+      '<td><input class="edit-input" id="eo-'+r.uid+'" value="'+r.os+'"></td>'+
+      '<td><input class="edit-input" id="er-'+r.uid+'" value="'+r.region+'"></td>'+
+      '<td><input class="edit-input" id="et-'+r.uid+'" value="'+r.type+'" style="width:70px"></td>'+
+      '<td><input class="edit-input" id="ec-'+r.uid+'" value="'+r.category+'"></td>'+
+      '<td><input class="edit-input" id="ed-'+r.uid+'" value="'+(r.domain||"")+'"></td>'+
+      '<td><input class="edit-input" id="ep-'+r.uid+'" value="'+r.cost+'" type="number" style="width:70px"></td>'+saveCols+'</tr>';
   }).join("");
 }
 
 function attachEditListeners(){
-  document.querySelectorAll(".edit-btn").forEach(function(b){b.addEventListener("click",function(){document.getElementById("view-"+b.dataset.sno).style.display="none";document.getElementById("edit-"+b.dataset.sno).style.display="";});});
-  document.querySelectorAll(".cancel-btn").forEach(function(b){b.addEventListener("click",function(){document.getElementById("edit-"+b.dataset.sno).style.display="none";document.getElementById("view-"+b.dataset.sno).style.display="";});});
+  document.querySelectorAll(".edit-btn").forEach(function(b){
+    b.addEventListener("click",function(){
+      document.getElementById("view-"+b.dataset.uid).style.display="none";
+      document.getElementById("edit-"+b.dataset.uid).style.display="";
+    });
+  });
+  document.querySelectorAll(".cancel-btn").forEach(function(b){
+    b.addEventListener("click",function(){
+      document.getElementById("edit-"+b.dataset.uid).style.display="none";
+      document.getElementById("view-"+b.dataset.uid).style.display="";
+    });
+  });
   document.querySelectorAll(".save-edit-btn").forEach(function(b){
     b.addEventListener("click",function(){
-      var sno=+b.dataset.sno,acct=b.dataset.acct;
-      function upd(o){o.name=document.getElementById("en-"+sno).value;o.ip=document.getElementById("ei-"+sno).value;o.spec=document.getElementById("es-"+sno).value;o.ebs=document.getElementById("ee-"+sno).value;o.os=document.getElementById("eo-"+sno).value;o.region=document.getElementById("er-"+sno).value;o.type=document.getElementById("et-"+sno).value;o.category=document.getElementById("ec-"+sno).value;o.domain=document.getElementById("ed-"+sno).value;o.cost=parseFloat(document.getElementById("ep-"+sno).value)||0;}
+      var uid=b.dataset.uid,acct=b.dataset.acct;
+      function upd(o){
+        o.name=document.getElementById("en-"+uid).value;
+        o.ip=document.getElementById("ei-"+uid).value;
+        o.spec=document.getElementById("es-"+uid).value;
+        o.ebs=document.getElementById("ee-"+uid).value;
+        o.os=document.getElementById("eo-"+uid).value;
+        o.region=document.getElementById("er-"+uid).value;
+        o.type=document.getElementById("et-"+uid).value;
+        o.category=document.getElementById("ec-"+uid).value;
+        o.domain=document.getElementById("ed-"+uid).value;
+        o.cost=parseFloat(document.getElementById("ep-"+uid).value)||0;
+      }
       var map={IHA:IHA,India:INDIA,USA:USA};
-      var idx=map[acct].findIndex(function(s){return s.sno===sno;});if(idx>=0)upd(map[acct][idx]);
-      var ai=ALL.findIndex(function(s){return s.sno===sno;});if(ai>=0)upd(ALL[ai]);
+      var idx=map[acct].findIndex(function(s){return s.uid===uid;});if(idx>=0)upd(map[acct][idx]);
+      var ai=ALL.findIndex(function(s){return s.uid===uid;});if(ai>=0)upd(ALL[ai]);
       markChanged();refreshAll();
     });
   });
@@ -496,7 +475,7 @@ function attachEditListeners(){
 function attachDeleteListeners(){
   document.querySelectorAll(".delete-btn").forEach(function(b){
     b.addEventListener("click",function(){
-      pendingDeleteSno=+b.dataset.sno;
+      pendingDeleteUID=b.dataset.uid;
       document.getElementById("deleteModalMsg").textContent='Move "'+b.dataset.name+'" to Deleted Bin?';
       document.getElementById("deleteModal").style.display="flex";
     });
@@ -504,75 +483,98 @@ function attachDeleteListeners(){
 }
 
 function setupDeleteModal(){
-  document.getElementById("modalCancel").addEventListener("click",function(){document.getElementById("deleteModal").style.display="none";pendingDeleteSno=null;});
+  document.getElementById("modalCancel").addEventListener("click",function(){
+    document.getElementById("deleteModal").style.display="none";pendingDeleteUID=null;
+  });
   document.getElementById("modalConfirm").addEventListener("click",function(){
-    if(pendingDeleteSno===null)return;
-    var sno=pendingDeleteSno;
-    var ai=ALL.findIndex(function(s){return s.sno===sno;});if(ai<0)return;
+    if(!pendingDeleteUID)return;
+    var uid=pendingDeleteUID;
+    // Find in ALL by uid
+    var ai=ALL.findIndex(function(s){return s.uid===uid;});
+    if(ai<0)return;
     var srv=Object.assign({},ALL[ai]);
     srv.deletedOn=new Date().toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"});
     DELETED.push(srv);
-    ALL.splice(ai,1);
+    // Remove from account array
     var map={IHA:IHA,India:INDIA,USA:USA};
-    var arr=map[srv.account],idx=arr.findIndex(function(s){return s.sno===sno;});
+    var arr=map[srv.account];
+    var idx=arr.findIndex(function(s){return s.uid===uid;});
     if(idx>=0)arr.splice(idx,1);
-    document.getElementById("deleteModal").style.display="none";pendingDeleteSno=null;
+    document.getElementById("deleteModal").style.display="none";pendingDeleteUID=null;
     markChanged();refreshAll();
   });
 }
 
-// ═══════════════════════════════════════════════════════
-//  DELETED BIN TAB
-// ═══════════════════════════════════════════════════════
+// ── DELETED BIN ──
 function renderDeletedTab(){
   if(!DELETED.length)return'<div style="text-align:center;padding:40px;color:#94a3b8;"><div style="font-size:40px;">🗑️</div><div style="font-size:14px;font-weight:600;margin-top:12px;">Deleted Bin is empty</div></div>';
-  var clearBtn=IS_ADMIN?'<button class="btn btn-red" id="clearAllDeleted" style="font-size:12px;padding:6px 14px;margin-bottom:12px;">🗑️ Clear All Permanently ('+DELETED.length+')</button>':'';
-  return'<div style="margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">'+
-    '<span style="font-size:12px;color:#dc2626;font-weight:600;">🗑️ '+DELETED.length+' server(s) in Deleted Bin</span>'+
-    clearBtn+
-    '</div>'+
+  var clearBtn=IS_ADMIN?'<button class="btn btn-red" id="clearAllDeleted" style="font-size:12px;padding:6px 14px;">🗑️ Clear All ('+DELETED.length+')</button>':'';
+  return'<div style="margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">'+
+    '<span style="font-size:12px;color:#dc2626;font-weight:600;">🗑️ '+DELETED.length+' server(s) in Bin</span>'+clearBtn+'</div>'+
     '<div class="table-wrap"><table><thead><tr style="background:#dc2626">'+
-    '<th>#</th><th>Account</th><th>Name</th><th>IP</th><th>Spec</th><th>OS</th><th>Region</th><th>Cost</th><th>Deleted On</th>'+(IS_ADMIN?'<th>Action</th>':'')+
+    '<th>#</th><th>Account</th><th>Name</th><th>IP</th><th>OS</th><th>Region</th><th>Cost</th><th>Deleted On</th>'+(IS_ADMIN?'<th>Restore</th><th>Delete</th>':'')+
     '</tr></thead><tbody>'+
     DELETED.map(function(r,i){
+      var restoreBtn=IS_ADMIN?'<td><button class="btn btn-yellow restore-btn" style="padding:3px 8px;font-size:11px;white-space:nowrap;" data-uid="'+r.uid+'">♻️ Restore</button></td>':'';
+      var permBtn=IS_ADMIN?'<td><button class="btn btn-red perm-del-btn" style="padding:3px 8px;font-size:11px;white-space:nowrap;" data-uid="'+r.uid+'">❌ Delete</button></td>':'';
       return'<tr style="background:'+(i%2===0?"#fff1f2":"#fff5f5")+'">'+
         '<td style="font-size:11px;color:#94a3b8">'+(i+1)+'</td>'+
         '<td>'+acctChip(r.account)+'</td>'+
         '<td style="text-decoration:line-through;font-weight:600;color:#9f1239;">'+r.name+'</td>'+
         '<td style="font-family:monospace;font-size:11px;color:#64748b;">'+r.ip+'</td>'+
-        '<td style="color:#475569;">'+r.spec+'</td>'+
         '<td>'+osChip(r.os)+'</td>'+
         '<td style="color:#475569;">'+r.region+'</td>'+
         '<td style="font-weight:700;color:#dc2626;">'+fmt(r.cost)+'</td>'+
         '<td style="font-size:11px;color:#64748b;">'+r.deletedOn+'</td>'+
-        (IS_ADMIN?'<td><button class="btn btn-red perm-del-btn" style="padding:3px 8px;font-size:11px;white-space:nowrap;" data-idx="'+i+'">❌ Permanently Delete</button></td>':'')+
+        restoreBtn+permBtn+
       '</tr>';
     }).join("")+
     '</tbody></table></div>';
 }
 
-function attachPermDeleteListeners(){
+function attachBinListeners(){
+  // Restore
+  document.querySelectorAll(".restore-btn").forEach(function(b){
+    b.addEventListener("click",function(){
+      var uid=b.dataset.uid;
+      var idx=DELETED.findIndex(function(s){return s.uid===uid;});
+      if(idx<0)return;
+      var srv=Object.assign({},DELETED[idx]);
+      delete srv.deletedOn;
+      // Restore back to correct account
+      var map={IHA:IHA,India:INDIA,USA:USA};
+      var acct=srv.account;
+      if(!map[acct])acct="IHA";
+      map[acct].push(srv);
+      DELETED.splice(idx,1);
+      markChanged();refreshAll();
+      alert('✅ "'+srv.name+'" restored to '+acct+'!');
+    });
+  });
+  // Permanent delete
   document.querySelectorAll(".perm-del-btn").forEach(function(b){
     b.addEventListener("click",function(){
-      var idx=+b.dataset.idx;
+      var uid=b.dataset.uid;
+      var idx=DELETED.findIndex(function(s){return s.uid===uid;});
+      if(idx<0)return;
       var name=DELETED[idx].name;
-      if(!confirm('⚠️ Permanently delete "'+name+'"?\n\nThis CANNOT be undone!'))return;
+      if(!confirm('⚠️ Permanently delete "'+name+'"?\nThis CANNOT be undone!'))return;
       DELETED.splice(idx,1);
       markChanged();refreshAll();
     });
   });
+  // Clear all
   var clearAll=document.getElementById("clearAllDeleted");
   if(clearAll){
     clearAll.addEventListener("click",function(){
-      if(!confirm("⚠️ Permanently delete ALL "+DELETED.length+" servers?\n\nThis CANNOT be undone!"))return;
-      DELETED=[];
-      markChanged();refreshAll();
+      if(!confirm("⚠️ Permanently delete ALL "+DELETED.length+" servers?\nCannot be undone!"))return;
+      DELETED=[];markChanged();refreshAll();
     });
   }
 }
 
 function renderDashboard(){
-  var gt=sumCost(ALL);
+  var gt=sumCost(ALL);if(!gt)gt=1;
   var accts=[{a:"IHA",t:sumCost(IHA),c:"#5b21b6"},{a:"India",t:sumCost(INDIA),c:"#b45309"},{a:"USA",t:sumCost(USA),c:"#1d4ed8"}];
   var regMap={};ALL.forEach(function(s){regMap[s.region]=(regMap[s.region]||0)+1;});
   var ec2=ALL.filter(function(s){return s.type==="EC2";}),ls=ALL.filter(function(s){return s.type==="Lightsail";});
@@ -680,7 +682,18 @@ function setupAddForm(){
     if(!name||!ip||isNaN(cost)){msg.style.color="#dc2626";msg.textContent="⚠️ Name, IP and Cost required!";return;}
     var account=document.getElementById("f-account").value;
     var map={IHA:IHA,India:INDIA,USA:USA};
-    map[account].push({account:account,name:name,ip:ip,spec:document.getElementById("f-spec").value||"",ebs:document.getElementById("f-ebs").value||"",os:document.getElementById("f-os").value,region:document.getElementById("f-region").value,type:document.getElementById("f-type").value,category:document.getElementById("f-category").value||"",domain:document.getElementById("f-domain").value||"",cost:cost});
+    map[account].push({
+      uid:makeUID(),
+      account:account,name:name,ip:ip,
+      spec:document.getElementById("f-spec").value||"",
+      ebs:document.getElementById("f-ebs").value||"",
+      os:document.getElementById("f-os").value,
+      region:document.getElementById("f-region").value,
+      type:document.getElementById("f-type").value,
+      category:document.getElementById("f-category").value||"",
+      domain:document.getElementById("f-domain").value||"",
+      cost:cost
+    });
     msg.style.color="#16a34a";msg.textContent="✅ Added! Click ☁️ Save to GitHub.";
     ["f-name","f-ip","f-spec","f-ebs","f-category","f-domain","f-cost"].forEach(function(id){document.getElementById(id).value="";});
     setTimeout(function(){msg.textContent="";},4000);
