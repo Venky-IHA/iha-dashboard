@@ -491,6 +491,20 @@
       "category": "3cx",
       "domain": "",
       "cost": 17.79
+    },
+    {
+      "uid": "mmoobc2hh3qoc",
+      "account": "India",
+      "name": "teamiha3cx",
+      "ip": "13.235.133.197",
+      "spec": "t2.medium",
+      "ebs": "10GiB - gp2",
+      "os": "Linux (Ubuntu)",
+      "region": "AP - Mumbai",
+      "type": "EC2",
+      "category": "3CX",
+      "domain": "-",
+      "cost": 34.87
     }
   ],
   "usa": [
