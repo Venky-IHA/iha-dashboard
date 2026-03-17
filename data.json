@@ -734,20 +734,6 @@
     },
     {
       "account": "USA",
-      "name": "britishcouncil",
-      "ip": "43.205.143.1",
-      "spec": "4 GB RAM, 2 vCPUs, 80 GB SSD",
-      "ebs": "Lightsail",
-      "os": "Debian",
-      "region": "AP - Mumbai",
-      "type": "Lightsail",
-      "category": "3CX",
-      "cost": 24,
-      "domain": "britishcouncil.3cx.in",
-      "uid": "mmonbiqy77f1h"
-    },
-    {
-      "account": "USA",
       "name": "HARI-3cx-new",
       "ip": "13.202.26.11",
       "spec": "32 GB RAM, 8 vCPUs, 640 GB SSD",
@@ -1471,6 +1457,22 @@
       "uid": "mmonbiqyssa3t",
       "gsno": 56,
       "deletedOn": "13 Mar 2026"
+    },
+    {
+      "account": "USA",
+      "name": "britishcouncil",
+      "ip": "43.205.143.1",
+      "spec": "4 GB RAM, 2 vCPUs, 80 GB SSD",
+      "ebs": "Lightsail",
+      "os": "Debian",
+      "region": "AP - Mumbai",
+      "type": "Lightsail",
+      "category": "3CX",
+      "cost": 24,
+      "domain": "britishcouncil.3cx.in",
+      "uid": "mmonbiqy77f1h",
+      "gsno": 53,
+      "deletedOn": "17 Mar 2026"
     }
   ],
   "bills": [
